@@ -1,0 +1,846 @@
+/* Container - Desktop View */
+.container {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    min-height: 100vh;
+    background-color: #0f1419;
+    position: relative;
+    padding: 100px 80px 120px;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 40px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: rgba(15, 20, 25, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.dots {
+    display: flex;
+    gap: 8px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.dot-1 {
+    background-color: #3b9eff;
+}
+
+.dot-2 {
+    background-color: #2a7ec7;
+}
+
+.dot-3 {
+    background-color: #1e5a8f;
+}
+
+.node-id {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 14px;
+    color: #3b9eff;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+}
+
+.menu-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    transition: background-color 0.2s;
+}
+
+.menu-btn:hover {
+    background-color: rgba(59, 158, 255, 0.1);
+}
+
+/* About Me Redesign */
+.about-section {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.section-header-large {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid rgba(59, 158, 255, 0.2);
+    padding-bottom: 16px;
+}
+
+.section-header-large h2 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 28px;
+    color: #ffffff;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.section-icon-large {
+    font-size: 24px;
+    color: #3b9eff;
+}
+
+/* Cyber Card Container */
+.cyber-card {
+    background: #1a2332;
+    border: 1px solid rgba(59, 158, 255, 0.15);
+    border-radius: 16px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+}
+
+.cyber-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #3b9eff, transparent);
+}
+
+.cyber-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.cyber-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 20px;
+    color: #3b9eff;
+    font-weight: 600;
+}
+
+/* Card Content Layout */
+.card-content-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+.logo-frame {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.card-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 48px;
+    /* Match logo height */
+}
+
+/* Reset margins inside card-text to ensure alignment works */
+.card-text .job-role,
+.card-text .job-company,
+.card-text .edu-degree,
+.card-text .edu-school,
+.card-text .cert-title,
+.card-text .cert-issuer {
+    margin-bottom: 0;
+}
+
+/* Grid Layouts */
+.experience-grid {
+    display: grid;
+    gap: 24px;
+}
+
+.job-card {
+    background: rgba(13, 17, 23, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 24px;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.job-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(59, 158, 255, 0.4);
+}
+
+.job-role {
+    font-size: 18px;
+    color: #ffffff;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.job-company {
+    color: #3fb950;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    display: block;
+    width: fit-content;
+    margin-bottom: 12px;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.job-company:hover {
+    color: #56d364;
+    /* Lighter green on hover */
+    text-decoration: underline;
+}
+
+.job-meta-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #8b949e;
+    margin-bottom: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 12px;
+}
+
+.job-points li {
+    font-size: 14px;
+    color: #c9d1d9;
+    margin-bottom: 8px;
+    line-height: 1.6;
+    padding-left: 20px;
+    position: relative;
+}
+
+.job-points li::before {
+    content: '>>';
+    position: absolute;
+    left: 0;
+    color: #3b9eff;
+    font-size: 10px;
+    top: 4px;
+}
+
+/* Education Grid */
+.education-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.edu-card {
+    background: rgba(13, 17, 23, 0.6);
+    border-left: 4px solid #3fb950;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.edu-degree {
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.edu-school {
+    color: #3fb950;
+    font-size: 14px;
+    display: block;
+}
+
+/* Certs Grid Redesign */
+.cert-grid-large {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.cert-card {
+    background: rgba(13, 17, 23, 0.6);
+    border: 1px solid rgba(59, 158, 255, 0.2);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.2s;
+}
+
+.cert-card:hover {
+    background: rgba(59, 158, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.cert-icon {
+    font-size: 24px;
+}
+
+.cert-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.cert-title {
+    font-size: 13px;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.cert-issuer {
+    font-size: 10px;
+    color: #3fb950;
+    font-family: 'JetBrains Mono', monospace;
+    margin-top: 4px;
+}
+
+/* Main Content */
+.main-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Secure Badge */
+.secure-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 28px;
+    background-color: rgba(63, 185, 80, 0.08);
+    border: 1px solid rgba(63, 185, 80, 0.3);
+    border-radius: 28px;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.secure-badge span {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 12px;
+    color: #3fb950;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+/* Name Section */
+.name-section {
+    text-align: center;
+    margin-top: 0;
+}
+
+.name {
+    font-size: 80px;
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -2px;
+    color: #ffffff;
+    margin-bottom: 24px;
+}
+
+.protocol {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 15px;
+    color: #3b9eff;
+    letter-spacing: 1.2px;
+    font-weight: 400;
+}
+
+/* Status Cards */
+.status-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 24px;
+}
+
+.status-card {
+    background-color: #1a2332;
+    border-radius: 20px;
+    padding: 28px 24px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.status-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(59, 158, 255, 0.2);
+}
+
+.status-label {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 11px;
+    color: #8b949e;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+    font-weight: 500;
+}
+
+.status-value {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 17px;
+    font-weight: 600;
+    color: #3fb950;
+    letter-spacing: 0.3px;
+}
+
+.status-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #3fb950;
+    box-shadow: 0 0 12px rgba(63, 185, 80, 0.6);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 12px rgba(63, 185, 80, 0.6);
+    }
+
+    50% {
+        box-shadow: 0 0 20px rgba(63, 185, 80, 0.8);
+    }
+}
+
+.status-value.role {
+    color: #3fb950;
+}
+
+/* Terminal */
+.terminal {
+    background-color: #0d1117;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: border-color 0.3s;
+}
+
+.terminal:hover {
+    border-color: rgba(59, 158, 255, 0.2);
+}
+
+.terminal-header {
+    display: flex;
+    gap: 8px;
+    padding: 16px 20px;
+    background-color: rgba(26, 35, 50, 0.4);
+}
+
+.terminal-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #3b3b3b;
+}
+
+.terminal-dot.red {
+    background-color: #ff5f56;
+}
+
+.terminal-dot.yellow {
+    background-color: #ffbd2e;
+}
+
+.terminal-dot.green {
+    background-color: #27c93f;
+}
+
+/* Terminal Interactive Styles */
+.terminal-content {
+    padding: 24px;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.8;
+    height: 320px;
+    overflow-y: auto;
+    cursor: text;
+}
+
+.terminal-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #3fb950;
+    font-family: inherit;
+    font-size: inherit;
+    flex: 1;
+    margin-left: 8px;
+    width: 100%;
+}
+
+.input-line {
+    display: flex;
+    align-items: center;
+}
+
+.command-line {
+    margin-top: 8px;
+}
+
+.command-text {
+    color: #3fb950;
+    margin-left: 8px;
+}
+
+.output-text {
+    color: #8b949e;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.error {
+    color: #ff6b6b;
+}
+
+.prompt {
+    color: #3b9eff;
+}
+
+.text-blue-400 {
+    color: #3b9eff;
+}
+
+.text-green-400 {
+    color: #3fb950;
+}
+
+.font-bold {
+    font-weight: 600;
+}
+
+/* Custom Scrollbar for terminal */
+.terminal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.terminal-content::-webkit-scrollbar-track {
+    background: #0d1117;
+}
+
+.terminal-content::-webkit-scrollbar-thumb {
+    background: #1a2332;
+    border-radius: 4px;
+}
+
+.terminal-content::-webkit-scrollbar-thumb:hover {
+    background: #3b9eff;
+}
+
+/* Deployments Section */
+.deployments-section {
+    margin-top: 24px;
+}
+
+.deployments-title {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 12px;
+    color: #8b949e;
+    letter-spacing: 1.2px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.deployments-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.deployment-card {
+    background-color: #1a2332;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: transform 0.3s, border-color 0.3s;
+    cursor: pointer;
+}
+
+.deployment-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(59, 158, 255, 0.3);
+}
+
+.deployment-image {
+    width: 100%;
+    height: 220px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.deployment-image.cloud-mesh {
+    background: radial-gradient(circle at 50% 50%, rgba(59, 158, 255, 0.3) 0%, rgba(59, 158, 255, 0.1) 30%, transparent 70%),
+        linear-gradient(135deg, #0d1117 0%, #1a2332 100%);
+    position: relative;
+}
+
+.deployment-image.cloud-mesh::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(circle at 30% 40%, rgba(59, 158, 255, 0.4) 1px, transparent 1px),
+        radial-gradient(circle at 70% 60%, rgba(59, 158, 255, 0.4) 1px, transparent 1px),
+        radial-gradient(circle at 50% 30%, rgba(59, 158, 255, 0.4) 1px, transparent 1px),
+        radial-gradient(circle at 40% 70%, rgba(59, 158, 255, 0.4) 1px, transparent 1px),
+        radial-gradient(circle at 60% 50%, rgba(59, 158, 255, 0.4) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.6;
+}
+
+.deployment-image.cloud-mesh::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(45deg, transparent 30%, rgba(59, 158, 255, 0.1) 50%, transparent 70%),
+        linear-gradient(-45deg, transparent 30%, rgba(59, 158, 255, 0.1) 50%, transparent 70%);
+}
+
+.deployment-image.fiber-core {
+    background: linear-gradient(135deg, #0d1117 0%, #1a2332 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.deployment-image.fiber-core::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(90deg, transparent 0%, rgba(59, 158, 255, 0.6) 20%, rgba(59, 158, 255, 0.8) 25%, transparent 30%),
+        linear-gradient(90deg, transparent 15%, rgba(59, 158, 255, 0.5) 35%, rgba(59, 158, 255, 0.7) 40%, transparent 45%),
+        linear-gradient(90deg, transparent 30%, rgba(59, 158, 255, 0.6) 50%, rgba(59, 158, 255, 0.8) 55%, transparent 60%),
+        linear-gradient(90deg, transparent 45%, rgba(59, 158, 255, 0.5) 65%, rgba(59, 158, 255, 0.7) 70%, transparent 75%);
+    transform: skewY(-15deg) scale(1.2);
+}
+
+.deployment-image.fiber-core::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.05) 50%, transparent 100%);
+    transform: skewY(-15deg);
+    opacity: 0.3;
+}
+
+.deployment-label {
+    padding: 18px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 0.6px;
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    background-color: #1a2332;
+    padding: 16px 20px;
+    border-radius: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+}
+
+.nav-btn {
+    width: 64px;
+    height: 64px;
+    border: none;
+    background: none;
+    border-radius: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    color: #8b949e;
+}
+
+.nav-btn:hover {
+    background-color: rgba(59, 158, 255, 0.1);
+    color: #3b9eff;
+    transform: translateY(-2px);
+}
+
+.nav-btn.active {
+    background-color: #3b9eff;
+    color: #ffffff;
+}
+
+/* Responsive for smaller desktops */
+@media (max-width: 1200px) {
+    .container {
+        padding: 0 40px 120px;
+    }
+
+    .name {
+        font-size: 64px;
+    }
+}
+
+/* Tablet adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 24px 100px;
+    }
+
+    .name {
+        font-size: 56px;
+    }
+
+    .main-content {
+        gap: 32px;
+    }
+
+    .header {
+        padding: 20px 0;
+    }
+}
+
+
+.menu-btn.active {
+    background-color: #3b9eff;
+}
+
+.cyber-menu {
+    position: absolute;
+    top: 70px;
+    right: 40px;
+    background-color: rgba(15, 20, 25, 0.95);
+    border: 1px solid rgba(59, 158, 255, 0.2);
+    border-radius: 16px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 280px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+    animation: menuSlideIn 0.3s ease-out;
+}
+
+@keyframes menuSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.cyber-menu-item {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+}
+
+.cyber-menu-item:hover {
+    background-color: rgba(59, 158, 255, 0.1);
+    border-color: rgba(59, 158, 255, 0.3);
+    transform: translateX(-4px);
+}
+
+.cyber-prefix {
+    color: #3fb950;
+    margin-right: 8px;
+    font-weight: bold;
+}
+
+.cyber-menu-item {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.cyber-desc {
+    font-size: 10px;
+    color: #8b949e;
+    margin-top: 4px;
+    letter-spacing: 1px;
+    opacity: 0.7;
+}
+
+.cyber-menu-item:hover .cyber-desc {
+    color: #3b9eff;
+    opacity: 1;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+.cursor-blink {
+    color: #3b9eff;
+    animation: blink 1s step-end infinite;
+    margin-left: 4px;
+}

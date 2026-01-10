@@ -1,0 +1,396 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: #0f1419;
+    color: #ffffff;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 450px;
+    margin: 0 auto;
+    min-height: 100vh;
+    background-color: #0f1419;
+    position: relative;
+    padding-bottom: 100px;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.dots {
+    display: flex;
+    gap: 6px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.dot-1 {
+    background-color: #3b9eff;
+}
+
+.dot-2 {
+    background-color: #2a7ec7;
+}
+
+.dot-3 {
+    background-color: #1e5a8f;
+}
+
+.node-id {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 13px;
+    color: #3b9eff;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+}
+
+.menu-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+
+.menu-btn:hover {
+    background-color: rgba(59, 158, 255, 0.1);
+}
+
+/* Main Content */
+.main-content {
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+/* Secure Badge */
+.secure-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background-color: rgba(59, 158, 255, 0.08);
+    border: 1px solid rgba(59, 158, 255, 0.3);
+    border-radius: 24px;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.secure-badge span {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 11px;
+    color: #3b9eff;
+    letter-spacing: 0.8px;
+    font-weight: 500;
+}
+
+/* Name Section */
+.name-section {
+    text-align: center;
+    margin-top: 24px;
+}
+
+.name {
+    font-size: 56px;
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    color: #ffffff;
+    margin-bottom: 16px;
+}
+
+.protocol {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 13px;
+    color: #3b9eff;
+    letter-spacing: 1px;
+    font-weight: 400;
+}
+
+/* Status Cards */
+.status-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.status-card {
+    background-color: #1a2332;
+    border-radius: 16px;
+    padding: 20px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.status-label {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 10px;
+    color: #8b949e;
+    letter-spacing: 0.8px;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.status-value {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 0.3px;
+}
+
+.status-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #3fb950;
+    box-shadow: 0 0 8px rgba(63, 185, 80, 0.6);
+}
+
+.status-value.role {
+    color: #3b9eff;
+}
+
+/* Terminal */
+.terminal {
+    background-color: #0d1117;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.terminal-header {
+    display: flex;
+    gap: 6px;
+    padding: 12px 16px;
+    background-color: rgba(26, 35, 50, 0.4);
+}
+
+.terminal-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #3b4048;
+}
+
+.terminal-content {
+    padding: 16px;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.terminal-line {
+    color: #8b949e;
+    margin-bottom: 4px;
+}
+
+.prompt {
+    color: #3fb950;
+}
+
+.command {
+    color: #8b949e;
+}
+
+.command-cyan {
+    color: #3b9eff;
+}
+
+.terminal-line.output {
+    color: #8b949e;
+}
+
+.terminal-line.success {
+    color: #3fb950;
+}
+
+/* Deployments Section */
+.deployments-section {
+    margin-top: 16px;
+}
+
+.deployments-title {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 11px;
+    color: #8b949e;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+    font-weight: 500;
+}
+
+.deployments-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.deployment-card {
+    background-color: #1a2332;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.deployment-image {
+    width: 100%;
+    height: 160px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.deployment-image.cloud-mesh {
+    background: radial-gradient(circle at 50% 50%, rgba(59, 158, 255, 0.3) 0%, rgba(59, 158, 255, 0.1) 30%, transparent 70%),
+                linear-gradient(135deg, #0d1117 0%, #1a2332 100%);
+    position: relative;
+}
+
+.deployment-image.cloud-mesh::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+        radial-gradient(circle at 30% 40%, rgba(59, 158, 255, 0.4) 1px, transparent 1px),
+        radial-gradient(circle at 70% 60%, rgba(59, 158, 255, 0.4) 1px, transparent 1px),
+        radial-gradient(circle at 50% 30%, rgba(59, 158, 255, 0.4) 1px, transparent 1px),
+        radial-gradient(circle at 40% 70%, rgba(59, 158, 255, 0.4) 1px, transparent 1px),
+        radial-gradient(circle at 60% 50%, rgba(59, 158, 255, 0.4) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.6;
+}
+
+.deployment-image.cloud-mesh::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+        linear-gradient(45deg, transparent 30%, rgba(59, 158, 255, 0.1) 50%, transparent 70%),
+        linear-gradient(-45deg, transparent 30%, rgba(59, 158, 255, 0.1) 50%, transparent 70%);
+}
+
+.deployment-image.fiber-core {
+    background: linear-gradient(135deg, #0d1117 0%, #1a2332 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.deployment-image.fiber-core::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+        linear-gradient(90deg, transparent 0%, rgba(59, 158, 255, 0.6) 20%, rgba(59, 158, 255, 0.8) 25%, transparent 30%),
+        linear-gradient(90deg, transparent 15%, rgba(59, 158, 255, 0.5) 35%, rgba(59, 158, 255, 0.7) 40%, transparent 45%),
+        linear-gradient(90deg, transparent 30%, rgba(59, 158, 255, 0.6) 50%, rgba(59, 158, 255, 0.8) 55%, transparent 60%),
+        linear-gradient(90deg, transparent 45%, rgba(59, 158, 255, 0.5) 65%, rgba(59, 158, 255, 0.7) 70%, transparent 75%);
+    transform: skewY(-15deg) scale(1.2);
+}
+
+.deployment-image.fiber-core::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.05) 50%, transparent 100%);
+    transform: skewY(-15deg);
+    opacity: 0.3;
+}
+
+.deployment-label {
+    padding: 14px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    background-color: #1a2332;
+    padding: 12px 16px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.nav-btn {
+    width: 56px;
+    height: 56px;
+    border: none;
+    background: none;
+    border-radius: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    color: #8b949e;
+}
+
+.nav-btn:hover {
+    background-color: rgba(59, 158, 255, 0.1);
+    color: #3b9eff;
+}
+
+.nav-btn.active {
+    background-color: #3b9eff;
+    color: #ffffff;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .container {
+        max-width: 100%;
+    }
+    
+    .name {
+        font-size: 48px;
+    }
+    
+    .main-content {
+        padding: 0 16px;
+    }
+    
+    .header {
+        padding: 16px;
+    }
+}
