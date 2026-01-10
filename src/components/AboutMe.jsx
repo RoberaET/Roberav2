@@ -20,7 +20,9 @@ function AboutMe() {
             {/* Experience Section */}
             <div className="cyber-card">
                 <div className="cyber-card-header">
-                    <span className="cyber-title">RUNTIME_PROCESSES (EXPERIENCE)</span>
+                    <span className="cyber-title">
+                        RUNTIME_PROCESSES <span className="cyber-subtitle">(EXPERIENCE)</span>
+                    </span>
                 </div>
                 <div className="experience-grid">
                     <div className="job-card">
@@ -92,7 +94,9 @@ function AboutMe() {
             {/* Education Section */}
             <div className="cyber-card">
                 <div className="cyber-card-header">
-                    <span className="cyber-title">KERNEL_MODULES (EDUCATION)</span>
+                    <span className="cyber-title">
+                        KERNEL_MODULES <span className="cyber-subtitle">(EDUCATION)</span>
+                    </span>
                 </div>
                 <div className="education-grid">
                     <GlareHover
@@ -147,18 +151,20 @@ function AboutMe() {
             {/* Certifications Section */}
             <div className="cyber-card">
                 <div className="cyber-card-header">
-                    <span className="cyber-title">SECURITY_PROTOCOLS (CERTIFICATIONS)</span>
+                    <span className="cyber-title">
+                        SECURITY_PROTOCOLS <span className="cyber-subtitle">(CERTIFICATIONS)</span>
+                    </span>
                 </div>
                 <div className="cert-grid-large">
                     {[
-                        { name: "CCNA", issuer: "CISCO", logo: ciscoLogo },
-                        { name: "Ethical Hacker", issuer: "CISCO", logo: ciscoLogo },
-                        { name: "Linux Essentials", issuer: "CISCO", logo: ciscoLogo },
-                        { name: "Cisco Meraki (CMNE-F)", issuer: "CISCO", logo: ciscoLogo },
-                        { name: "Cybersecurity Analyst", issuer: "CISCO", logo: ciscoLogo },
-                        { name: "FCAC", issuer: "FORTINET", logo: fortinetLogo },
-                        { name: "FCFC", issuer: "FORTINET", logo: fortinetLogo },
-                        { name: "Malware Analysis & BCP", issuer: "Udemy", logo: udemyLogo }
+                        { name: "CCNA", issuer: "CISCO", logo: ciscoLogo, progress: 100 },
+                        { name: "Ethical Hacker", issuer: "CISCO", logo: ciscoLogo, progress: 100 },
+                        { name: "Linux Essentials", issuer: "CISCO", logo: ciscoLogo, progress: 100 },
+                        { name: "Cisco Meraki (CMNE-F)", issuer: "CISCO", logo: ciscoLogo, progress: 100 },
+                        { name: "Cybersecurity Analyst", issuer: "CISCO", logo: ciscoLogo, progress: 100 },
+                        { name: "FCAC", issuer: "FORTINET", logo: fortinetLogo, progress: 100 },
+                        { name: "FCFC", issuer: "FORTINET", logo: fortinetLogo, progress: 100 },
+                        { name: "Malware Analysis & BCP", issuer: "Udemy", logo: udemyLogo, progress: 100 }
                     ].map((cert, index) => (
                         <GlareHover
                             className="cert-card"
@@ -177,6 +183,12 @@ function AboutMe() {
                                 <div className="card-text">
                                     <span className="cert-title">{cert.name}</span>
                                     <span className="cert-issuer">{cert.issuer}</span>
+                                    <div className="cert-progress-container">
+                                        <div className="cert-progress-bar" style={{ width: `${cert.progress}%` }}>
+                                            <span className="cert-tooltip">{cert.progress}%</span>
+                                        </div>
+                                    </div>
+                                    <span className="cert-status-below">Earned</span>
                                 </div>
                             </div>
                         </GlareHover>

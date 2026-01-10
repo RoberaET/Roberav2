@@ -71,6 +71,16 @@ const FILE_SYSTEM = {
                             'secure-gateway': { type: 'file', content: 'Enterprise-grade security gateway with zero-trust architecture.' }
                         }
                     },
+                    'skills': {
+                        type: 'dir',
+                        children: {
+                            'python_automation': { type: 'dir', children: {} },
+                            'bgp_routing_ops': { type: 'dir', children: {} },
+                            'aws_cloud_net': { type: 'dir', children: {} },
+                            'security_firewalls': { type: 'dir', children: {} },
+                            'infrastructure.tf': { type: 'file', size: 1024, content: 'Terraform configuration...' }
+                        }
+                    },
                     'about.txt': { type: 'file', content: 'Robera Mekonnen - Network Architect.\nSpecializing in high-availability systems and secure infrastructure.' },
                     'contact.txt': { type: 'file', content: 'Email: robera@example.com\nGitHub: github.com/robera' },
                     'skills.txt': { type: 'file', content: '- Network Design\n- Cloud Infrastructure\n- Cybersecurity\n- System Administration' }
@@ -116,6 +126,11 @@ function Terminal() {
     useEffect(() => {
         const finishBoot = setTimeout(() => {
             setIsBooting(false)
+            setHistory([{
+                type: 'output',
+                content: '// Welcome user. Type \'help\' to execute system protocols...',
+                className: 'text-gray-500 italic'
+            }])
             inputRef.current?.focus()
         }, 500)
 
@@ -229,7 +244,45 @@ function Terminal() {
 
         switch (command.toLowerCase()) {
             case 'help':
-                setHistory(prev => [...prev, { type: 'output', content: 'Available commands: help, ls, cd, cat, clear, whoami, date, pwd, ping, uname, rm' }])
+                setHistory(prev => [...prev, {
+                    type: 'output',
+                    html: true,
+                    content: `
+                        <div style="color: #c9d1d9; font-family: 'JetBrains Mono', monospace;">
+                            <div style="margin-bottom: 8px;">Available Commands:</div>
+                            <div style="display: grid; grid-template-columns: 1fr; gap: 4px;">
+                                <div><span style="color: #3b9eff;">$ echo $NAME</span> &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #8b949e;">// Identify User</span></div>
+                                <div><span style="color: #3b9eff;">$ echo $ROLE</span> &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #8b949e;">// Display System Role</span></div>
+                                <div><span style="color: #3b9eff;">$ uptime</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #8b949e;">// System Status</span></div>
+                                <div><span style="color: #3b9eff;">$ ls -la skills/</span> &nbsp; <span style="color: #8b949e;">// List Capabilities</span></div>
+                                <div><span style="color: #3b9eff;">$ whoami</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #8b949e;">// Identify Current Session</span></div>
+                            </div>
+                        </div>
+                    `
+                }])
+                break
+            case 'echo':
+                const varName = args[0]
+                if (varName === '$NAME') {
+                    setHistory(prev => [...prev, { type: 'output', content: 'Robera Mekonnen' }])
+                } else if (varName === '$ROLE') {
+                    setHistory(prev => [...prev, { type: 'output', content: 'Network Engineer | Cisco Certified (CCNA/CCNP)' }])
+                } else {
+                    setHistory(prev => [...prev, { type: 'output', content: args.join(' ') }])
+                }
+                break
+            case 'uptime':
+                setHistory(prev => [...prev, {
+                    type: 'output',
+                    html: true,
+                    content: `
+                        <div style="background: rgba(13, 17, 23, 0.5); padding: 12px; border-radius: 6px; border: 1px solid rgba(59, 158, 255, 0.1); color: #c9d1d9;">
+                            <div>up 5 years, 4 months, 12 days</div>
+                            <div style="margin-top: 4px;">load average: 0.85, 0.92, 0.88</div>
+                            <div style="margin-top: 4px;">status: <span style="color: #3fb950;">OPTIMIZED</span></div>
+                        </div>
+                    `
+                }])
                 break
             case 'clear':
                 setHistory([])
@@ -253,8 +306,20 @@ function Terminal() {
                 if (dir.children) {
                     const items = Object.keys(dir.children).map(name => {
                         const isDir = dir.children[name].type === 'dir'
+                        const isFile = !isDir
+
+                        // LS listing style matching screenshot if arguments contain -l or -la
+                        if (args.includes('-la') || args.includes('-l')) {
+                            if (isDir) {
+                                return `<div style="color: #d16d9e;">drwxr-xr-x ${name}</div>` // Pink/Purple for dirs
+                            } else {
+                                return `<div style="color: #3b9eff;">-rw-r--r-- ${name}</div>` // Blue for files
+                            }
+                        }
+
                         return `<span class="${isDir ? 'text-blue-400 font-bold' : 'text-green-400'}">${name}${isDir ? '/' : ''}</span>`
-                    }).join('  ')
+                    }).join(args.includes('-la') || args.includes('-l') ? '' : '  ')
+
                     setHistory(prev => [...prev, { type: 'output', content: items, html: true }])
                 }
                 break

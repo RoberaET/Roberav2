@@ -13,7 +13,7 @@ function Header() {
                     <span className="terminal-dot yellow"></span>
                     <span className="terminal-dot green"></span>
                 </div>
-                <span className="node-id">NODE_ALPHA_01</span>
+                <span className="node-id">HEX_GHOST_01</span>
             </div>
             <div className="header-right">
                 <button className={`menu-btn ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}>

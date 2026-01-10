@@ -136,9 +136,9 @@
 }
 
 .cyber-title {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
     font-size: 20px;
-    color: #3b9eff;
+    color: #3fb950;
     font-weight: 600;
 }
 
@@ -843,4 +843,1081 @@
     color: #3b9eff;
     animation: blink 1s step-end infinite;
     margin-left: 4px;
+}
+
+/* Certificate Progress Bar */
+.cert-progress-container {
+    width: 100%;
+    height: 4px;
+    background-color: rgba(59, 158, 255, 0.1);
+    border-radius: 2px;
+    margin-top: 12px;
+    overflow: hidden;
+}
+
+.cert-progress-bar {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #3b9eff, #3fb950);
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(59, 158, 255, 0.6);
+    position: relative;
+    animation: pulse-glow 2s infinite ease-in-out;
+}
+
+@keyframes pulse-glow {
+    0% {
+        box-shadow: 0 0 8px rgba(59, 158, 255, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 15px rgba(63, 185, 80, 0.6);
+    }
+
+    100% {
+        box-shadow: 0 0 8px rgba(59, 158, 255, 0.4);
+    }
+}
+
+.cert-detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 4px;
+    margin-bottom: 8px;
+}
+
+.cert-status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #3fb950;
+    opacity: 0.9;
+    letter-spacing: 0.5px;
+}
+
+/* Fix layout for cert cards with progress bar */
+.cert-card .card-text {
+    height: auto;
+    min-height: 48px;
+    justify-content: center;
+    gap: 6px;
+}
+
+.cert-card .cert-progress-container {
+    margin-top: 0;
+}
+
+.cert-card .cert-detail-row {
+    margin: 4px 0;
+}
+
+/* New Cert Layout Styles */
+.cert-status-below {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #3fb950;
+    opacity: 0.8;
+    margin-top: 4px;
+    display: block;
+}
+
+.cert-tooltip {
+    position: absolute;
+    right: 0;
+    top: -24px;
+    background: rgba(13, 17, 23, 0.9);
+    color: #3fb950;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: all 0.2s ease;
+    pointer-events: none;
+    border: 1px solid rgba(63, 185, 80, 0.3);
+}
+
+.cert-progress-container:hover .cert-tooltip {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Enforce full width for progress bars */
+.cert-card .cert-progress-container {
+    width: 100% !important;
+    height: 4px;
+    background-color: #3b9eff;
+}
+
+.cyber-menu {
+    position: absolute;
+    top: 70px;
+    right: 40px;
+    background-color: rgba(15, 20, 25, 0.95);
+    border: 1px solid rgba(59, 158, 255, 0.2);
+    border-radius: 16px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 280px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+    animation: menuSlideIn 0.3s ease-out;
+}
+
+@keyframes menuSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.cyber-menu-item {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+}
+
+.cyber-menu-item:hover {
+    background-color: rgba(59, 158, 255, 0.1);
+    border-color: rgba(59, 158, 255, 0.3);
+    transform: translateX(-4px);
+}
+
+.cyber-prefix {
+    color: #3fb950;
+    margin-right: 8px;
+    font-weight: bold;
+}
+
+.cyber-menu-item {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.cyber-desc {
+    font-size: 10px;
+    color: #8b949e;
+    margin-top: 4px;
+    letter-spacing: 1px;
+    opacity: 0.7;
+}
+
+.cyber-menu-item:hover .cyber-desc {
+    color: #3b9eff;
+    opacity: 1;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+.cursor-blink {
+    color: #3b9eff;
+    animation: blink 1s step-end infinite;
+    margin-left: 4px;
+}
+
+/* Certificate Progress Bar */
+.cert-progress-container {
+    width: 100%;
+    height: 4px;
+    background-color: rgba(59, 158, 255, 0.1);
+    border-radius: 2px;
+    margin-top: 12px;
+    overflow: hidden;
+}
+
+.cert-progress-bar {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #3b9eff, #3fb950);
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(59, 158, 255, 0.6);
+    position: relative;
+    animation: pulse-glow 2s infinite ease-in-out;
+}
+
+@keyframes pulse-glow {
+    0% {
+        box-shadow: 0 0 8px rgba(59, 158, 255, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 15px rgba(63, 185, 80, 0.6);
+    }
+
+    100% {
+        box-shadow: 0 0 8px rgba(59, 158, 255, 0.4);
+    }
+}
+
+.cert-detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 4px;
+    margin-bottom: 8px;
+}
+
+.cert-status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #3fb950;
+    opacity: 0.9;
+    letter-spacing: 0.5px;
+}
+
+/* Fix layout for cert cards with progress bar */
+.cert-card .card-text {
+    height: auto;
+    min-height: 48px;
+    justify-content: center;
+    gap: 6px;
+}
+
+.cert-card .cert-progress-container {
+    margin-top: 0;
+}
+
+.cert-card .cert-detail-row {
+    margin: 4px 0;
+}
+
+/* New Cert Layout Styles */
+.cert-status-below {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #3fb950;
+    opacity: 0.8;
+    margin-top: 4px;
+    display: block;
+}
+
+.cert-tooltip {
+    position: absolute;
+    right: 0;
+    top: -24px;
+    background: rgba(13, 17, 23, 0.9);
+    color: #3fb950;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: all 0.2s ease;
+    pointer-events: none;
+    border: 1px solid rgba(63, 185, 80, 0.3);
+}
+
+.cert-progress-container:hover .cert-tooltip {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Enforce full width for progress bars */
+.cert-card .cert-progress-container {
+    width: 100% !important;
+    height: 4px;
+    /* Ensure 4px height is maintained */
+    margin-top: 4px;
+    flex-shrink: 0;
+}
+
+.cert-card .cert-progress-bar {
+    width: 100% !important;
+    max-width: 100%;
+}
+
+.cert-card .card-text {
+    width: 100%;
+}
+
+.cert-progress-bar {
+    height: 100%;
+}
+
+.cert-progress-bar {
+    min-width: 100%;
+}
+
+.cert-card .card-content-wrapper {
+    width: 100%;
+}
+
+.cyber-title .cyber-subtitle {
+    color: #3b9eff !important;
+}
+
+/* Secure Uplink Section */
+.uplink-section {
+    padding: 24px;
+    margin-bottom: 80px;
+    /* Space for bottom nav */
+}
+
+.uplink-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 24px;
+    margin-top: 24px;
+}
+
+@media (max-width: 768px) {
+    .uplink-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Social Nodes Styles */
+.nodes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.node-link {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: rgba(13, 17, 23, 0.4);
+    border: 1px solid rgba(59, 158, 255, 0.2);
+    padding: 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.node-link:hover {
+    background: rgba(59, 158, 255, 0.1);
+    border-color: #3b9eff;
+    transform: translateX(4px);
+    box-shadow: -4px 0 12px rgba(59, 158, 255, 0.2);
+}
+
+.node-icon {
+    font-size: 24px;
+}
+
+.node-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.node-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #8b949e;
+    letter-spacing: 1px;
+}
+
+.node-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: #c9d1d9;
+    font-weight: 500;
+}
+
+.node-status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #3fb950;
+    border: 1px solid rgba(63, 185, 80, 0.3);
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: rgba(63, 185, 80, 0.1);
+}
+
+/* Transmission Form Styles */
+.form-content {
+    padding: 32px;
+}
+
+.transmission-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+}
+
+.input-group label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: #3b9eff;
+    letter-spacing: 1px;
+}
+
+.input-group input,
+.input-group textarea {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid rgba(139, 148, 158, 0.2);
+    padding: 12px 4px;
+    color: #e6edf3;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.3s ease;
+    resize: none;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+    border-bottom-color: #3fb950;
+    background: rgba(63, 185, 80, 0.05);
+    padding-left: 12px;
+}
+
+.scan-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: #3fb950;
+    box-shadow: 0 0 10px #3fb950;
+    transition: width 0.4s ease;
+}
+
+.input-group input:focus~.scan-line,
+.input-group textarea:focus~.scan-line {
+    width: 100%;
+}
+
+.cyber-button {
+    background: rgba(63, 185, 80, 0.1);
+    border: 1px solid #3fb950;
+    color: #3fb950;
+    padding: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    margin-top: 12px;
+}
+
+.cyber-button:hover {
+    background: #3fb950;
+    color: #0d1117;
+    box-shadow: 0 0 20px rgba(63, 185, 80, 0.4);
+}
+
+.cyber-button .icon {
+    margin-right: 12px;
+}
+
+.btn-glitch {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: rotate(45deg);
+    animation: button-shine 3s infinite;
+}
+
+@keyframes button-shine {
+    0% {
+        transform: translateX(-100%) rotate(45deg);
+    }
+
+    100% {
+        transform: translateX(100%) rotate(45deg);
+    }
+}
+
+/* Network Grid (Projects) Section */
+.network-section {
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-top: 24px;
+}
+
+.project-card .card-content-wrapper {
+    padding: 24px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    border-bottom: 1px solid rgba(59, 158, 255, 0.2);
+    padding-bottom: 12px;
+}
+
+.project-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    color: #3b9eff;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.project-status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #3fb950;
+    border: 1px solid rgba(63, 185, 80, 0.3);
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: rgba(63, 185, 80, 0.1);
+}
+
+.project-desc {
+    color: #c9d1d9;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    flex: 1;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.tech-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #8b949e;
+}
+
+.project-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.project-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: #3b9eff;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: bold;
+    transition: all 0.2s ease;
+}
+
+.project-link:hover {
+    color: #3fb950;
+    gap: 12px;
+}
+
+.link-arrow {
+    transition: transform 0.2s ease;
+}
+
+.project-link:hover .link-arrow {
+    transform: translateX(4px);
+}
+
+/* System Monitor Panel */
+.system-monitor-panel {
+    margin: 24px;
+    background: rgba(13, 17, 23, 0.8);
+    border: 1px solid rgba(59, 158, 255, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.monitor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    background: rgba(13, 17, 23, 0.6);
+    border-bottom: 1px solid rgba(59, 158, 255, 0.2);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.monitor-icon .terminal-dot.blue {
+    color: #3b9eff;
+    font-size: 24px;
+}
+
+.monitor-title-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.monitor-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    color: #e6edf3;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.monitor-subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #3b9eff;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.status-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.status-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: #3fb950;
+    font-weight: bold;
+}
+
+.latency-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #8b949e;
+}
+
+.monitor-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.control-icon {
+    width: 6px;
+    height: 20px;
+    background: #3b9eff;
+    border-radius: 2px;
+}
+
+.oscilloscope-container {
+    padding: 20px 24px;
+}
+
+.oscilloscope-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.os-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: #3b9eff;
+    letter-spacing: 1px;
+}
+
+.os-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 32px;
+    color: #3b9eff;
+    font-weight: bold;
+}
+
+.oscilloscope-screen {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    background: rgba(13, 17, 23, 0.8);
+    border: 1px solid rgba(59, 158, 255, 0.3);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.oscilloscope-screen canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.grid-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(rgba(59, 158, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59, 158, 255, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+}
+
+.oscilloscope-footer-row {
+    display: flex;
+    gap: 24px;
+    margin-top: 12px;
+}
+
+.metric {
+    display: flex;
+    gap: 8px;
+}
+
+.metric-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #8b949e;
+}
+
+.metric-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #c9d1d9;
+}
+
+@media (max-width: 768px) {
+    .monitor-header {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+
+    .header-right {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .os-value {
+        font-size: 24px;
+    }
+}
+
+/* System Logs Section */
+.logs-section {
+    padding: 24px;
+    margin-bottom: 100px;
+    /* Extra space for bottom nav */
+}
+
+.logs-container {
+    background: rgba(13, 17, 23, 0.8);
+    border: 1px solid rgba(59, 158, 255, 0.2);
+    border-radius: 12px;
+    margin-top: 24px;
+    overflow: hidden;
+}
+
+.logs-screen {
+    padding: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.logs-screen::-webkit-scrollbar {
+    width: 8px;
+}
+
+.logs-screen::-webkit-scrollbar-track {
+    background: rgba(13, 17, 23, 0.4);
+}
+
+.logs-screen::-webkit-scrollbar-thumb {
+    background: rgba(59, 158, 255, 0.3);
+    border-radius: 4px;
+}
+
+.logs-screen::-webkit-scrollbar-thumb:hover {
+    background: rgba(59, 158, 255, 0.5);
+}
+
+.log-entry {
+    display: flex;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(59, 158, 255, 0.05);
+    animation: fadeInLog 0.4s ease-out backwards;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.log-entry:last-child {
+    border-bottom: none;
+}
+
+@keyframes fadeInLog {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.log-timestamp {
+    color: #8b949e;
+    flex-shrink: 0;
+}
+
+.log-level {
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.log-message {
+    color: #c9d1d9;
+    flex: 1;
+}
+
+.logs-footer {
+    background: rgba(13, 17, 23, 0.6);
+    border-top: 1px solid rgba(59, 158, 255, 0.2);
+    padding: 12px 20px;
+    text-align: center;
+}
+
+.footer-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #3b9eff;
+    letter-spacing: 1px;
+}
+
+@media (max-width: 768px) {
+    .log-entry {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .log-timestamp,
+    .log-level {
+        font-size: 11px;
+    }
+
+    .log-message {
+        font-size: 12px;
+        padding-left: 0;
+    }
+}
+
+/* CV Download Button */
+.cv-download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 24px;
+    padding: 14px 28px;
+    background: rgba(63, 185, 80, 0.1);
+    border: 2px solid #3fb950;
+    color: #3fb950;
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+}
+
+.cv-download-btn:hover {
+    background: #3fb950;
+    color: #0d1117;
+    box-shadow: 0 0 20px rgba(63, 185, 80, 0.4);
+    transform: translateY(-2px);
+}
+
+.cv-download-btn .btn-icon {
+    font-size: 18px;
+}
+
+.cv-download-btn .download-arrow {
+    font-size: 16px;
+    transition: transform 0.3s ease;
+}
+
+.cv-download-btn:hover .download-arrow {
+    transform: translateY(3px);
+}
+
+/* Footer */
+.main-footer {
+    background: rgba(13, 17, 23, 0.95);
+    border-top: 1px solid rgba(59, 158, 255, 0.2);
+    padding: 32px 24px 16px;
+    margin-top: auto;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.footer-section {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.footer-copyright {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: #c9d1d9;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.copyright-symbol {
+    color: #3b9eff;
+    font-size: 16px;
+}
+
+.footer-divider {
+    color: rgba(59, 158, 255, 0.3);
+}
+
+.footer-tagline {
+    color: #3fb950;
+    font-size: 11px;
+}
+
+.footer-nav {
+    gap: 20px;
+}
+
+.footer-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: #8b949e;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    position: relative;
+}
+
+.footer-link:hover {
+    color: #3b9eff;
+}
+
+.footer-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #3b9eff;
+    transition: width 0.3s ease;
+}
+
+.footer-link:hover::after {
+    width: 100%;
+}
+
+.footer-social {
+    gap: 12px;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: rgba(59, 158, 255, 0.1);
+    border: 1px solid rgba(59, 158, 255, 0.2);
+    border-radius: 6px;
+    color: #3b9eff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    background: rgba(59, 158, 255, 0.2);
+    border-color: #3b9eff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 158, 255, 0.2);
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(59, 158, 255, 0.1);
+}
+
+.footer-build {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #8b949e;
+    letter-spacing: 1px;
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-section {
+        justify-content: center;
+    }
+
+    .footer-nav {
+        flex-wrap: wrap;
+    }
 }

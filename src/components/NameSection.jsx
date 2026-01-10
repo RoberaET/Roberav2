@@ -25,6 +25,11 @@ function NameSection() {
                 <span className="cursor-blink">_</span>
             </h1>
             <p className="protocol">[ PROTOCOL: PORTFOLIO.v2 ]</p>
+            <a href="/resume.pdf" download="Robera_Mekonnen_CV.pdf" className="cv-download-btn">
+                <span className="btn-icon">📄</span>
+                DOWNLOAD_CV.pdf
+                <span className="download-arrow">↓</span>
+            </a>
         </div>
     )
 }
