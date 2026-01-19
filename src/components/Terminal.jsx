@@ -121,6 +121,7 @@ function Terminal() {
     const bottomRef = useRef(null)
     const processRef = useRef(null)
     const audioRef = useRef(null)
+    const [historyIndex, setHistoryIndex] = useState(-1)
 
     useEffect(() => {
         audioRef.current = new Audio(musicUrl)
@@ -252,6 +253,7 @@ function Terminal() {
     }
 
     const handleCommand = (cmd) => {
+        setHistoryIndex(-1)
         const trimmedCmd = cmd.trim()
         if (!trimmedCmd) {
             setHistory(prev => [...prev, { type: 'command', content: '' }])
@@ -333,8 +335,13 @@ function Terminal() {
                             if (isDir) {
                                 return `<div style="color: #d16d9e;">drwxr-xr-x ${name}</div>` // Pink/Purple for dirs
                             } else {
-                                return `<div style="color: #3b9eff;">-rw-r--r-- ${name}</div>` // Blue for files
+                                const color = name === 'music.mp3' ? '#ff5f56' : '#3b9eff'
+                                return `<div style="color: ${color};">-rw-r--r-- ${name}</div>` // Blue for files
                             }
+                        }
+
+                        if (name === 'music.mp3') {
+                            return `<span style="color: #ff5f56;">${name}</span>`
                         }
 
                         return `<span class="${isDir ? 'text-blue-400 font-bold' : 'text-green-400'}">${name}${isDir ? '/' : ''}</span>`
@@ -422,6 +429,37 @@ function Terminal() {
     }
 
     const handleKeyDown = (e) => {
+        if (e.key === 'ArrowUp') {
+            e.preventDefault()
+            const cmds = history.filter(h => h.type === 'command' && h.content).map(h => h.content)
+            if (cmds.length === 0) return
+
+            let newIndex = historyIndex
+            if (historyIndex === -1) {
+                newIndex = cmds.length - 1
+            } else if (historyIndex > 0) {
+                newIndex = historyIndex - 1
+            }
+
+            if (newIndex !== historyIndex) {
+                setHistoryIndex(newIndex)
+                setInput(cmds[newIndex])
+            }
+        } else if (e.key === 'ArrowDown') {
+            e.preventDefault()
+            const cmds = history.filter(h => h.type === 'command' && h.content).map(h => h.content)
+            if (historyIndex === -1) return
+
+            let newIndex = historyIndex + 1
+            if (newIndex >= cmds.length) {
+                setHistoryIndex(-1)
+                setInput('')
+            } else {
+                setHistoryIndex(newIndex)
+                setInput(cmds[newIndex])
+            }
+        }
+
         if (e.key === 'Tab') {
             e.preventDefault()
             const parts = input.split(' ')
