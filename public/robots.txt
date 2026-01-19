@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://roberav2.pages.dev/sitemap.xml

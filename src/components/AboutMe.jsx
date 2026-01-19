@@ -31,7 +31,7 @@ function AboutMe() {
                                 <img src={besysLogo} alt="Besys Logo" />
                             </div>
                             <div className="card-text">
-                                <span className="job-role">Junior Network Engineer</span>
+                                <span className="job-role">Network Engineer</span>
                                 <a href="https://besystechnologies.com/" target="_blank" rel="noopener noreferrer" className="job-company">Besys Technologies PLC</a>
                             </div>
                         </div>

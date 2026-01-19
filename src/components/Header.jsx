@@ -20,7 +20,7 @@ function Header() {
                 onMouseEnter={() => setIsMenuOpen(true)}
                 onMouseLeave={() => setIsMenuOpen(false)}
             >
-                <button className={`menu-btn ${isMenuOpen ? 'active' : ''}`}>
+                <button className={`menu-btn ${isMenuOpen ? 'active' : ''}`} aria-label="Toggle Menu">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                         <rect x="8" y="4" width="3" height="16" rx="1.5" fill={isMenuOpen ? "#ffffff" : "#3b9eff"} />
                         <rect x="13" y="4" width="3" height="16" rx="1.5" fill={isMenuOpen ? "#ffffff" : "#3b9eff"} />

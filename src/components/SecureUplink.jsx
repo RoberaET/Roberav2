@@ -32,7 +32,7 @@ function SecureUplink() {
                             <span className="cyber-title">ACTIVE_CHANNELS</span>
                         </div>
                         <div className="nodes-list">
-                            <a href="mailto:robera4553@gmail.com" className="node-link">
+                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=robera4553@gmail.com" target="_blank" rel="noopener noreferrer" className="node-link">
                                 <img src={emailIcon} alt="Email" className="node-icon-img" />
                                 <div className="node-info">
                                     <span className="node-label">DIRECT_FEED</span>

@@ -1,3 +1,79 @@
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Animation Keyframes */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* Container - Desktop View */
 .container {
     max-width: 1800px;
@@ -24,6 +100,7 @@
     z-index: 100;
     background-color: rgba(15, 20, 25, 0.8);
     backdrop-filter: blur(10px);
+    animation: slideDown 0.6s ease-out;
 }
 
 .header-left {
@@ -346,7 +423,7 @@
 
 /* Secure Badge */
 .secure-badge {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     gap: 10px;
     padding: 12px 28px;
@@ -355,6 +432,7 @@
     border-radius: 28px;
     width: fit-content;
     margin: 0 auto;
+    animation: fadeIn 0.6s ease-out;
 }
 
 .secure-badge span {
@@ -369,6 +447,7 @@
 .name-section {
     text-align: center;
     margin-top: 0;
+    animation: slideUp 0.8s ease-out 0.2s both;
 }
 
 .name {
@@ -401,7 +480,20 @@
     border-radius: 20px;
     padding: 28px 24px;
     border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: transform 0.2s, border-color 0.2s;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    animation: scaleIn 0.6s ease-out both;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.status-card:nth-child(1) {
+    animation-delay: 0.4s;
+}
+
+.status-card:nth-child(2) {
+    animation-delay: 0.5s;
 }
 
 .status-card:hover {
@@ -421,6 +513,7 @@
 .status-value {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
     font-size: 17px;
     font-weight: 600;
@@ -1961,5 +2054,189 @@
 
     .footer-nav {
         flex-wrap: wrap;
+    }
+}
+
+/* Scroll-triggered Animation Utilities */
+.scroll-animate {
+    opacity: 0;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.scroll-animate.animate-in {
+    opacity: 1;
+}
+
+.scroll-fade-up {
+    transform: translateY(30px);
+}
+
+.scroll-fade-up.animate-in {
+    transform: translateY(0);
+}
+
+.scroll-fade-left {
+    transform: translateX(-30px);
+}
+
+.scroll-fade-left.animate-in {
+    transform: translateX(0);
+}
+
+.scroll-fade-right {
+    transform: translateX(30px);
+}
+
+.scroll-fade-right.animate-in {
+    transform: translateX(0);
+}
+
+.scroll-scale {
+    transform: scale(0.95);
+}
+
+.scroll-scale.animate-in {
+    transform: scale(1);
+}
+
+/* Enhanced Terminal Animations */
+.terminal {
+    animation: slideUp 0.8s ease-out 0.6s both;
+}
+
+/* Enhanced Deployment Cards */
+.deployment-card {
+    animation: scaleIn 0.6s ease-out both;
+}
+
+.deployment-card:nth-child(1) {
+    animation-delay: 0.7s;
+}
+
+.deployment-card:nth-child(2) {
+    animation-delay: 0.8s;
+}
+
+.deployment-card:nth-child(3) {
+    animation-delay: 0.9s;
+}
+
+.deployment-card:nth-child(4) {
+    animation-delay: 1s;
+}
+
+/* Enhanced About Section Animations */
+.about-section {
+    animation: fadeIn 1s ease-out;
+}
+
+.cyber-card {
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cyber-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(59, 158, 255, 0.2);
+}
+
+/* Enhanced Job Cards */
+.job-card {
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.job-card:hover {
+    box-shadow: 0 4px 12px rgba(59, 158, 255, 0.15);
+}
+
+/* Enhanced Cert Cards */
+.cert-card {
+    transition: all 0.3s ease;
+}
+
+.cert-card:hover {
+    box-shadow: 0 4px 12px rgba(59, 158, 255, 0.2);
+}
+
+/* Enhanced Bottom Nav */
+.bottom-nav {
+    animation: slideUp 1s ease-out 1.2s both;
+}
+
+/* Stagger animation delays for sections */
+.main-content>*:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.main-content>*:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.main-content>*:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.main-content>*:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+.main-content>*:nth-child(5) {
+    animation-delay: 0.4s;
+}
+
+.main-content>*:nth-child(6) {
+    animation-delay: 0.5s;
+}
+
+.main-content>*:nth-child(7) {
+    animation-delay: 0.6s;
+}
+
+.main-content>*:nth-child(8) {
+    animation-delay: 0.7s;
+}
+
+.main-content>*:nth-child(9) {
+    animation-delay: 0.8s;
+}
+
+/* Smooth transitions for all interactive elements */
+button,
+a,
+.nav-btn {
+    transition: all 0.3s ease;
+}
+
+/* Page load animation */
+@keyframes pageLoad {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.container {
+    animation: pageLoad 0.6s ease-out;
+}
+
+/* Enhanced hover states with smooth transitions */
+.status-card:hover {
+    box-shadow: 0 8px 20px rgba(59, 158, 255, 0.15);
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
 }
