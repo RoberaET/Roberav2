@@ -53,7 +53,7 @@ function AboutMe() {
                                 <img src={leonorLogo} alt="Leonor Logo" />
                             </div>
                             <div className="card-text">
-                                <span className="job-role">Operational Manager</span>
+                                <span className="job-role">Operational Manager (Internship)</span>
                                 <a href="https://www.leonortrading.com/" target="_blank" rel="noopener noreferrer" className="job-company">Leonor Trading PLC</a>
                             </div>
                         </div>
@@ -74,7 +74,7 @@ function AboutMe() {
                                 <img src={ieLogo} alt="IE Logo" />
                             </div>
                             <div className="card-text">
-                                <span className="job-role">Modern Data Center & Cloud Engineer</span>
+                                <span className="job-role">Modern Data Center & Cloud Engineer (Internship)</span>
                                 <a href="https://www.ienetworksolutions.com/" target="_blank" rel="noopener noreferrer" className="job-company">IE Network Solutions</a>
                             </div>
                         </div>
