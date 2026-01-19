@@ -20,9 +20,7 @@ function App() {
         <div className="container">
             <Header />
             <main className="main-content">
-                <div className="scroll-animate scroll-fade-up">
-                    <SecureBadge />
-                </div>
+                <SecureBadge />
                 <div className="scroll-animate scroll-fade-up">
                     <NameSection />
                 </div>

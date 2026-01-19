@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import musicUrl from '../assets/no batidao.mp3'
 
 const FILE_SYSTEM = {
     '/': {
@@ -83,7 +84,8 @@ const FILE_SYSTEM = {
                     },
                     'about.txt': { type: 'file', content: 'Robera Mekonnen - Network Architect.\nSpecializing in high-availability systems and secure infrastructure.' },
                     'contact.txt': { type: 'file', content: 'Email: robera4553@gmail.com\nGitHub: github.com/RoberaET' },
-                    'skills.txt': { type: 'file', content: '- Network Design\n- Cloud Infrastructure\n- Cybersecurity\n- System Administration' }
+                    'skills.txt': { type: 'file', content: '- Network Design\n- Cloud Infrastructure\n- Cybersecurity\n- System Administration' },
+                    'music.mp3': { type: 'file', content: 'NO BATIDAO - Audio File' }
                 }
             },
             'run': { type: 'dir', children: {} },
@@ -118,6 +120,18 @@ function Terminal() {
     const inputRef = useRef(null)
     const bottomRef = useRef(null)
     const processRef = useRef(null)
+    const audioRef = useRef(null)
+
+    useEffect(() => {
+        audioRef.current = new Audio(musicUrl)
+        audioRef.current.loop = true
+        return () => {
+            if (audioRef.current) {
+                audioRef.current.pause()
+                audioRef.current = null
+            }
+        }
+    }, [])
 
     // Command list for autocomplete
     const COMMANDS = ['help', 'ls', 'cd', 'cat', 'clear', 'whoami', 'date', 'pwd', 'ping', 'uname', 'rm']
@@ -150,6 +164,12 @@ function Terminal() {
                 if (processRef.current) {
                     clearInterval(processRef.current)
                     processRef.current = null
+                    setRunningProcess(null)
+                    setHistory(prev => [...prev, { type: 'output', content: '^C' }])
+                }
+                if (runningProcess === 'music' && audioRef.current) {
+                    audioRef.current.pause()
+                    audioRef.current.currentTime = 0
                     setRunningProcess(null)
                     setHistory(prev => [...prev, { type: 'output', content: '^C' }])
                 }
@@ -372,7 +392,13 @@ function Terminal() {
                 const dir = getDirFromPath(dirPath)
 
                 if (dir && dir.children && dir.children[fileName] && dir.children[fileName].type === 'file') {
-                    setHistory(prev => [...prev, { type: 'output', content: dir.children[fileName].content }])
+                    if (fileName === 'music.mp3') {
+                        setRunningProcess('music')
+                        audioRef.current.play()
+                        setHistory(prev => [...prev, { type: 'output', content: 'Playing: no batidao.mp3... (Press Ctrl+C to stop)' }])
+                    } else {
+                        setHistory(prev => [...prev, { type: 'output', content: dir.children[fileName].content }])
+                    }
                 } else {
                     setHistory(prev => [...prev, { type: 'error', content: `cat: ${file}: No such file` }])
                 }
@@ -398,7 +424,7 @@ function Terminal() {
     const handleKeyDown = (e) => {
         if (e.key === 'Tab') {
             e.preventDefault()
-            const parts = input.trim().split(' ')
+            const parts = input.split(' ')
 
             if (parts.length === 1) {
                 // Command autocomplete
@@ -407,6 +433,15 @@ function Terminal() {
 
                 if (matches.length === 1) {
                     setInput(matches[0] + ' ')
+                } else if (matches.length > 1) {
+                    const commonPrefix = matches.reduce((acc, curr) => {
+                        let i = 0
+                        while (i < acc.length && i < curr.length && acc[i] === curr[i]) i++
+                        return acc.substring(0, i)
+                    })
+                    if (commonPrefix.length > partialCmd.length) {
+                        setInput(commonPrefix)
+                    }
                 }
             } else if (parts.length > 1) {
                 // File/Directory autocomplete
@@ -432,7 +467,6 @@ function Terminal() {
                         const match = matches[0]
                         const isDir = dir.children[match].type === 'dir'
 
-                        // Construct new input
                         let completion = match
                         if (partialPath.includes('/')) {
                             const lastSlash = partialPath.lastIndexOf('/')
@@ -442,6 +476,21 @@ function Terminal() {
                         if (isDir) completion += '/'
 
                         setInput(cmdPrefix + ' ' + completion)
+                    } else if (matches.length > 1) {
+                        const commonPrefix = matches.reduce((acc, curr) => {
+                            let i = 0
+                            while (i < acc.length && i < curr.length && acc[i] === curr[i]) i++
+                            return acc.substring(0, i)
+                        })
+
+                        if (commonPrefix.length > partialFile.length) {
+                            let completion = commonPrefix
+                            if (partialPath.includes('/')) {
+                                const lastSlash = partialPath.lastIndexOf('/')
+                                completion = partialPath.substring(0, lastSlash + 1) + completion
+                            }
+                            setInput(cmdPrefix + ' ' + completion)
+                        }
                     }
                 }
             }
