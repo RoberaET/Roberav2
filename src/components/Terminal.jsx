@@ -178,7 +178,7 @@ function Terminal() {
 
         window.addEventListener('keydown', handleGlobalKeyDown)
         return () => window.removeEventListener('keydown', handleGlobalKeyDown)
-    }, [])
+    }, [runningProcess])
 
     const getDirFromPath = (pathStr) => {
         if (!pathStr) return null
