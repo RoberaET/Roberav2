@@ -4,24 +4,24 @@ import GlareHover from './GlareHover/GlareHover'
 function NetworkGrid() {
     const projects = [
         {
-            title: "CLOUD_MESH_NET",
+            title: "ENTERPRISE_CORE_NET",
             status: "ONLINE",
-            desc: "Distributed network architecture simulation with auto-failover redundancy protocols and load balancing.",
-            tags: ["PYTHON", "AWS", "TERRAFORM"],
+            desc: "High-availability 3-tier architecture (Core, Distribution, Access) designed with redundant links and rapid convergence protocols.",
+            tags: ["CISCO", "OSPF", "VLAN/STP"],
             link: "#"
         },
         {
-            title: "PACKET_WHISPERER",
-            status: "BETA",
-            desc: "Real-time traffic analyzer and anomaly detection system using machine learning algorithms.",
-            tags: ["WIRESHARK", "ML", "REACT"],
+            title: "DISASTER_RECOVERY_OPS",
+            status: "ACTIVE",
+            desc: "Geo-redundant data center failover strategy using BGP path manipulation and automated site recovery workflows.",
+            tags: ["BGP", "FORTINET", "IPSEC VPN"],
             link: "#"
         },
         {
-            title: "ZERO_TRUST_GATEWAY",
-            status: "V1.2",
-            desc: "Identity-aware proxy implementation for secure remote access without VPN dependencies.",
-            tags: ["NODE.JS", "OAUTH", "DOCKER"],
+            title: "ZERO_TRUST_ACCESS",
+            status: "SECURED",
+            desc: "Identity-centric security model implementing granular access controls (ZTNA) to replace traditional perimeter VPNs.",
+            tags: ["ZTNA", "ISE", "SSL/TLS"],
             link: "#"
         }
     ]

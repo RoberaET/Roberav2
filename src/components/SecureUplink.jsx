@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import GlareHover from './GlareHover/GlareHover'
+import githubIcon from '../assets/github.png'
+import emailIcon from '../assets/gmail.png'
+import linkedinIcon from '../assets/linkedin.png'
 
 function SecureUplink() {
     const [formState, setFormState] = useState({
@@ -29,27 +32,27 @@ function SecureUplink() {
                             <span className="cyber-title">ACTIVE_CHANNELS</span>
                         </div>
                         <div className="nodes-list">
-                            <a href="mailto:robera@example.com" className="node-link">
-                                <span className="node-icon">✉️</span>
+                            <a href="mailto:robera4553@gmail.com" className="node-link">
+                                <img src={emailIcon} alt="Email" className="node-icon-img" />
                                 <div className="node-info">
                                     <span className="node-label">DIRECT_FEED</span>
-                                    <span className="node-value">robera.worku@example.com</span>
+                                    <span className="node-value">robera4553@gmail.com</span>
                                 </div>
                                 <span className="node-status">OPEN</span>
                             </a>
-                            <a href="https://github.com/robera" target="_blank" rel="noopener noreferrer" className="node-link">
-                                <span className="node-icon">🐙</span>
+                            <a href="https://github.com/RoberaET" target="_blank" rel="noopener noreferrer" className="node-link">
+                                <img src={githubIcon} alt="GitHub" className="node-icon-img" />
                                 <div className="node-info">
                                     <span className="node-label">CODE_REPOSITORY</span>
-                                    <span className="node-value">github.com/robera</span>
+                                    <span className="node-value">github.com/RoberaET</span>
                                 </div>
                                 <span className="node-status">PUBLIC</span>
                             </a>
-                            <a href="https://linkedin.com/in/robera" target="_blank" rel="noopener noreferrer" className="node-link">
-                                <span className="node-icon">💼</span>
+                            <a href="https://www.linkedin.com/in/roberamekonnen/" target="_blank" rel="noopener noreferrer" className="node-link">
+                                <img src={linkedinIcon} alt="LinkedIn" className="node-icon-img" />
                                 <div className="node-info">
                                     <span className="node-label">PROFESSIONAL_NET</span>
-                                    <span className="node-value">linkedin.com/in/robera</span>
+                                    <span className="node-value">linkedin.com/in/roberamekonnen</span>
                                 </div>
                                 <span className="node-status">CONNECTED</span>
                             </a>

@@ -82,7 +82,7 @@ const FILE_SYSTEM = {
                         }
                     },
                     'about.txt': { type: 'file', content: 'Robera Mekonnen - Network Architect.\nSpecializing in high-availability systems and secure infrastructure.' },
-                    'contact.txt': { type: 'file', content: 'Email: robera@example.com\nGitHub: github.com/robera' },
+                    'contact.txt': { type: 'file', content: 'Email: robera4553@gmail.com\nGitHub: github.com/RoberaET' },
                     'skills.txt': { type: 'file', content: '- Network Design\n- Cloud Infrastructure\n- Cybersecurity\n- System Administration' }
                 }
             },

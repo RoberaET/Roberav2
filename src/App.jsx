@@ -19,8 +19,8 @@ function App() {
             <main className="main-content">
                 <SecureBadge />
                 <NameSection />
-                <SystemMonitor />
                 <StatusCards />
+                <SystemMonitor />
                 <Terminal />
                 <AboutMe />
                 <NetworkGrid />

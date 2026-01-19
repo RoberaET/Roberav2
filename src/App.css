@@ -1,12 +1,14 @@
 /* Container - Desktop View */
 .container {
-    max-width: 1400px;
+    max-width: 1800px;
     width: 100%;
     margin: 0 auto;
     min-height: 100vh;
     background-color: #0f1419;
     position: relative;
-    padding: 100px 80px 120px;
+    padding: 100px 40px 0;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Header */
@@ -97,7 +99,7 @@
 .section-header-large h2 {
     font-family: 'JetBrains Mono', monospace;
     font-size: 28px;
-    color: #ffffff;
+    color: #00ff41;
     margin: 0;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -335,7 +337,7 @@
 
 /* Main Content */
 .main-content {
-    max-width: 1000px;
+    max-width: 100%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -734,11 +736,12 @@
 /* Tablet adjustments */
 @media (max-width: 768px) {
     .container {
-        padding: 0 24px 100px;
+        padding: 80px 16px 20px;
     }
 
     .name {
-        font-size: 56px;
+        font-size: 40px;
+        margin-bottom: 16px;
     }
 
     .main-content {
@@ -746,7 +749,30 @@
     }
 
     .header {
-        padding: 20px 0;
+        padding: 16px;
+    }
+
+    .status-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .uplink-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .deployments-grid,
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cert-grid-large {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
+
+    .cyber-menu {
+        right: 16px;
+        left: 16px;
+        min-width: auto;
     }
 }
 
@@ -772,6 +798,15 @@
     animation: menuSlideIn 0.3s ease-out;
 }
 
+.cyber-menu::before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    left: 0;
+    width: 100%;
+    height: 30px;
+}
+
 @keyframes menuSlideIn {
     from {
         opacity: 0;
@@ -795,13 +830,13 @@
 }
 
 .cyber-menu-item:hover {
-    background-color: rgba(59, 158, 255, 0.1);
-    border-color: rgba(59, 158, 255, 0.3);
+    background-color: rgba(0, 255, 65, 0.1);
+    border-color: rgba(0, 255, 65, 0.3);
     transform: translateX(-4px);
 }
 
 .cyber-prefix {
-    color: #3fb950;
+    color: #00ff41;
     margin-right: 8px;
     font-weight: bold;
 }
@@ -809,22 +844,23 @@
 .cyber-menu-item {
     font-family: 'JetBrains Mono', 'Courier New', monospace;
     font-size: 14px;
-    color: #ffffff;
+    color: #00ff41 !important;
     font-weight: 500;
     letter-spacing: 0.5px;
 }
 
 .cyber-desc {
     font-size: 10px;
-    color: #8b949e;
+    color: rgba(0, 255, 65, 0.7);
     margin-top: 4px;
     letter-spacing: 1px;
-    opacity: 0.7;
+    opacity: 1;
 }
 
 .cyber-menu-item:hover .cyber-desc {
-    color: #3b9eff;
+    color: #00ff41;
     opacity: 1;
+    text-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
 }
 
 @keyframes blink {
@@ -1223,6 +1259,12 @@
 
 .node-icon {
     font-size: 24px;
+}
+
+.node-icon-img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
 }
 
 .node-info {
