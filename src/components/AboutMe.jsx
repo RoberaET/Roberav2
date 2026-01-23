@@ -164,9 +164,9 @@ function AboutMe() {
                         { name: "HCIA Storage", issuer: "HUAWEI", logo: hciaLogo, progress: 90, status: "In Progress" },
                         { name: "CCNA", issuer: "CISCO", logo: ccnaLogo, progress: 100, link: "https://www.credly.com/badges/cd196d19-08ed-4c7b-91cc-2730c079365e/public_url" },
                         { name: "Ethical Hacker", issuer: "CISCO", logo: ciscoLogo, progress: 100, link: "https://www.credly.com/badges/8c60ac0c-c3a6-4ae1-b0d7-59a7f7920b62/public_url" },
-                        { name: "Linux Essentials", issuer: "CISCO", logo: ciscoLogo, progress: 100 },
+                        { name: "Linux Essentials", issuer: "CISCO", logo: ciscoLogo, progress: 100, link: "https://www.credly.com/badges/933d2fe6-ca2e-43e4-a3b2-ff88418e54bb/public_url" },
                         { name: "Cisco Meraki (CMNE-F)", issuer: "CISCO", logo: ciscoLogo, progress: 100 },
-                        { name: "Cybersecurity Analyst", issuer: "CISCO", logo: ciscoLogo, progress: 100 },
+                        { name: "Junior Cybersecurity Analyst Career Path", issuer: "CISCO", logo: ciscoLogo, progress: 100, link: "https://www.credly.com/badges/40224730-ac81-4a15-be9b-f05634046933/public_url" },
                         { name: "FCAC", issuer: "FORTINET", logo: fortinetLogo, progress: 100, link: "https://www.credly.com/badges/3fce97be-66f3-4b45-8eb4-db709f362d69/public_url" },
                         { name: "FCFC", issuer: "FORTINET", logo: fortinetLogo, progress: 100, link: "https://www.credly.com/badges/2f88c40d-4443-42e5-baeb-1e403d5f1e81/public_url" },
                         { name: "Malware Analysis & BCP", issuer: "Udemy", logo: udemyLogo, progress: 100 }
