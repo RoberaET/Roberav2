@@ -8,6 +8,7 @@ import aauLogo from '../assets/AAU.png';
 import ciscoLogo from '../assets/CISCO.png';
 import fortinetLogo from '../assets/FORTINET.png';
 import udemyLogo from '../assets/UDEMY.png';
+import ccnaLogo from '../assets/CCNA.png';
 
 function AboutMe() {
     return (
@@ -157,7 +158,7 @@ function AboutMe() {
                 </div>
                 <div className="cert-grid-large">
                     {[
-                        { name: "CCNA", issuer: "CISCO", logo: ciscoLogo, progress: 100 },
+                        { name: "CCNA", issuer: "CISCO", logo: ccnaLogo, progress: 100 },
                         { name: "Ethical Hacker", issuer: "CISCO", logo: ciscoLogo, progress: 100 },
                         { name: "Linux Essentials", issuer: "CISCO", logo: ciscoLogo, progress: 100 },
                         { name: "Cisco Meraki (CMNE-F)", issuer: "CISCO", logo: ciscoLogo, progress: 100 },

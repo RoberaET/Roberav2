@@ -405,6 +405,7 @@ function Terminal() {
                         setRunningProcess('music')
                         if (audioRef.current) {
                             audioRef.current.src = fileNode.audioUrl
+                            audioRef.current.loop = true
                             audioRef.current.play()
                         }
                         setHistory(prev => [...prev, { type: 'output', content: `Playing: ${fileName}... (Press Ctrl+C to stop)` }])
