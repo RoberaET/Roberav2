@@ -46,9 +46,9 @@ function Header() {
                             <span className="cyber-prefix">//</span> SECURE_UPLINK
                             <span className="cyber-desc">ESTABLISH CONTACT</span>
                         </a>
-                        <a href="#resume" className="cyber-menu-item">
+                        <a href="#logs" className="cyber-menu-item">
                             <span className="cyber-prefix">//</span> SYSTEM_LOGS
-                            <span className="cyber-desc">RESUME / CV</span>
+                            <span className="cyber-desc">ACTIVITY_FEED</span>
                         </a>
                     </div>
                 )}
