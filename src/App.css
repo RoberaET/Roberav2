@@ -1277,7 +1277,6 @@ html {
 }
 
 .cert-card .cert-progress-bar {
-    width: 100% !important;
     max-width: 100%;
 }
 
@@ -1289,9 +1288,7 @@ html {
     height: 100%;
 }
 
-.cert-progress-bar {
-    min-width: 100%;
-}
+
 
 .cert-card .card-content-wrapper {
     width: 100%;
