@@ -49,7 +49,7 @@ const FILE_SYSTEM = {
                     'sudoers': { type: 'file', content: 'root ALL=(ALL:ALL) ALL' }
                 }
             },
-            'home': { type: 'dir', children: { 'guest': { type: 'dir', children: { 'dontopen.mp3': { type: 'file', content: 'SECRET AUDIO', audioUrl: secretMusicUrl } } } } },
+            'home': { type: 'dir', children: { 'guest': { type: 'dir', children: { 'don\'t open.mp3': { type: 'file', content: 'SECRET AUDIO', audioUrl: secretMusicUrl } } } } },
             'lib': { type: 'dir', children: { 'modules': { type: 'dir', children: {} } } },
             'media': { type: 'dir', children: {} },
             'mnt': { type: 'dir', children: {} },
@@ -383,7 +383,7 @@ function Terminal() {
                 break
             }
             case 'cat': {
-                const file = args[0]
+                const file = args.join(' ')
                 if (!file) {
                     setHistory(prev => [...prev, { type: 'error', content: 'cat: missing filename' }])
                     break
