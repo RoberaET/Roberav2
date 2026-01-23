@@ -162,42 +162,60 @@ function AboutMe() {
                     {[
                         { name: "CCNP Security", issuer: "CISCO", logo: ccnpLogo, progress: 90, status: "In Progress" },
                         { name: "HCIA Storage", issuer: "HUAWEI", logo: hciaLogo, progress: 90, status: "In Progress" },
-                        { name: "CCNA", issuer: "CISCO", logo: ccnaLogo, progress: 100 },
-                        { name: "Ethical Hacker", issuer: "CISCO", logo: ciscoLogo, progress: 100 },
+                        { name: "CCNA", issuer: "CISCO", logo: ccnaLogo, progress: 100, link: "https://www.credly.com/badges/cd196d19-08ed-4c7b-91cc-2730c079365e/public_url" },
+                        { name: "Ethical Hacker", issuer: "CISCO", logo: ciscoLogo, progress: 100, link: "https://www.credly.com/badges/8c60ac0c-c3a6-4ae1-b0d7-59a7f7920b62/public_url" },
                         { name: "Linux Essentials", issuer: "CISCO", logo: ciscoLogo, progress: 100 },
                         { name: "Cisco Meraki (CMNE-F)", issuer: "CISCO", logo: ciscoLogo, progress: 100 },
                         { name: "Cybersecurity Analyst", issuer: "CISCO", logo: ciscoLogo, progress: 100 },
-                        { name: "FCAC", issuer: "FORTINET", logo: fortinetLogo, progress: 100 },
-                        { name: "FCFC", issuer: "FORTINET", logo: fortinetLogo, progress: 100 },
+                        { name: "FCAC", issuer: "FORTINET", logo: fortinetLogo, progress: 100, link: "https://www.credly.com/badges/3fce97be-66f3-4b45-8eb4-db709f362d69/public_url" },
+                        { name: "FCFC", issuer: "FORTINET", logo: fortinetLogo, progress: 100, link: "https://www.credly.com/badges/2f88c40d-4443-42e5-baeb-1e403d5f1e81/public_url" },
                         { name: "Malware Analysis & BCP", issuer: "Udemy", logo: udemyLogo, progress: 100 }
-                    ].map((cert, index) => (
-                        <GlareHover
-                            className="cert-card"
-                            key={index}
-                            width="100%"
-                            height="auto"
-                            background="transparent"
-                            borderRadius="12px"
-                            borderColor="rgba(59, 158, 255, 0.2)"
-                            transitionDuration={1500}
-                        >
-                            <div className="card-content-wrapper">
-                                <div className="logo-frame">
-                                    <img src={cert.logo} alt={cert.issuer} />
-                                </div>
-                                <div className="card-text">
-                                    <span className="cert-title">{cert.name}</span>
-                                    <span className="cert-issuer">{cert.issuer}</span>
-                                    <div className="cert-progress-container">
-                                        <div className="cert-progress-bar" style={{ width: `${cert.progress}%` }}>
-                                            <span className="cert-tooltip">{cert.progress}%</span>
-                                        </div>
+                    ].map((cert, index) => {
+                        const CardContent = (
+                            <GlareHover
+                                className="cert-card"
+                                width="100%"
+                                height="auto"
+                                background="transparent"
+                                borderRadius="12px"
+                                borderColor="rgba(59, 158, 255, 0.2)"
+                                transitionDuration={1500}
+                                key={cert.link ? undefined : index}
+                            >
+                                <div className="card-content-wrapper">
+                                    <div className="logo-frame">
+                                        <img src={cert.logo} alt={cert.issuer} />
                                     </div>
-                                    <span className="cert-status-below">{cert.status || "Earned"}</span>
+                                    <div className="card-text">
+                                        <span className="cert-title">{cert.name}</span>
+                                        <span className="cert-issuer">{cert.issuer}</span>
+                                        <div className="cert-progress-container">
+                                            <div className="cert-progress-bar" style={{ width: `${cert.progress}%` }}>
+                                                <span className="cert-tooltip">{cert.progress}%</span>
+                                            </div>
+                                        </div>
+                                        <span className="cert-status-below">{cert.status || "Earned"}</span>
+                                    </div>
                                 </div>
-                            </div>
-                        </GlareHover>
-                    ))}
+                            </GlareHover>
+                        )
+
+                        return cert.link ? (
+                            <a
+                                href={cert.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{ display: 'contents', textDecoration: 'none', color: 'inherit' }}
+                                key={index}
+                            >
+                                {CardContent}
+                            </a>
+                        ) : (
+                            <React.Fragment key={index}>
+                                {CardContent}
+                            </React.Fragment>
+                        )
+                    })}
                 </div>
             </div>
         </section>
