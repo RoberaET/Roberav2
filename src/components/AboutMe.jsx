@@ -160,8 +160,8 @@ function AboutMe() {
                 </div>
                 <div className="cert-grid-large">
                     {[
-                        { name: "CCNP Security", issuer: "CISCO", logo: ccnpLogo, progress: 100 },
-                        { name: "HCIA Storage", issuer: "HUAWEI", logo: hciaLogo, progress: 100 },
+                        { name: "CCNP Security", issuer: "CISCO", logo: ccnpLogo, progress: 90, status: "In Progress" },
+                        { name: "HCIA Storage", issuer: "HUAWEI", logo: hciaLogo, progress: 90, status: "In Progress" },
                         { name: "CCNA", issuer: "CISCO", logo: ccnaLogo, progress: 100 },
                         { name: "Ethical Hacker", issuer: "CISCO", logo: ciscoLogo, progress: 100 },
                         { name: "Linux Essentials", issuer: "CISCO", logo: ciscoLogo, progress: 100 },
@@ -193,7 +193,7 @@ function AboutMe() {
                                             <span className="cert-tooltip">{cert.progress}%</span>
                                         </div>
                                     </div>
-                                    <span className="cert-status-below">Earned</span>
+                                    <span className="cert-status-below">{cert.status || "Earned"}</span>
                                 </div>
                             </div>
                         </GlareHover>
