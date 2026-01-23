@@ -3,10 +3,24 @@
     font-family: monospace;
     color: #fff;
     display: inline-block;
+    white-space: nowrap;
 }
 
 .char {
     will-change: transform, opacity;
     display: inline-block;
     transition: opacity 0.1s ease;
+}
+
+/* Mobile optimizations */
+@media (max-width: 480px) {
+    .text-block {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 360px) {
+    .text-block {
+        font-size: 0.85em;
+    }
 }

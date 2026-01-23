@@ -2237,3 +2237,322 @@ a,
         scroll-behavior: auto !important;
     }
 }
+
+/* ============================================
+   MOBILE RESPONSIVENESS - TABLET & BELOW
+   ============================================ */
+
+/* Tablet and below (≤768px) */
+@media (max-width: 768px) {
+
+    /* Navbar mobile optimization */
+    .header {
+        padding: 12px 20px;
+    }
+
+    .header-left {
+        gap: 12px;
+    }
+
+    .node-id {
+        font-size: 12px;
+    }
+
+    .dots {
+        gap: 6px;
+    }
+
+    .terminal-dot {
+        width: 10px;
+        height: 10px;
+    }
+
+    /* Cyber menu mobile */
+    .cyber-menu {
+        right: 0;
+        left: auto;
+        min-width: 280px;
+    }
+
+    .menu-btn {
+        padding: 8px;
+        min-width: 44px;
+        min-height: 44px;
+    }
+
+    /* Container adjustments */
+    .container {
+        padding: 80px 24px 0;
+    }
+
+    /* Name section mobile */
+    .name {
+        font-size: 48px;
+        letter-spacing: -1px;
+    }
+
+    .protocol {
+        font-size: 13px;
+    }
+
+    /* Status cards mobile */
+    .status-cards {
+        gap: 16px;
+    }
+
+    .status-card {
+        padding: 20px 16px;
+    }
+
+    /* Terminal mobile */
+    .terminal-content {
+        font-size: 12px;
+        height: 280px;
+        padding: 20px;
+    }
+
+    /* Secure badge mobile */
+    .secure-badge {
+        padding: 10px 20px;
+    }
+
+    .secure-badge span {
+        font-size: 11px;
+    }
+
+    /* About section mobile */
+    .section-header-large h2 {
+        font-size: 22px;
+    }
+
+    .cyber-card {
+        padding: 24px;
+    }
+
+    .education-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cert-grid-large {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+
+    /* Bottom nav mobile */
+    .bottom-nav {
+        bottom: 20px;
+        padding: 12px 16px;
+        gap: 8px;
+    }
+
+    .nav-btn {
+        width: 52px;
+        height: 52px;
+    }
+}
+
+/* Mobile phones (≤480px) */
+@media (max-width: 480px) {
+
+    /* Navbar ultra-mobile */
+    .header {
+        padding: 10px 16px;
+    }
+
+    .header-left {
+        gap: 10px;
+    }
+
+    .node-id {
+        font-size: 11px;
+        letter-spacing: 0.3px;
+    }
+
+    .dots {
+        gap: 5px;
+    }
+
+    .terminal-dot {
+        width: 8px;
+        height: 8px;
+    }
+
+    /* Cyber menu full mobile */
+    .cyber-menu {
+        min-width: calc(100vw - 32px);
+        max-width: calc(100vw - 32px);
+        right: 16px;
+    }
+
+    .cyber-menu-item {
+        padding: 14px 16px;
+        font-size: 13px;
+    }
+
+    .cyber-desc {
+        font-size: 10px;
+    }
+
+    /* Container mobile */
+    .container {
+        padding: 70px 16px 0;
+    }
+
+    /* Name section ultra-mobile */
+    .name {
+        font-size: 36px;
+        letter-spacing: -0.5px;
+        margin-bottom: 16px;
+    }
+
+    .protocol {
+        font-size: 12px;
+        letter-spacing: 0.8px;
+    }
+
+    /* Status cards stack vertically */
+    .status-cards {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-top: 16px;
+    }
+
+    .status-card {
+        padding: 16px 12px;
+    }
+
+    .status-label {
+        font-size: 10px;
+        margin-bottom: 12px;
+    }
+
+    .status-value {
+        font-size: 15px;
+    }
+
+    /* Terminal ultra-mobile */
+    .terminal-header {
+        padding: 12px 16px;
+    }
+
+    .terminal-content {
+        font-size: 11px;
+        height: 240px;
+        padding: 16px;
+    }
+
+    /* Secure badge ultra-mobile */
+    .secure-badge {
+        padding: 8px 16px;
+        border-radius: 20px;
+    }
+
+    .secure-badge span {
+        font-size: 10px;
+        letter-spacing: 0.5px;
+    }
+
+    .secure-badge svg {
+        width: 14px;
+        height: 14px;
+    }
+
+    /* About section ultra-mobile */
+    .section-header-large h2 {
+        font-size: 18px;
+    }
+
+    .section-icon-large {
+        font-size: 20px;
+    }
+
+    .cyber-card {
+        padding: 20px;
+        border-radius: 12px;
+    }
+
+    .cyber-title {
+        font-size: 16px;
+    }
+
+    .job-card {
+        padding: 20px;
+    }
+
+    .job-role {
+        font-size: 16px;
+    }
+
+    .job-company {
+        font-size: 13px;
+    }
+
+    .job-meta-row {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .job-points li {
+        font-size: 13px;
+    }
+
+    .cert-grid-large {
+        grid-template-columns: 1fr;
+    }
+
+    .cert-card {
+        padding: 14px;
+    }
+
+    /* Deployments mobile */
+    .deployments-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .deployment-image {
+        height: 180px;
+    }
+
+    /* Bottom nav ultra-mobile */
+    .bottom-nav {
+        bottom: 16px;
+        padding: 10px 12px;
+        gap: 6px;
+    }
+
+    .nav-btn {
+        width: 48px;
+        height: 48px;
+    }
+
+    /* Logo frame mobile */
+    .logo-frame {
+        width: 40px;
+        height: 40px;
+    }
+
+    .card-text {
+        height: 40px;
+    }
+}
+
+/* Extra small devices (≤360px) */
+@media (max-width: 360px) {
+    .name {
+        font-size: 32px;
+    }
+
+    .node-id {
+        font-size: 10px;
+    }
+
+    .cyber-menu {
+        right: 8px;
+        min-width: calc(100vw - 16px);
+        max-width: calc(100vw - 16px);
+    }
+
+    .container {
+        padding: 70px 12px 0;
+    }
+}
