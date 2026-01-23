@@ -5,6 +5,7 @@ function SystemMonitor() {
     const [latency, setLatency] = useState(0)
     const [tx, setTx] = useState(0)
     const [rx, setRx] = useState(0)
+    const [networkTraffic, setNetworkTraffic] = useState(98.4)
 
     // Calculate real latency and update metrics
     useEffect(() => {
@@ -36,12 +37,40 @@ function SystemMonitor() {
 
             setTx(baseTx)
             setRx(baseRx)
+
+            // Randomize network traffic percentage with varying levels
+            // 30% chance very low, 40% chance normal, 30% chance very high
+            const rand = Math.random()
+            let trafficPercent
+
+            if (rand < 0.3) {
+                // Very low traffic (5% - 25%)
+                trafficPercent = 5 + Math.random() * 20
+            } else if (rand < 0.7) {
+                // Normal traffic (60% - 90%)
+                trafficPercent = 60 + Math.random() * 30
+            } else {
+                // Very high traffic (90% - 99.9%)
+                trafficPercent = 90 + Math.random() * 9.9
+            }
+
+            setNetworkTraffic(trafficPercent)
         }
 
         updateMetrics()
-        const metricsInterval = setInterval(updateMetrics, 1000)
 
-        return () => clearInterval(metricsInterval)
+        // Update every 3-5 seconds for more realistic behavior
+        const scheduleNextUpdate = () => {
+            const randomInterval = 3000 + Math.random() * 2000 // 3-5 seconds
+            setTimeout(() => {
+                updateMetrics()
+                scheduleNextUpdate()
+            }, randomInterval)
+        }
+
+        scheduleNextUpdate()
+
+        return () => { } // Cleanup handled by component unmount
     }, [])
 
     // Canvas animation
@@ -63,22 +92,25 @@ function SystemMonitor() {
             time += 0.05
             ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-            // Wave 1 (Blue)
+            // Scale amplitude based on network traffic (0-100%)
+            const trafficScale = networkTraffic / 100
+
+            // Wave 1 (Blue) - scales with traffic
             ctx.beginPath()
             ctx.lineWidth = 3
             ctx.strokeStyle = '#3b9eff'
             for (let x = 0; x < canvas.width; x++) {
-                const y = Math.sin(x * 0.01 + time) * 30 + Math.sin(x * 0.02 + time * 1.5) * 10 + canvas.height / 2
+                const y = Math.sin(x * 0.01 + time) * 30 * trafficScale + Math.sin(x * 0.02 + time * 1.5) * 10 * trafficScale + canvas.height / 2
                 ctx.lineTo(x, y)
             }
             ctx.stroke()
 
-            // Wave 2 (Cyan/Transparent)
+            // Wave 2 (Cyan/Transparent) - scales with traffic
             ctx.beginPath()
             ctx.lineWidth = 2
             ctx.strokeStyle = 'rgba(63, 185, 80, 0.4)'
             for (let x = 0; x < canvas.width; x++) {
-                const y = Math.cos(x * 0.015 + time * 0.8) * 35 + canvas.height / 2
+                const y = Math.cos(x * 0.015 + time * 0.8) * 35 * trafficScale + canvas.height / 2
                 ctx.lineTo(x, y)
             }
             ctx.stroke()
@@ -100,7 +132,7 @@ function SystemMonitor() {
             window.removeEventListener('resize', resize)
             cancelAnimationFrame(animationFrameId)
         }
-    }, [])
+    }, [networkTraffic])
 
     // Format speed values
     const formatSpeed = (mbps) => {
@@ -138,7 +170,7 @@ function SystemMonitor() {
             <div className="oscilloscope-container">
                 <div className="oscilloscope-header-row">
                     <span className="os-label">NETWORK_TRAFFIC_OSCILLOSCOPE</span>
-                    <span className="os-value">98.4%</span>
+                    <span className="os-value">{networkTraffic.toFixed(1)}%</span>
                 </div>
                 <div className="oscilloscope-screen">
                     <canvas ref={canvasRef}></canvas>

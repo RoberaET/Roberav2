@@ -1,0 +1,12 @@
+.text-block {
+    margin: 0;
+    font-family: monospace;
+    color: #fff;
+    display: inline-block;
+}
+
+.char {
+    will-change: transform, opacity;
+    display: inline-block;
+    transition: opacity 0.1s ease;
+}

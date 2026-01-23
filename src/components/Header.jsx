@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import ScrambledText from './ScrambledText'
 
 function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -13,7 +14,9 @@ function Header() {
                     <span className="terminal-dot yellow"></span>
                     <span className="terminal-dot green"></span>
                 </div>
-                <span className="node-id">HEX_GHOST_01</span>
+                <ScrambledText className="node-id" duration={1.0} speed={0.5} scrambleChars="01_">
+                    HEX_GHOST_01
+                </ScrambledText>
             </div>
             <div
                 className="header-right"
