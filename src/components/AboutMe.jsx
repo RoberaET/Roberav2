@@ -9,6 +9,8 @@ import ciscoLogo from '../assets/CISCO.png';
 import fortinetLogo from '../assets/FORTINET.png';
 import udemyLogo from '../assets/UDEMY.png';
 import ccnaLogo from '../assets/CCNA.png';
+import ccnpLogo from '../assets/CCNP.png';
+import hciaLogo from '../assets/HCIA.png';
 
 function AboutMe() {
     return (
@@ -158,6 +160,8 @@ function AboutMe() {
                 </div>
                 <div className="cert-grid-large">
                     {[
+                        { name: "CCNP Security", issuer: "CISCO", logo: ccnpLogo, progress: 100 },
+                        { name: "HCIA Storage", issuer: "HUAWEI", logo: hciaLogo, progress: 100 },
                         { name: "CCNA", issuer: "CISCO", logo: ccnaLogo, progress: 100 },
                         { name: "Ethical Hacker", issuer: "CISCO", logo: ciscoLogo, progress: 100 },
                         { name: "Linux Essentials", issuer: "CISCO", logo: ciscoLogo, progress: 100 },
