@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import musicUrl from '../assets/no batidao.mp3'
+import secretMusicUrl from '../assets/dontopen.mp3'
 
 const FILE_SYSTEM = {
     '/': {
@@ -48,7 +49,7 @@ const FILE_SYSTEM = {
                     'sudoers': { type: 'file', content: 'root ALL=(ALL:ALL) ALL' }
                 }
             },
-            'home': { type: 'dir', children: { 'guest': { type: 'dir', children: {} } } },
+            'home': { type: 'dir', children: { 'guest': { type: 'dir', children: { 'dontopen.mp3': { type: 'file', content: 'SECRET AUDIO', audioUrl: secretMusicUrl } } } } },
             'lib': { type: 'dir', children: { 'modules': { type: 'dir', children: {} } } },
             'media': { type: 'dir', children: {} },
             'mnt': { type: 'dir', children: {} },
@@ -85,7 +86,7 @@ const FILE_SYSTEM = {
                     'about.txt': { type: 'file', content: 'Robera Mekonnen - Network Architect.\nSpecializing in high-availability systems and secure infrastructure.' },
                     'contact.txt': { type: 'file', content: 'Email: robera4553@gmail.com\nGitHub: github.com/RoberaET' },
                     'skills.txt': { type: 'file', content: '- Network Design\n- Cloud Infrastructure\n- Cybersecurity\n- System Administration' },
-                    'music.mp3': { type: 'file', content: 'NO BATIDAO - Audio File' }
+                    'music.mp3': { type: 'file', content: 'NO BATIDAO - Audio File', audioUrl: musicUrl }
                 }
             },
             'run': { type: 'dir', children: {} },
@@ -335,12 +336,12 @@ function Terminal() {
                             if (isDir) {
                                 return `<div style="color: #d16d9e;">drwxr-xr-x ${name}</div>` // Pink/Purple for dirs
                             } else {
-                                const color = name === 'music.mp3' ? '#ff5f56' : '#3b9eff'
+                                const color = name.endsWith('.mp3') ? '#ff5f56' : '#3b9eff'
                                 return `<div style="color: ${color};">-rw-r--r-- ${name}</div>` // Blue for files
                             }
                         }
 
-                        if (name === 'music.mp3') {
+                        if (name.endsWith('.mp3')) {
                             return `<span style="color: #ff5f56;">${name}</span>`
                         }
 
@@ -399,10 +400,14 @@ function Terminal() {
                 const dir = getDirFromPath(dirPath)
 
                 if (dir && dir.children && dir.children[fileName] && dir.children[fileName].type === 'file') {
-                    if (fileName === 'music.mp3') {
+                    const fileNode = dir.children[fileName]
+                    if (fileNode.audioUrl || fileName.endsWith('.mp3')) {
                         setRunningProcess('music')
-                        audioRef.current.play()
-                        setHistory(prev => [...prev, { type: 'output', content: 'Playing: no batidao.mp3... (Press Ctrl+C to stop)' }])
+                        if (audioRef.current) {
+                            audioRef.current.src = fileNode.audioUrl
+                            audioRef.current.play()
+                        }
+                        setHistory(prev => [...prev, { type: 'output', content: `Playing: ${fileName}... (Press Ctrl+C to stop)` }])
                     } else {
                         setHistory(prev => [...prev, { type: 'output', content: dir.children[fileName].content }])
                     }
