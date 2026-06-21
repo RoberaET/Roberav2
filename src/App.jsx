@@ -4,14 +4,13 @@ import CoreRouterHero from './components/CoreRouterHero'
 import FloatingMuteButton from './components/FloatingMuteButton'
 import HeartbeatNav from './components/HeartbeatNav'
 
-// Lazy-loaded components (below the fold)
-const RunningConfig = lazy(() => import('./components/RunningConfig'))
-const RackInventory = lazy(() => import('./components/RackInventory'))
-const Certifications = lazy(() => import('./components/Certifications'))
-const EducationBGP = lazy(() => import('./components/EducationBGP'))
-const NetworkTopology = lazy(() => import('./components/NetworkTopology'))
-const EstablishConnection = lazy(() => import('./components/EstablishConnection'))
-const CommandTerminal = lazy(() => import('./components/CommandTerminal'))
+import RunningConfig from './components/RunningConfig'
+import RackInventory from './components/RackInventory'
+import Certifications from './components/Certifications'
+import EducationBGP from './components/EducationBGP'
+import NetworkTopology from './components/NetworkTopology'
+import EstablishConnection from './components/EstablishConnection'
+import CommandTerminal from './components/CommandTerminal'
 
 import './App.css'
 
@@ -91,7 +90,6 @@ function App() {
                             <CoreRouterHero />
                         </div>
                         
-                        <Suspense fallback={<div style={{ padding: '100px 40px', textAlign: 'center', color: 'var(--text-muted)' }}>Initializing Subsystems...</div>}>
                             {/* Phase 3 Components */}
                             <div id="network-ops" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px', marginBottom: '40px' }}>
                                 <RunningConfig />
@@ -116,7 +114,6 @@ function App() {
                             <div id="command-terminal">
                                 <CommandTerminal onCyberRange={() => setCyberRangeMode(true)} />
                             </div>
-                        </Suspense>
                     </div>
                 )}
             </div>
