@@ -95,7 +95,7 @@ export default function CommandTerminal({ onCyberRange }) {
             'Contact initiated!'
         ],
         'copy run start': [
-            'Destination filename [startup-config]? ROBERA_MEKONNEN_CV.pdf',
+            'Destination filename [startup-config]? ROBERAMEKONNENCV.pdf',
             'Building configuration...',
             '[OK]',
             'Downloading file...'
@@ -132,7 +132,7 @@ export default function CommandTerminal({ onCyberRange }) {
                     window.scrollTo({ top: document.body.scrollHeight / 2, behavior: 'smooth' });
                 } else if (cmd === 'copy run start') {
                     setTimeout(() => {
-                        window.open('https://drive.google.com/file/d/1GsrziToK5DYab5E_m-4ZQNDujmC_38f3/view?usp=drive_link', '_blank');
+                        window.open('/ROBERAMEKONNENCV.pdf', '_blank');
                     }, 1000);
                 }
             } else if (cmd !== '') {
