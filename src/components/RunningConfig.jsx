@@ -72,8 +72,32 @@ export default function RunningConfig() {
     ];
 
     const [visibleLines, setVisibleLines] = useState([]);
+    const [hasStarted, setHasStarted] = useState(false);
+    const sectionRef = useRef(null);
 
     useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting && !hasStarted) {
+                    setHasStarted(true);
+                }
+            },
+            { threshold: 0.2 }
+        );
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, [hasStarted]);
+
+    useEffect(() => {
+        if (!hasStarted) {
+            setVisibleLines([]);
+            return;
+        }
+        
         setVisibleLines([]);
         let currentLine = 0;
         const interval = setInterval(() => {
@@ -84,13 +108,13 @@ export default function RunningConfig() {
             } else {
                 clearInterval(interval);
             }
-        }, 150);
+        }, 100);
         return () => clearInterval(interval);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [uptime]);
+    }, [hasStarted, uptime]);
 
     return (
-        <section style={{ marginBottom: '80px', fontFamily: 'var(--font-mono)' }}>
+        <section ref={sectionRef} style={{ marginBottom: '80px', fontFamily: 'var(--font-mono)' }}>
             <div style={{
                 display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '20px'
             }}>
