@@ -11,6 +11,7 @@ export default defineConfig({
       workbox: {
         // Cache all built assets (JS, CSS chunks)
         globPatterns: ['**/*.{js,css,html,ico,png,jpg,jpeg,svg,woff,woff2,ttf,mp3,m4a,mp4,webm}'],
+        maximumFileSizeToCacheInBytes: 5000000, // 5MB limit to allow precaching honorable.m4a
 
         // Cache-first: serve from cache instantly, update in background
         runtimeCaching: [
