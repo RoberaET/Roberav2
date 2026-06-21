@@ -1,0 +1,47 @@
+.aurora-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: transparent;
+}
+
+.aurora-text-wrapper {
+  text-align: center;
+}
+
+.aurora-title {
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  position: relative;
+  overflow: hidden;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+.aurora-blend-layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  mix-blend-mode: darken; /* Suitable for dark mode backgrounds */
+  pointer-events: none;
+}
+
+.aurora-blob {
+  position: absolute;
+  width: 60vw;
+  height: 60vw;
+  border-radius: 37% 29% 27% 27% / 28% 25% 41% 37%;
+  mix-blend-mode: overlay;
+  filter: blur(24px); /* Equivalent to blur-lg/xl */
+}
+
+/* Color mappings from the user's component */
+.bg-cyan-400 { background-color: #22d3ee; }
+.bg-yellow-400 { background-color: #facc15; }
+.bg-green-400 { background-color: #4ade80; }
+.bg-primarylw { background-color: #3b9eff; }

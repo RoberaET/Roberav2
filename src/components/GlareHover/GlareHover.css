@@ -1,0 +1,74 @@
+.glare-hover {
+    width: var(--gh-width);
+    height: var(--gh-height);
+    background: var(--gh-bg);
+    border-radius: var(--gh-br);
+    border: 1px solid var(--gh-border);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s;
+    /* standard hover transitions */
+}
+
+/* 
+   We want the glare to sweep across. 
+   Since we don't have mouse tracking in the JS, 
+   we'll implement a CSS animation that plays on hover.
+*/
+
+.glare-hover::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(var(--gh-angle));
+    width: var(--gh-size);
+    height: 200%;
+    /* Ensure it covers height when rotated */
+    background: linear-gradient(90deg,
+            rgba(255, 255, 255, 0) 0%,
+            var(--gh-rgba) 50%,
+            rgba(255, 255, 255, 0) 100%);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 10;
+
+    /* Initial position: completely off to one side (approximated) */
+    transform: translate(-150%, -50%) rotate(var(--gh-angle));
+    transition: opacity 0.3s;
+}
+
+.glare-hover:hover::before {
+    opacity: 1;
+    /* Animate the glare sweeping across */
+    animation: glare-sweep var(--gh-duration) ease-in-out forwards;
+}
+
+.glare-hover--play-once:hover::before {
+    /* Logic for playOnce handled via animation iteration potentially, 
+     but standard hover implies it plays while hovering or triggers once.
+     Ease-in-out forwards means it stays at the end state?
+     Usually "play once" means it sweeps then disappears.
+  */
+    animation: glare-sweep var(--gh-duration) ease-in-out;
+}
+
+@keyframes glare-sweep {
+    0% {
+        transform: translate(-150%, -50%) rotate(var(--gh-angle));
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(150%, -50%) rotate(var(--gh-angle));
+        opacity: 0;
+    }
+}

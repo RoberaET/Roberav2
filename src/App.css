@@ -1,0 +1,265 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700;800&family=Inter:wght@300;400;600;800&display=swap');
+
+:root {
+  /* Color Palette */
+  --bg-primary: #050B14;
+  --bg-secondary: #0B1324;
+  --accent-blue: #3B9DFF;
+  --accent-blue-glow: rgba(59, 157, 255, 0.15);
+  --accent-blue-intense: rgba(59, 157, 255, 0.4);
+  --accent-green: #2EFF7A;
+  --accent-green-glow: rgba(46, 255, 122, 0.15);
+  --text-main: #EAF3FF;
+  --text-muted: #7D8CA3;
+  --border-color: rgba(59, 157, 255, 0.15);
+
+  /* Fonts */
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-sans: 'Inter', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hardware Acceleration for heavily animated elements */
+svg {
+  will-change: transform;
+  transform: translateZ(0);
+  contain: layout style;
+}
+
+/* ── Compositor-thread SVG animations (GPU only, never blocks scroll) ── */
+@keyframes dash-flow {
+  from { stroke-dashoffset: 20; }
+  to   { stroke-dashoffset: 0; }
+}
+@keyframes halo-pulse {
+  0%   { r: 18; opacity: 0.3; }
+  50%  { r: 26; opacity: 0.05; }
+  100% { r: 18; opacity: 0.3; }
+}
+@keyframes particle-pulse {
+  0%   { opacity: 0.1; }
+  50%  { opacity: 0.35; }
+  100% { opacity: 0.1; }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.2; }
+}
+
+.mb-dashed-link {
+  animation: dash-flow 0.9s linear infinite;
+  will-change: stroke-dashoffset;
+}
+.mb-halo {
+  animation: halo-pulse 3s ease-in-out infinite;
+  will-change: opacity;
+}
+.mb-particle {
+  animation: particle-pulse 2s ease-in-out infinite;
+  will-change: opacity;
+}
+.node-blink {
+  animation: blink 1.5s ease-in-out infinite;
+  will-change: opacity;
+}
+
+/* ── Floating Mute Button animations ── */
+@keyframes muteRipple {
+  0%   { transform: scale(0.8); opacity: 0.7; }
+  100% { transform: scale(2);   opacity: 0; }
+}
+@keyframes mutePulse {
+  0%   { transform: scale(1);    opacity: 0.4; }
+  50%  { transform: scale(1.35); opacity: 0.1; }
+  100% { transform: scale(1);    opacity: 0.4; }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-blue-intense);
+}
+
+/* Utility Classes */
+.font-mono { font-family: var(--font-mono); }
+.text-accent-blue { color: var(--accent-blue); }
+.text-accent-green { color: var(--accent-green); }
+.text-muted { color: var(--text-muted); }
+.bg-primary { background-color: var(--bg-primary); }
+.bg-secondary { background-color: var(--bg-secondary); }
+.border-glow { border: 1px solid var(--border-color); box-shadow: 0 0 15px var(--accent-blue-glow); }
+
+/* Global Container */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Main Content Layout */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+/* Background Gradients / Glows */
+.ambient-glow {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 80vw;
+  height: 80vh;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(59,157,255,0.03) 0%, rgba(5,11,20,0) 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 10px var(--accent-blue-glow); }
+  50% { box-shadow: 0 0 25px var(--accent-blue-intense); }
+  100% { box-shadow: 0 0 10px var(--accent-blue-glow); }
+}
+
+.fade-in { animation: fadeIn 1s ease forwards; }
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+@keyframes packetFly {
+  0%   { transform: translateX(-100px); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+
+/* CYBER RANGE MODE EASTER EGG (sudo su) */
+.cyber-range {
+  --bg-primary: #120303 !important;
+  --bg-secondary: #1f0707 !important;
+  --accent-blue: #ff2a2a !important;
+  --accent-blue-glow: rgba(255, 42, 42, 0.25) !important;
+  --accent-blue-intense: rgba(255, 42, 42, 0.6) !important;
+  --accent-green: #ff6b6b !important;
+  --accent-green-glow: rgba(255, 107, 107, 0.25) !important;
+  --text-main: #ffcccc !important;
+  --text-muted: #8c4343 !important;
+  --border-color: rgba(255, 42, 42, 0.3) !important;
+  animation: cyberShake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+@keyframes cyberShake {
+  10%, 90% { transform: translate3d(-1px, 0, 0); }
+  20%, 80% { transform: translate3d(2px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+  40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+.cyber-range .ambient-glow {
+  background: radial-gradient(circle, rgba(255,42,42,0.1) 0%, rgba(18,3,3,0) 70%);
+}
+
+/* Tailwind Utilities for External Components */
+.inline-block { display: inline-block; }
+.block { display: block; }
+.overflow-hidden { overflow: hidden; }
+.text-left { text-align: left; }
+.will-change-transform { will-change: transform; }
+.origin-left { transform-origin: left; }
+.transform-gpu { transform: translateZ(0); }
+.whitespace-nowrap { white-space: nowrap; }
+.whitespace-normal { white-space: normal; }
+.break-words { word-break: break-word; overflow-wrap: break-word; }
+.uppercase { text-transform: uppercase; }
+.text-\[4rem\] { font-size: 4rem; }
+.leading-none { line-height: 1; }
+.visible { visibility: visible; }
+.invisible { visibility: hidden; }
+
+/* ── RESPONSIVE DESIGN (MOBILE & TABLET) ── */
+/* Ensure desktop styles remain 100% untouched above 1024px */
+
+@media (max-width: 1024px) {
+  #network-ops {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding: 16px !important;
+  }
+  
+  /* Horizontal swipe container for wide SVGs */
+  .scroll-x {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    scrollbar-width: thin;
+    padding-bottom: 8px;
+  }
+  .scroll-x::-webkit-scrollbar { height: 6px; }
+  .scroll-x::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); border-radius: 4px; }
+  .scroll-x::-webkit-scrollbar-thumb { background: rgba(59, 157, 255, 0.4); border-radius: 4px; }
+
+  /* Force SVGs to stay large enough to read, enabling the scroll wrapper */
+  .mobile-scale-svg {
+    min-width: 900px !important;
+  }
+
+  /* HeartbeatNav scroll wrapper */
+  .heartbeat-pills-container {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 6px;
+    -webkit-overflow-scrolling: touch;
+    mask-image: linear-gradient(to right, black 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
+  }
+  .heartbeat-pills-container::-webkit-scrollbar { display: none; }
+
+  /* Adjust Floating Mute Button for smaller screens */
+  .floating-mute {
+    bottom: 20px !important;
+    right: 20px !important;
+    transform: scale(0.8) !important;
+  }
+}
