@@ -54,7 +54,7 @@ function App() {
     React.useEffect(() => {
         const audio = new Audio('/honorable.m4a')
         audio.loop = true
-        audio.volume = 0.2
+        audio.volume = 0.05
         audioRef.current = audio
 
         return () => {

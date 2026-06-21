@@ -127,7 +127,7 @@ function Terminal() {
     useEffect(() => {
         audioRef.current = new Audio(musicUrl)
         audioRef.current.loop = true
-        audioRef.current.volume = 0.2
+        audioRef.current.volume = 0.05
         return () => {
             if (audioRef.current) {
                 audioRef.current.pause()
