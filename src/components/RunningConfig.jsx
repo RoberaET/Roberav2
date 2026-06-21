@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 // Start date: July 30, 2025 (10 months 22 days before June 21, 2026)
 const START_DATE = new Date('2025-07-30T00:00:00');
