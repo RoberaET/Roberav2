@@ -62,6 +62,9 @@ export default function RackInventory() {
                 <h2 style={{ fontSize: '20px', letterSpacing: '2px', color: 'var(--text-main)', margin: 0 }}>
                     [ RACK_INVENTORY ]
                 </h2>
+                <div style={{ fontSize: '12px', color: 'var(--text-muted)', marginLeft: '10px' }}>
+                    // PROFESSIONAL_EXPERIANCES
+                </div>
             </div>
 
             {/* Server Rack Frame */}

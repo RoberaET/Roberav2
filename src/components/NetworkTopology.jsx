@@ -262,6 +262,9 @@ export default function NetworkTopology() {
                 <h2 style={{ fontSize: '20px', letterSpacing: '2px', color: 'var(--text-main)', margin: 0 }}>
                     [ NETWORK_TOPOLOGY ]
                 </h2>
+                <div style={{ fontSize: '12px', color: 'var(--text-muted)', marginLeft: '10px' }}>
+                    // LAB_PROJECTS
+                </div>
             </div>
 
             {/* Tabs */}
