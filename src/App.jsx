@@ -79,6 +79,7 @@ function App() {
                 {!isConnected ? (
                     <ConnectionGateway onAuthorize={handleAuthorize} />
                 ) : (
+                    <>
                     <div className="main-content fade-in" style={{ padding: '40px' }}>
                         
                         {/* Floating Mute Button — always visible while scrolling */}
@@ -117,6 +118,7 @@ function App() {
                             </div>
                     </div>
                     <Footer />
+                    </>
                 )}
             </div>
         </ErrorBoundary>
