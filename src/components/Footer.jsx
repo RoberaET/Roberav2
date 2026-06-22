@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-const UPTIME_START = new Date('2025-07-30T00:00:00');
+const UPTIME_START = new Date('2025-06-30T00:00:00');
 
 function getUptime() {
     const now = new Date();
