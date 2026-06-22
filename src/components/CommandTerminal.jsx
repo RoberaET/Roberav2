@@ -163,6 +163,9 @@ export default function CommandTerminal({ onCyberRange }) {
                 <h2 style={{ fontSize: '20px', letterSpacing: '2px', color: 'var(--text-main)', margin: 0 }}>
                     [ COMMAND_TERMINAL ]
                 </h2>
+                <div style={{ fontSize: '12px', color: 'var(--text-muted)', marginLeft: '10px' }}>
+                    // IOS_CLI_EMULATOR
+                </div>
             </div>
 
             <div 
