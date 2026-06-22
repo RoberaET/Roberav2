@@ -12,7 +12,7 @@ const BOOT_LOGS = [
     { delay: 2250, text: 'VPN: IPSec tunnel endpoints authenticated — [OK]',        color: '#3fb950' },
     { delay: 2500, text: 'VLAN: Trunking active on GigE 0/0–0/47 — [OK]',          color: '#3fb950' },
     { delay: 2750, text: 'HSRP: Active gateway elected — Priority 110 — [OK]',      color: '#3fb950' },
-    { delay: 3000, text: 'Loading portfolio kernel v2.0...',                         color: '#3b9eff' },
+    { delay: 3000, text: 'Loading portfolio kernel v3.0...',                         color: '#3b9eff' },
     { delay: 3300, text: 'Decrypting identity: ROBERA MEKONNEN — VERIFIED',         color: '#3b9eff' },
     { delay: 3600, text: '>>> SYSTEM READY. AWAITING OPERATOR CONFIRMATION <<<',    color: '#fff' },
 ]
@@ -166,7 +166,7 @@ export default function BootScreen({ onBoot }) {
                         fontSize: '11px', letterSpacing: '6px', color: '#3b9eff',
                         marginBottom: '16px', opacity: 0.7,
                     }}>
-                        R_MEKONNEN.SYS // PORTFOLIO_V2.0
+                        R_MEKONNEN.SYS // PORTFOLIO_V3.0
                     </div>
 
                     {/* Glitch title */}

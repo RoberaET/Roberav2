@@ -181,7 +181,7 @@ const ACTIONS = {
         { t: 'o', v: '' },
         { t: 'h', v: 'ROBERA-CORE-RTR uptime is 10 months, 22 days, 14 hours, 53 minutes' },
         { t: 'o', v: 'System returned to ROM by reload' },
-        { t: 'o', v: 'System image file is "flash:robera-network-engineer-v2.bin"' },
+        { t: 'o', v: 'System image file is "flash:robera-network-engineer-v3.bin"' },
         { t: 'o', v: 'Last reload reason: <user-initiated reload>' },
         { t: 'o', v: '' },
         { t: 'o', v: 'Cisco C9300-48U (X86) processor (revision V01) with 1622614K/6147K bytes of memory.' },
@@ -319,7 +319,7 @@ const ACTIONS = {
     ],
     'show flash': () => [
         { t: 'o', v: '-#- --length-- -----date/time------ path' },
-        { t: 'g', v: '  1    52428800 Jun 22 2026 00:00:00 robera-network-engineer-v2.bin' },
+        { t: 'g', v: '  1    52428800 Jun 22 2026 00:00:00 robera-network-engineer-v3.bin' },
         { t: 'g', v: '  2      948176 Jun 22 2026 00:00:00 ROBERAMEKONNENCV.pdf' },
         { t: 'o', v: '' },
         { t: 'h', v: '8388608 bytes total (7440432 bytes free)' },

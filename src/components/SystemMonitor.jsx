@@ -151,7 +151,7 @@ function SystemMonitor() {
                     </div>
                     <div className="monitor-title-group">
                         <span className="monitor-title">R_MEKONNEN.SYS</span>
-                        <span className="monitor-subtitle">PORTFOLIO_V2.0_RACK_VIEW</span>
+                        <span className="monitor-subtitle">PORTFOLIO_V3.0_RACK_VIEW</span>
                     </div>
                 </div>
                 <div className="header-right">

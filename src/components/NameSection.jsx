@@ -25,7 +25,7 @@ function NameSection() {
                   }}
                 />
             </div>
-            <p className="protocol" style={{ marginTop: '0' }}>[ PROTOCOL: PORTFOLIO.v2 ]</p>
+            <p className="protocol" style={{ marginTop: '0' }}>[ PROTOCOL: PORTFOLIO.v3 ]</p>
             <a href="/ROBERAMEKONNENCV.pdf" target="_blank" rel="noopener noreferrer" className="cv-download-btn">
                 <span className="btn-icon">📄</span>
                 DOWNLOAD_CV.pdf

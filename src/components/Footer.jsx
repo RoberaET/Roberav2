@@ -264,7 +264,7 @@ export default function Footer() {
 
                     <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
                         <div style={{ fontSize: '10px', color: 'var(--text-muted)', letterSpacing: '1px' }}>
-                            BUILD: <span style={{ color: '#2EFF7A' }}>v2.0.0</span>
+                            BUILD: <span style={{ color: '#2EFF7A' }}>v3.0.0</span>
                         </div>
                         <div style={{ fontSize: '10px', color: 'var(--text-muted)', letterSpacing: '1px' }}>
                             NODE: <span style={{ color: '#3B9DFF' }}>ROBERA-CORE-RTR</span>
