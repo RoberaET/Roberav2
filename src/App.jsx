@@ -11,6 +11,7 @@ import EducationBGP from './components/EducationBGP'
 import NetworkTopology from './components/NetworkTopology'
 import EstablishConnection from './components/EstablishConnection'
 import CommandTerminal from './components/CommandTerminal'
+import Footer from './components/Footer'
 
 import './App.css'
 
@@ -115,6 +116,7 @@ function App() {
                                 <CommandTerminal onCyberRange={() => setCyberRangeMode(true)} />
                             </div>
                     </div>
+                    <Footer />
                 )}
             </div>
         </ErrorBoundary>
