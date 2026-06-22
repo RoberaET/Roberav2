@@ -32,6 +32,9 @@ export default function EstablishConnection() {
                 <h2 style={{ fontSize: '20px', letterSpacing: '2px', color: 'var(--text-main)', margin: 0 }}>
                     [ ESTABLISH_CONNECTION ]
                 </h2>
+                <div style={{ fontSize: '12px', color: 'var(--text-muted)', marginLeft: '10px' }}>
+                    // CONTACT_ME_OR_FIND_ME_ONLINE
+                </div>
             </div>
 
             <div style={{
