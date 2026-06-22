@@ -221,32 +221,45 @@ export default function NetworkTopology() {
         setFailedCampusNode(prev => prev === id ? null : id);
     };
 
-    const [failedMBNode, setFailedMBNode] = useState(null);
+    const [failedMBNodes, setFailedMBNodes] = useState([]);
 
-    const getFailedMBNodes = (failed) => {
-        if (!failed) return [];
-        if (failed === 'internet') return MB_NODES.map(n => n.id);
-        let down = [failed];
-        if (failed === 'hq_r')  down.push('hq_sw', 'sw5', 'sw6', 'hq_srv0', 'hq_srv1', 'hq_srv2', 'b1_r', 'b1_sw', 'b1_lap', 'b1_srv', 'b2_r', 'b2_sw', 'b2_lap', 'b2_srv');
-        if (failed === 'hq_sw') down.push('sw5', 'sw6', 'hq_srv0', 'hq_srv1', 'hq_srv2');
-        if (failed === 'sw5')   down.push('hq_srv0', 'hq_srv1');
-        if (failed === 'sw6')   down.push('hq_srv2');
-        if (failed === 'b1_r')  down.push('b1_sw', 'b1_lap', 'b1_srv');
-        if (failed === 'b1_sw') down.push('b1_lap', 'b1_srv');
-        if (failed === 'b2_r')  down.push('b2_sw', 'b2_lap', 'b2_srv');
-        if (failed === 'b2_sw') down.push('b2_lap', 'b2_srv');
+    const getFailedMBNodes = (failedList) => {
+        let down = [...failedList];
+        
+        if (failedList.includes('internet')) {
+            return MB_NODES.map(n => n.id);
+        }
+        
+        if (failedList.includes('hq_r')) {
+            down.push('hq_sw', 'sw5', 'sw6', 'hq_srv0', 'hq_srv1', 'hq_srv2', 'b1_r', 'b1_sw', 'b1_lap', 'b1_srv', 'b2_r', 'b2_sw', 'b2_lap', 'b2_srv');
+        }
+        if (failedList.includes('hq_sw')) {
+            down.push('sw5', 'sw6', 'hq_srv0', 'hq_srv1', 'hq_srv2');
+        }
+        
+        // Redundancy logic for servers
+        if (failedList.includes('sw5') && failedList.includes('sw6')) {
+            down.push('hq_srv0', 'hq_srv1', 'hq_srv2');
+        }
+        
+        if (failedList.includes('b1_r'))  down.push('b1_sw', 'b1_lap', 'b1_srv');
+        if (failedList.includes('b1_sw')) down.push('b1_lap', 'b1_srv');
+        if (failedList.includes('b2_r'))  down.push('b2_sw', 'b2_lap', 'b2_srv');
+        if (failedList.includes('b2_sw')) down.push('b2_lap', 'b2_srv');
+        
         return down;
     };
 
     const isMBNodeDown = (nodeId) => {
-        if (!failedMBNode) return false;
-        return getFailedMBNodes(failedMBNode).includes(nodeId);
+        return getFailedMBNodes(failedMBNodes).includes(nodeId);
     };
 
     const handleMBClick = (id) => {
         const clickable = ['internet','hq_r','hq_sw','sw5','sw6','b1_r','b1_sw','b2_r','b2_sw'];
         if (!clickable.includes(id)) return;
-        setFailedMBNode(prev => prev === id ? null : id);
+        setFailedMBNodes(prev => 
+            prev.includes(id) ? prev.filter(n => n !== id) : [...prev, id]
+        );
     };
 
     return (
