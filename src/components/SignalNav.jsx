@@ -18,17 +18,28 @@ export default function SignalNav() {
 
     // Scroll spy
     useEffect(() => {
+        let ticking = false;
         const onScroll = () => {
-            if (window.scrollY < 200) { setActiveIdx(0); return; }
-            for (let i = SECTIONS.length - 1; i >= 0; i--) {
-                if (SECTIONS[i].target === 'top') continue;
-                const el = document.getElementById(SECTIONS[i].target);
-                if (el && el.getBoundingClientRect().top <= 220) {
-                    setActiveIdx(i); return;
-                }
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    if (window.scrollY < 200) { 
+                        setActiveIdx(0); 
+                    } else {
+                        for (let i = SECTIONS.length - 1; i >= 0; i--) {
+                            if (SECTIONS[i].target === 'top') continue;
+                            const el = document.getElementById(SECTIONS[i].target);
+                            if (el && el.getBoundingClientRect().top <= 220) {
+                                setActiveIdx(i);
+                                break;
+                            }
+                        }
+                    }
+                    ticking = false;
+                });
+                ticking = true;
             }
         };
-        window.addEventListener('scroll', onScroll);
+        window.addEventListener('scroll', onScroll, { passive: true });
         return () => window.removeEventListener('scroll', onScroll);
     }, []);
 
