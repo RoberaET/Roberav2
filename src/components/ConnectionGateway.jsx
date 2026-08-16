@@ -153,7 +153,7 @@ export default function ConnectionGateway({ onAuthorize }) {
                     textTransform: 'uppercase',
                     letterSpacing: '1px'
                 }}>
-                    [ For the ultimate experience, viewing on a computer is recommended ]
+                    [ Best viewed on desktop ]
                 </p>
 
                 <div style={{
