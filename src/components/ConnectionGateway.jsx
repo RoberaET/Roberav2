@@ -139,12 +139,22 @@ export default function ConnectionGateway({ onAuthorize }) {
                     color: isAuthorizing ? 'var(--accent-green)' : 'var(--accent-blue)',
                     fontSize: '20px',
                     letterSpacing: '2px',
-                    marginBottom: '30px',
+                    marginBottom: '10px',
                     textTransform: 'uppercase',
                     textAlign: 'center'
                 }}>
                     {status === 'PENDING' ? 'Incoming Connection Detected' : status}
                 </h2>
+                <p style={{
+                    color: 'var(--text-muted)',
+                    fontSize: '11px',
+                    textAlign: 'center',
+                    marginBottom: '30px',
+                    textTransform: 'uppercase',
+                    letterSpacing: '1px'
+                }}>
+                    [ For the ultimate experience, viewing on a computer is recommended ]
+                </p>
 
                 <div style={{
                     display: 'grid',
