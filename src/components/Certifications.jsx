@@ -32,12 +32,12 @@ export default function Certifications() {
             </div>
 
             {/* Table */}
-            <div style={{
+            <div className="scroll-x" style={{
                 backgroundColor: '#03060a',
                 border: '1px solid #1a2333',
                 borderRadius: '4px',
-                overflow: 'hidden',
             }}>
+                <div style={{ minWidth: '700px' }}>
                 {/* Column headers */}
                 <div style={{
                     display: 'grid',
@@ -170,6 +170,7 @@ export default function Certifications() {
                         </div>
                     );
                 })}
+                </div>
             </div>
         </div>
     );

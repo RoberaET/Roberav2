@@ -281,7 +281,7 @@ export default function NetworkTopology() {
             </div>
 
             {/* Tabs */}
-            <div style={{ display: 'flex', gap: '20px', marginBottom: '20px' }}>
+            <div className="scroll-x" style={{ display: 'flex', gap: '20px', marginBottom: '20px', paddingBottom: '10px' }}>
                 {tabs.map(tab => (
                     <button
                         key={tab}
@@ -295,7 +295,8 @@ export default function NetworkTopology() {
                             fontSize: '12px',
                             textTransform: 'uppercase',
                             letterSpacing: '1px',
-                            transition: 'all 0.3s ease'
+                            transition: 'all 0.3s ease',
+                            whiteSpace: 'nowrap'
                         }}
                     >
                         {tab}
