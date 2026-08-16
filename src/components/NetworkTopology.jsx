@@ -164,7 +164,7 @@ export default function NetworkTopology() {
     const campusSvgRef = useSvgAnimationPause();
     const mbSvgRef = useSvgAnimationPause();
     const tabs = ['Daisy-Chain', 'Redundant Campus Network', 'Multi-Branch Enterprise'];
-    const [activeTab, setActiveTab] = useState('Redundant Campus Network');
+    const [activeTab, setActiveTab] = useState('Multi-Branch Enterprise');
     const [failedSwitch, setFailedSwitch] = useState(null);
 
     const getFailedSwitches = (failed) => {
