@@ -1,0 +1,225 @@
+import React from 'react'
+import GlareHover from './GlareHover/GlareHover';
+import besysLogo from '../assets/BESYS.png';
+import leonorLogo from '../assets/LEONOR.png';
+import ieLogo from '../assets/IE.png';
+import microlinkLogo from '../assets/MICROLINK.png';
+import aauLogo from '../assets/AAU.png';
+import ciscoLogo from '../assets/CISCO.png';
+import fortinetLogo from '../assets/FORTINET.png';
+import udemyLogo from '../assets/UDEMY.png';
+import ccnaLogo from '../assets/CCNA.png';
+import ccnpLogo from '../assets/CCNP.png';
+import hciaLogo from '../assets/HCIA.png';
+
+function AboutMe() {
+    return (
+        <section className="about-section" id="about">
+            <div className="section-header-large">
+                <span className="section-icon-large">⚡</span>
+                <h2>SYSTEM_LOGS // RESUME</h2>
+            </div>
+
+            {/* Experience Section */}
+            <div className="cyber-card">
+                <div className="cyber-card-header">
+                    <span className="cyber-title">
+                        RUNTIME_PROCESSES <span className="cyber-subtitle">(EXPERIENCE)</span>
+                    </span>
+                </div>
+                <div className="experience-grid">
+                    <div className="job-card">
+                        <div className="card-content-wrapper">
+                            <div className="logo-frame">
+                                <img src={besysLogo} alt="Besys Logo" />
+                            </div>
+                            <div className="card-text">
+                                <span className="job-role">Network Engineer</span>
+                                <a href="https://besystechnologies.com/" target="_blank" rel="noopener noreferrer" className="job-company">Besys Technologies PLC</a>
+                            </div>
+                        </div>
+                        <div className="job-meta-row">
+                            <span>July 2025 - Present</span>
+                            <span>Bole, Addis Ababa</span>
+                        </div>
+                        <ul className="job-points">
+                            <li>Designed and implemented scalable network infrastructure.</li>
+                            <li>Configured routers, switches, firewalls, and access points.</li>
+                            <li>Optimized QoS for improved data flow and reliability.</li>
+                            <li>Performed root-cause analysis for complex network issues.</li>
+                        </ul>
+                    </div>
+
+                    <div className="job-card">
+                        <div className="card-content-wrapper">
+                            <div className="logo-frame">
+                                <img src={leonorLogo} alt="Leonor Logo" />
+                            </div>
+                            <div className="card-text">
+                                <span className="job-role">Operational Manager (Internship)</span>
+                                <a href="https://www.leonortrading.com/" target="_blank" rel="noopener noreferrer" className="job-company">Leonor Trading PLC</a>
+                            </div>
+                        </div>
+                        <div className="job-meta-row">
+                            <span>April 2024 - June 2024</span>
+                            <span>Ayat, Addis Ababa</span>
+                        </div>
+                        <ul className="job-points">
+                            <li>Supported daily operational processes and workflow efficiency.</li>
+                            <li>Coordinated logistics reducing stock discrepancies.</li>
+                            <li>Ensured 100% on-time delivery rate during internship.</li>
+                        </ul>
+                    </div>
+
+                    <div className="job-card">
+                        <div className="card-content-wrapper">
+                            <div className="logo-frame">
+                                <img src={ieLogo} alt="IE Logo" />
+                            </div>
+                            <div className="card-text">
+                                <span className="job-role">Modern Data Center & Cloud Engineer (Internship)</span>
+                                <a href="https://www.ienetworksolutions.com/" target="_blank" rel="noopener noreferrer" className="job-company">IE Network Solutions</a>
+                            </div>
+                        </div>
+                        <div className="job-meta-row">
+                            <span>October 2023 - January 2024</span>
+                            <span>Hayahulet, Addis Ababa</span>
+                        </div>
+                        <ul className="job-points">
+                            <li>Increased data center efficiency by 15% via infra upgrades.</li>
+                            <li>Improved system stability by 15% through comprehensive audits.</li>
+                            <li>Collaborated to design modern cloud solutions for enterprises.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            {/* Education Section */}
+            <div className="cyber-card">
+                <div className="cyber-card-header">
+                    <span className="cyber-title">
+                        KERNEL_MODULES <span className="cyber-subtitle">(EDUCATION)</span>
+                    </span>
+                </div>
+                <div className="education-grid">
+                    <GlareHover
+                        className="edu-card"
+                        width="100%"
+                        height="auto"
+                        background="transparent"
+                        borderRadius="8px"
+                        borderColor="transparent"
+                        transitionDuration={1500}
+                        style={{ borderLeft: '4px solid #3fb950' }}
+                    >
+                        <div className="card-content-wrapper">
+                            <div className="logo-frame">
+                                <img src={microlinkLogo} alt="Microlink Logo" />
+                            </div>
+                            <div className="card-text">
+                                <span className="edu-degree">B.Sc. in COMPUTER ENGINEERING</span>
+                                <span className="edu-school">MICROLINK INFO TECH COLLEGE</span>
+                            </div>
+                        </div>
+                        <div className="job-meta-row" style={{ marginBottom: 0, marginTop: '12px', border: 'none' }}>
+                            <span>October 2019 - August 2024</span>
+                        </div>
+                    </GlareHover>
+                    <GlareHover
+                        className="edu-card"
+                        width="100%"
+                        height="auto"
+                        background="transparent"
+                        borderRadius="8px"
+                        borderColor="transparent"
+                        transitionDuration={1500}
+                        style={{ borderLeft: '4px solid #3fb950' }}
+                    >
+                        <div className="card-content-wrapper">
+                            <div className="logo-frame">
+                                <img src={aauLogo} alt="AAU Logo" />
+                            </div>
+                            <div className="card-text">
+                                <span className="edu-degree">BA in MANAGEMENT</span>
+                                <span className="edu-school">ADDIS ABABA UNIVERSITY</span>
+                            </div>
+                        </div>
+                        <div className="job-meta-row" style={{ marginBottom: 0, marginTop: '12px', border: 'none' }}>
+                            <span>October 2020 - June 2025</span>
+                        </div>
+                    </GlareHover>
+                </div>
+            </div>
+
+            {/* Certifications Section */}
+            <div className="cyber-card">
+                <div className="cyber-card-header">
+                    <span className="cyber-title">
+                        SECURITY_PROTOCOLS <span className="cyber-subtitle">(CERTIFICATIONS)</span>
+                    </span>
+                </div>
+                <div className="cert-grid-large">
+                    {[
+                        { name: "CCNP Security", issuer: "CISCO", logo: ccnpLogo, progress: 90, status: "In Progress" },
+                        { name: "HCIA Storage", issuer: "HUAWEI", logo: hciaLogo, progress: 90, status: "In Progress" },
+                        { name: "CCNA", issuer: "CISCO", logo: ccnaLogo, progress: 100, link: "https://www.credly.com/badges/cd196d19-08ed-4c7b-91cc-2730c079365e/public_url" },
+                        { name: "Ethical Hacker", issuer: "CISCO", logo: ciscoLogo, progress: 100, link: "https://www.credly.com/badges/8c60ac0c-c3a6-4ae1-b0d7-59a7f7920b62/public_url" },
+                        { name: "Linux Essentials", issuer: "CISCO", logo: ciscoLogo, progress: 100, link: "https://www.credly.com/badges/933d2fe6-ca2e-43e4-a3b2-ff88418e54bb/public_url" },
+                        { name: "Cisco Meraki (CMNE-F)", issuer: "CISCO", logo: ciscoLogo, progress: 100 },
+                        { name: "Junior Cybersecurity Analyst Career Path", issuer: "CISCO", logo: ciscoLogo, progress: 100, link: "https://www.credly.com/badges/40224730-ac81-4a15-be9b-f05634046933/public_url" },
+                        { name: "FCAC", issuer: "FORTINET", logo: fortinetLogo, progress: 100, link: "https://www.credly.com/badges/3fce97be-66f3-4b45-8eb4-db709f362d69/public_url" },
+                        { name: "FCFC", issuer: "FORTINET", logo: fortinetLogo, progress: 100, link: "https://www.credly.com/badges/2f88c40d-4443-42e5-baeb-1e403d5f1e81/public_url" },
+                        { name: "Malware Analysis & BCP", issuer: "Udemy", logo: udemyLogo, progress: 100 }
+                    ].map((cert, index) => {
+                        const CardContent = (
+                            <GlareHover
+                                className="cert-card"
+                                width="100%"
+                                height="auto"
+                                background="transparent"
+                                borderRadius="12px"
+                                borderColor="rgba(59, 158, 255, 0.2)"
+                                transitionDuration={1500}
+                                key={cert.link ? undefined : index}
+                            >
+                                <div className="card-content-wrapper">
+                                    <div className="logo-frame">
+                                        <img src={cert.logo} alt={cert.issuer} />
+                                    </div>
+                                    <div className="card-text">
+                                        <span className="cert-title">{cert.name}</span>
+                                        <span className="cert-issuer">{cert.issuer}</span>
+                                        <div className="cert-progress-container">
+                                            <div className="cert-progress-bar" style={{ width: `${cert.progress}%` }}>
+                                                <span className="cert-tooltip">{cert.progress}%</span>
+                                            </div>
+                                        </div>
+                                        <span className="cert-status-below">{cert.status || "Earned"}</span>
+                                    </div>
+                                </div>
+                            </GlareHover>
+                        )
+
+                        return cert.link ? (
+                            <a
+                                href={cert.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{ display: 'contents', textDecoration: 'none', color: 'inherit' }}
+                                key={index}
+                            >
+                                {CardContent}
+                            </a>
+                        ) : (
+                            <React.Fragment key={index}>
+                                {CardContent}
+                            </React.Fragment>
+                        )
+                    })}
+                </div>
+            </div>
+        </section>
+    )
+}
+
+export default AboutMe
