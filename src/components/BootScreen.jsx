@@ -2,19 +2,19 @@ import React, { useEffect, useRef, useState } from 'react'
 
 const BOOT_LOGS = [
     { delay: 0,    text: 'BIOS v4.2.1 — Initializing hardware interfaces...',       color: '#8b949e' },
-    { delay: 300,  text: 'CPU: AMD Ryzen 9 5950X @ 3.40GHz — [OK]',                color: '#3fb950' },
-    { delay: 550,  text: 'RAM: 32768MB DDR4 @ 3600MHz — [OK]',                      color: '#3fb950' },
-    { delay: 800,  text: 'NIC: Intel X550-T2 10GbE — Detecting...',                 color: '#8b949e' },
-    { delay: 1100, text: 'NIC: Uplink established at 10.0 Gbps — [OK]',             color: '#3fb950' },
-    { delay: 1400, text: 'OSPF: Discovering neighbors on eth0/eth1...',              color: '#8b949e' },
-    { delay: 1700, text: 'OSPF: Area 0 adjacency FULL with 4 peers — [OK]',         color: '#3fb950' },
-    { delay: 2000, text: 'Firewall: Loading ACL rulesets — 2,048 rules applied',    color: '#d29922' },
-    { delay: 2250, text: 'VPN: IPSec tunnel endpoints authenticated — [OK]',        color: '#3fb950' },
-    { delay: 2500, text: 'VLAN: Trunking active on GigE 0/0–0/47 — [OK]',          color: '#3fb950' },
-    { delay: 2750, text: 'HSRP: Active gateway elected — Priority 110 — [OK]',      color: '#3fb950' },
-    { delay: 3000, text: 'Loading portfolio kernel v3.0...',                         color: '#3b9eff' },
-    { delay: 3300, text: 'Decrypting identity: ROBERA MEKONNEN — VERIFIED',         color: '#3b9eff' },
-    { delay: 3600, text: '>>> SYSTEM READY. AWAITING OPERATOR CONFIRMATION <<<',    color: '#fff' },
+    { delay: 38,   text: 'CPU: AMD Ryzen 9 5950X @ 3.40GHz — [OK]',                color: '#3fb950' },
+    { delay: 77,   text: 'RAM: 32768MB DDR4 @ 3600MHz — [OK]',                      color: '#3fb950' },
+    { delay: 115,  text: 'NIC: Intel X550-T2 10GbE — Detecting...',                 color: '#8b949e' },
+    { delay: 154,  text: 'NIC: Uplink established at 10.0 Gbps — [OK]',             color: '#3fb950' },
+    { delay: 192,  text: 'OSPF: Discovering neighbors on eth0/eth1...',              color: '#8b949e' },
+    { delay: 230,  text: 'OSPF: Area 0 adjacency FULL with 4 peers — [OK]',         color: '#3fb950' },
+    { delay: 269,  text: 'Firewall: Loading ACL rulesets — 2,048 rules applied',    color: '#d29922' },
+    { delay: 307,  text: 'VPN: IPSec tunnel endpoints authenticated — [OK]',        color: '#3fb950' },
+    { delay: 346,  text: 'VLAN: Trunking active on GigE 0/0–0/47 — [OK]',          color: '#3fb950' },
+    { delay: 384,  text: 'HSRP: Active gateway elected — Priority 110 — [OK]',      color: '#3fb950' },
+    { delay: 423,  text: 'Loading portfolio kernel v3.0...',                         color: '#3b9eff' },
+    { delay: 461,  text: 'Decrypting identity: ROBERA MEKONNEN — VERIFIED',         color: '#3b9eff' },
+    { delay: 500,  text: '>>> SYSTEM READY. AWAITING OPERATOR CONFIRMATION <<<',    color: '#fff' },
 ]
 
 export default function BootScreen({ onBoot }) {
@@ -33,7 +33,7 @@ export default function BootScreen({ onBoot }) {
                 setProgress(Math.round(((i + 1) / BOOT_LOGS.length) * 100))
             }, log.delay)
         )
-        const btnTimer = setTimeout(() => setShowButton(true), 3800)
+        const btnTimer = setTimeout(() => setShowButton(true), 520)
         return () => { timers.forEach(clearTimeout); clearTimeout(btnTimer) }
     }, [])
 

@@ -79,24 +79,24 @@ export default function ConnectionGateway({ onAuthorize }) {
         const pushLine = (content, cb) => {
             lineBuffer = [...lineBuffer, content];
             setLines([...lineBuffer]);
-            timeout = setTimeout(cb, 80);
+            timeout = setTimeout(cb, 15);
         };
 
         const typeCommand = (cmd, charIdx, afterCb) => {
             if (charIdx <= cmd.length) {
                 setTyping(cmd.slice(0, charIdx));
-                timeout = setTimeout(() => typeCommand(cmd, charIdx + 1, afterCb), 18);
+                timeout = setTimeout(() => typeCommand(cmd, charIdx + 1, afterCb), 8);
             } else {
                 timeout = setTimeout(() => {
                     setTyping('');
                     pushLine({ type: 'prompt', value: cmd }, afterCb);
-                }, 80);
+                }, 30);
             }
         };
 
         const runOutput = (outputLines, idx, afterCb) => {
             if (idx >= outputLines.length) {
-                timeout = setTimeout(afterCb, 150);
+                timeout = setTimeout(afterCb, 40);
                 return;
             }
             pushLine({ type: outputLines[idx].t, value: outputLines[idx].v }, () =>
@@ -114,13 +114,13 @@ export default function ConnectionGateway({ onAuthorize }) {
                 typeCommand(step.cmd, 0, () =>
                     runOutput(step.output, 0, runNextCommand)
                 );
-            }, step.delay * 2);
+            }, 30);
         };
 
         // Start
         lineBuffer = [];
         setLines([]);
-        timeout = setTimeout(runNextCommand, 600);
+        timeout = setTimeout(runNextCommand, 300);
         return () => clearTimeout(timeout);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ip]);
@@ -139,8 +139,8 @@ export default function ConnectionGateway({ onAuthorize }) {
     const handleAuthorize = () => {
         if (authorized) return;
         setAuthorized(true);
-        setTimeout(() => setExiting(true), 1200); // give time to read connection message
-        setTimeout(() => onAuthorize(), 1800);
+        setTimeout(() => setExiting(true), 200); // give time to read connection message
+        setTimeout(() => onAuthorize(), 500);
     };
 
     // Enter key support

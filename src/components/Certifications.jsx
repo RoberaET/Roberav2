@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const certs = [
-    { seq: '010', action: 'PERMIT', protocol: 'CCNP-ADV-RT',vendor: 'CISCO',   domain: 'ADVANCED_ROUTING',       status: 'PENDING',  progress: 50 },
+    { seq: '010', action: 'PERMIT', protocol: 'CCNP-ADV-RT',vendor: 'CISCO',   domain: 'ADVANCED_ROUTING',       status: 'VERIFIED', progress: 100, url: 'https://www.credly.com/badges/7a135b5f-3843-4693-82a7-b12fb4b1231c/public_url' },
     { seq: '020', action: 'PERMIT', protocol: 'CCNP-CORE',  vendor: 'CISCO',   domain: 'CORE_NETWORKING',        status: 'VERIFIED', progress: 100, url: 'https://www.credly.com/badges/4f13e4f8-72b5-4180-a4ba-c56580ed4473/public_url' },
     { seq: '030', action: 'PERMIT', protocol: 'CCNA',       vendor: 'CISCO',   domain: 'NETWORK_FUNDAMENTALS',   status: 'VERIFIED', progress: 100, url: 'https://www.credly.com/badges/cd196d19-08ed-4c7b-91cc-2730c079365e/public_url' },
     { seq: '040', action: 'PERMIT', protocol: 'NSE-1',      vendor: 'FORTINET',domain: 'SECURITY_AWARENESS',     status: 'VERIFIED', progress: 100, url: 'https://www.credly.com/badges/6bd4c790-60d8-432a-997b-74b7adc42251/public_url' },
