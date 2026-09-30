@@ -1,63 +1,80 @@
-# Robera Mekonnen - Network Architect Portfolio
+<div align="center">
 
-![Project Status](https://img.shields.io/badge/status-active-success.svg)
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
+# `R_MEKONNEN.SYS` // `v3.0`
 
-A modern, high-performance personal portfolio website built with React and Vite. This project showcases my work as a Network Architect through a unique, hacker-themed terminal interface and interactive UI elements.
+```text
+__________    ________  __________ ___________________    _____   
+\______   \  /  _____/  \______   \\_   _____/\______ \  /  _  \  
+ |       _/ /   \  ___   |     ___/ |    __)_  |    |  \/  /_\  \ 
+ |    |   \ \    \_\  \  |    |     |        \ |    `   \    |    \
+ |____|_  /  \______  /  |____|    /_______  //_______  /\____|__  /
+        \/          \/                     \/         \/         \/ 
+```
+### `NETWORK_ARCHITECT` ● `SECURE_UPLINK` ● `CYBER_OPS`
 
-## 🚀 Features
+[![System Status](https://img.shields.io/badge/SYS-ONLINE-00ff50?style=for-the-badge&logo=cisco&logoColor=white)](#)
+[![Security Clearance](https://img.shields.io/badge/CLEARANCE-TOP_SECRET-ff0000?style=for-the-badge)](#)
+[![Uptime](https://img.shields.io/badge/UPTIME-99.99%25-00a8ff?style=for-the-badge)](#)
 
--   **Interactive Terminal**: A fully functional command-line interface to explore my background and skills.
--   **Dynamic Animations**: Powered by GSAP for smooth, engaging visual effects.
--   **Responsive Design**: Optimized for all devices, from desktops to mobile phones.
--   **Status Dashboard**: Real-time visualization of system status and network metrics.
--   **Modern Tech Stack**: Built with the latest web technologies for speed and reliability.
-
-## 🛠️ Tech Stack
-
--   **Frontend Framework**: [React](https://reactjs.org/)
--   **Build Tool**: [Vite](https://vitejs.dev/)
--   **Animations**: [GSAP (GreenSock Animation Platform)](https://greensock.com/gsap/)
--   **Styling**: Vanilla CSS with modern features (Glassmorphism, Grid/Flexbox)
-
-## 📦 Getting Started
-
-### Prerequisites
-
--   Node.js (v18 or higher)
--   npm or yarn
-
-### Installation
-
-1.  Clone the repository:
-    ```bash
-    git clone https://github.com/RoberaET/Roberav2.git
-    cd Roberav2
-    ```
-
-2.  Install dependencies:
-    ```bash
-    npm install
-    ```
-
-3.  Run the development server:
-    ```bash
-    npm run dev
-    ```
-
-4.  Open your browser and visit `http://localhost:5173`.
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 👤 Author
-
-**Robera Mekonnen**
-
--   GitHub: [@RoberaET](https://github.com/RoberaET)
--   Email: robera4553@gmail.com
+*You have accessed a restricted network terminal. Unauthorized access is strictly monitored.*
 
 ---
 
-_Designed and developed with ❤️ under the hood._
+</div>
+
+## `[ 0x00 ] :: SYSTEM_OVERVIEW`
+
+Forget standard developer portfolios. You've just SSH'd into my digital brain. 
+
+**Roberav2** is a high-fidelity, interactive terminal simulation running on the web, explicitly engineered to showcase my capabilities as a **Network Architect & Cybersecurity Specialist**. Instead of scrolling through a typical webpage, visitors initialize a secure uplink, bypass a connection gateway, and interface with simulated OSPF routing convergences, real-time firewall logs, and live telemetry.
+
+## `[ 0x01 ] :: TECH_STACK & PROTOCOLS`
+
+This environment was engineered using the following core dependencies:
+- **`[ FRONTEND_KERNEL ]`**: React 18, Vite (for blazing-fast Hot Module Replacement).
+- **`[ ANIMATION_ENGINE ]`**: GSAP 3 (GreenSock) for hardware-accelerated terminal glitches, boot sequences, and telemetry drawing.
+- **`[ STYLING_MATRIX ]`**: Tailwind Merge, clsx, and custom Glassmorphism/Phosphor CSS overlays mimicking CRT monitors.
+
+## `[ 0x02 ] :: INITIALIZATION_SEQUENCE`
+
+To spawn this instance on your local subnet, follow the bootstrap protocol:
+
+### 1. Establish Uplink (Clone)
+```bash
+git clone https://github.com/RoberaET/Roberav2.git
+cd Roberav2
+```
+
+### 2. Resolve Dependencies (Install)
+```bash
+npm install
+```
+
+### 3. Ignite Local Server (Execute)
+```bash
+npm run dev
+```
+*Access granted at: `http://localhost:5173`. Await the boot sequence.*
+
+## `[ 0x03 ] :: CERTIFICATION_ACCREDITATIONS`
+
+The operator of this system holds verified security clearances:
+- `[+]` **CCNP-ADV-RT** (Advanced Routing)
+- `[+]` **CCNP-CORE** (Core Networking)
+- `[+]` **CCNA** (Network Fundamentals)
+- `[+]` **NSE 1, 2, 3** (Fortinet Security Awareness & Solutions)
+- `[+]` **ETH-HACKER** (Offensive Security)
+
+## `[ 0x04 ] :: ENCRYPTED_COMMS`
+
+To establish a direct IPSec tunnel with the architect:
+
+- **Mail Exchange:** [robera4553@gmail.com](mailto:robera4553@gmail.com)
+- **Professional Network:** [LinkedIn](https://linkedin.com/in/roberamekonnen/)
+- **Code Repository:** [GitHub](https://github.com/RoberaET)
+
+---
+<div align="center">
+  <i>"I don't just build networks. I build the digital nervous systems of the future."</i><br>
+  <sub><b>EOF</b></sub>
+</div>
