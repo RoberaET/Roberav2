@@ -8,6 +8,7 @@ export default function EstablishConnection() {
         { id: 'email', label: 'MAIL_EXCHANGE', value: 'robera.contact@gmail.com', link: 'mailto:robera.contact@gmail.com', icon: '✉' },
         { id: 'linkedin', label: 'PROFESSIONAL_NETWORK', value: 'linkedin.com/in/roberamekonnen', link: 'https://linkedin.com/in/roberamekonnen/', icon: 'in' },
         { id: 'github', label: 'CODE_REPOSITORY', value: 'github.com/RoberaET', link: 'https://github.com/RoberaET', icon: '</>' },
+        { id: 'phone', label: 'VOICE_COMMUNICATION', value: '0941552458', link: 'tel:0941552458', icon: '📞' },
         { id: 'resume', label: 'ENCRYPTED_CV', value: 'Download PDF', link: '#', icon: '📄' }
     ];
 

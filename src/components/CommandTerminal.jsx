@@ -220,6 +220,10 @@ const ACTIONS = {
         { t: 'o', v: ' description GitHub_Interface' },
         { t: 'h', v: ' ip address github.com/RoberaET' },
         { t: 'o', v: '!' },
+        { t: 'o', v: 'interface GigabitEthernet0/0/3' },
+        { t: 'o', v: ' description Phone_Interface' },
+        { t: 'h', v: ' ip address 0941552458' },
+        { t: 'o', v: '!' },
         { t: 'o', v: 'router ospf 1' },
         { t: 'o', v: ' network 10.0.0.0 0.255.255.255 area 0' },
         { t: 'o', v: '!' },
@@ -249,6 +253,7 @@ const ACTIONS = {
         { t: 'g', v: 'GigabitEthernet0/0/0       robera4553@gmail.com  YES manual up                    up' },
         { t: 'g', v: 'GigabitEthernet0/0/1       linkedin.com/in/...   YES manual up                    up' },
         { t: 'g', v: 'GigabitEthernet0/0/2       github.com/RoberaET   YES manual up                    up' },
+        { t: 'g', v: 'GigabitEthernet0/0/3       0941552458            YES manual up                    up' },
         { t: 'e', v: 'Loopback0                  unassigned            YES unset  administratively down down' },
     ],
     'show ip route': () => [
@@ -280,7 +285,7 @@ const ACTIONS = {
         { t: 'o', v: ' Start time: 00:00:01.000, Time elapsed: 10m22d14h53m' },
         { t: 'o', v: ' Supports only single TOS(TOS0) routes' },
         { t: 'o', v: ' SPF algorithm executed 3 times' },
-        { t: 'h', v: ' Area BACKBONE(0) ActiveInterfaces: GigabitEthernet0/0/0, 0/0/1, 0/0/2' },
+        { t: 'h', v: ' Area BACKBONE(0) ActiveInterfaces: GigabitEthernet0/0/0, 0/0/1, 0/0/2, 0/0/3' },
     ],
     'show interfaces': () => [
         { t: 'h', v: 'GigabitEthernet0/0/0 is up, line protocol is up' },
@@ -297,6 +302,10 @@ const ACTIONS = {
         { t: 'h', v: 'GigabitEthernet0/0/2 is up, line protocol is up' },
         { t: 'o', v: '  Hardware is Ethernet, address is aabb.cc00.0300' },
         { t: 'o', v: '  Description: GitHub_Interface' },
+        { t: 'o', v: '' },
+        { t: 'h', v: 'GigabitEthernet0/0/3 is up, line protocol is up' },
+        { t: 'o', v: '  Hardware is Ethernet, address is aabb.cc00.0400' },
+        { t: 'o', v: '  Description: Phone_Interface' },
     ],
     'show cdp neighbors': () => [
         { t: 'o', v: 'Capability Codes: R - Router, T - Trans Bridge, S - Switch, H - Host' },

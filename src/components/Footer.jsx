@@ -16,6 +16,7 @@ const INTERFACES = [
     { label: 'GitHub', url: 'https://github.com/RoberaET', status: 'up', color: '#2EFF7A', id: 'Gi0/0/0' },
     { label: 'LinkedIn', url: 'https://www.linkedin.com/in/roberamekonnen/', status: 'up', color: '#3B9DFF', id: 'Gi0/0/1' },
     { label: 'Email', url: 'mailto:robera4553@gmail.com', status: 'up', color: '#a78bfa', id: 'Gi0/0/2' },
+    { label: 'Phone', url: 'tel:0941552458', status: 'up', color: '#ffb86c', id: 'Gi0/0/3' },
 ];
 
 export default function Footer() {

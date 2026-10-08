@@ -56,6 +56,14 @@ function SecureUplink() {
                                 </div>
                                 <span className="node-status">CONNECTED</span>
                             </a>
+                            <a href="tel:0941552458" className="node-link">
+                                <div className="node-icon-img" style={{display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px'}}>📞</div>
+                                <div className="node-info">
+                                    <span className="node-label">VOICE_CHANNEL</span>
+                                    <span className="node-value">0941552458</span>
+                                </div>
+                                <span className="node-status">ACTIVE</span>
+                            </a>
                         </div>
                     </div>
                 </div>
