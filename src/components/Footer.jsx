@@ -98,16 +98,16 @@ export default function Footer() {
             position: 'relative',
             marginTop: '30px',
             fontFamily: 'var(--font-mono)',
-            backgroundColor: '#03010d',
-            borderTop: '1px solid rgba(0, 240, 255, 0.2)',
+            backgroundColor: 'var(--bg-primary, #08080a)',
+            borderTop: '1px solid var(--border-color)',
         }}>
             <style>{`
                 .ft-nav-btn {
                     transition: all 0.25s ease;
                 }
                 .ft-nav-btn:hover {
-                    background: rgba(0, 240, 255, 0.08) !important;
-                    border-color: #00F0FF !important;
+                    background: rgba(255, 184, 0, 0.1) !important;
+                    border-color: var(--accent-blue) !important;
                     transform: translateX(4px);
                 }
                 .ft-top-btn {
@@ -130,14 +130,14 @@ export default function Footer() {
                 justifyContent: 'space-between',
                 alignItems: 'center',
                 padding: '8px 30px',
-                background: 'rgba(8, 5, 26, 0.6)',
-                borderBottom: '1px solid rgba(74, 90, 138, 0.15)',
+                background: 'rgba(16, 15, 20, 0.8)',
+                borderBottom: '1px solid var(--border-color)',
                 fontSize: '9px',
                 letterSpacing: '1.5px',
-                color: 'rgba(74, 90, 138, 0.8)',
+                color: 'var(--text-muted)',
             }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <span style={{ color: '#00F0FF' }}>SYS::TERMINUS</span>
+                    <span style={{ color: 'var(--accent-blue)' }}>SYS::TERMINUS</span>
                     <span>│</span>
                     <span>ROBERA-CORE-ROUTER</span>
                 </div>

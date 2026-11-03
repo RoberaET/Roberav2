@@ -76,7 +76,7 @@ export default function HeartbeatNav() {
         }}>
             <style>{`
                 @keyframes nav-beam-glow {
-                    0%, 100% { filter: drop-shadow(0 0 4px #00F0FF); }
+                    0%, 100% { filter: drop-shadow(0 0 4px #FFB800); }
                     50% { filter: drop-shadow(0 0 10px #00FFA3); }
                 }
                 @keyframes nav-pulse-dot {
@@ -87,8 +87,8 @@ export default function HeartbeatNav() {
                     transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
                 }
                 .nav-port-btn:hover {
-                    background: rgba(0, 240, 255, 0.08) !important;
-                    color: #E8F0FF !important;
+                    background: rgba(255, 184, 0, 0.1) !important;
+                    color: var(--text-main) !important;
                 }
             `}</style>
 
@@ -99,13 +99,13 @@ export default function HeartbeatNav() {
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 height: '32px',
-                background: 'rgba(3, 1, 13, 0.88)',
+                background: 'rgba(8, 8, 11, 0.92)',
                 backdropFilter: 'blur(16px)',
                 WebkitBackdropFilter: 'blur(16px)',
-                border: '1px solid rgba(0, 240, 255, 0.22)',
+                border: '1px solid var(--border-color)',
                 borderRadius: '4px',
                 padding: '0 12px',
-                boxShadow: '0 8px 30px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.06)',
+                boxShadow: '0 8px 30px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
             }}>
                 {/* ── LEFT: Router Core Status & Active Resolver ──── */}
                 <div style={{
@@ -114,7 +114,7 @@ export default function HeartbeatNav() {
                     gap: '9px',
                     fontSize: '9px',
                     letterSpacing: '1.5px',
-                    color: 'rgba(74, 90, 138, 0.85)',
+                    color: 'var(--text-muted)',
                     flexShrink: 0,
                 }}>
                     {/* Live port LED */}
@@ -133,15 +133,15 @@ export default function HeartbeatNav() {
                             animation: 'nav-pulse-dot 1.8s ease-in-out infinite',
                         }} />
                         <span style={{
-                            color: '#E8F0FF',
+                            color: 'var(--text-main)',
                             fontWeight: 700,
                             letterSpacing: '2px',
                         }}>
-                            ROBERA<span style={{ color: '#00F0FF' }}>::</span>RTR
+                            ROBERA<span style={{ color: 'var(--accent-blue)' }}>::</span>RTR
                         </span>
                     </div>
 
-                    <span style={{ color: 'rgba(74, 90, 138, 0.35)', fontSize: '10px' }}>│</span>
+                    <span style={{ color: 'var(--border-color)', fontSize: '10px' }}>│</span>
 
                     {/* Active routing resolution */}
                     <div style={{
@@ -149,11 +149,11 @@ export default function HeartbeatNav() {
                         alignItems: 'center',
                         gap: '5px',
                         fontSize: '8px',
-                        color: 'rgba(0, 240, 255, 0.75)',
+                        color: 'var(--accent-blue)',
                     }}>
-                        <span style={{ color: 'rgba(74, 90, 138, 0.6)' }}>HOP:</span>
+                        <span style={{ color: 'var(--text-muted)' }}>HOP:</span>
                         <span style={{ color: '#00FFA3', fontWeight: 600 }}>{active.port}</span>
-                        <span style={{ color: 'rgba(74, 90, 138, 0.4)' }}>({active.desc})</span>
+                        <span style={{ color: 'var(--text-muted)', opacity: 0.6 }}>({active.desc})</span>
                     </div>
                 </div>
 
@@ -184,12 +184,12 @@ export default function HeartbeatNav() {
                                     padding: '3px 9px',
                                     height: '22px',
                                     background: isActive
-                                        ? 'rgba(0, 240, 255, 0.12)'
+                                        ? 'rgba(255, 184, 0, 0.14)'
                                         : isHovered
-                                            ? 'rgba(0, 240, 255, 0.05)'
+                                            ? 'rgba(255, 184, 0, 0.06)'
                                             : 'transparent',
                                     border: isActive
-                                        ? '1px solid rgba(0, 240, 255, 0.5)'
+                                        ? '1px solid var(--accent-blue)'
                                         : '1px solid transparent',
                                     borderRadius: '2px',
                                     cursor: 'pointer',
@@ -198,17 +198,17 @@ export default function HeartbeatNav() {
                                     fontSize: '9px',
                                     letterSpacing: '1.2px',
                                     color: isActive
-                                        ? '#00F0FF'
+                                        ? 'var(--accent-blue)'
                                         : isHovered
-                                            ? '#E8F0FF'
-                                            : 'rgba(74, 90, 138, 0.85)',
+                                            ? 'var(--text-main)'
+                                            : 'var(--text-muted)',
                                     whiteSpace: 'nowrap',
                                     position: 'relative',
                                 }}
                             >
                                 <span style={{
                                     fontSize: '7px',
-                                    color: isActive ? '#00FFA3' : 'rgba(74, 90, 138, 0.5)',
+                                    color: isActive ? '#00FFA3' : 'var(--text-muted)',
                                     fontWeight: 700,
                                 }}>
                                     {String(idx + 1).padStart(2, '0')}
@@ -236,7 +236,7 @@ export default function HeartbeatNav() {
                     flexShrink: 0,
                     fontSize: '9px',
                 }}>
-                    <span style={{ color: 'rgba(74, 90, 138, 0.35)', fontSize: '10px' }}>│</span>
+                    <span style={{ color: 'var(--border-color)', fontSize: '10px' }}>│</span>
 
                     {/* Scroll Telemetry Percentage */}
                     <div style={{
@@ -245,11 +245,11 @@ export default function HeartbeatNav() {
                         gap: '4px',
                         fontSize: '8px',
                         letterSpacing: '1px',
-                        color: 'rgba(74, 90, 138, 0.7)',
+                        color: 'var(--text-muted)',
                     }}>
-                        <span style={{ color: 'rgba(74, 90, 138, 0.5)' }}>POS:</span>
+                        <span style={{ color: 'var(--text-muted)' }}>POS:</span>
                         <span style={{
-                            color: '#00F0FF',
+                            color: 'var(--accent-blue)',
                             fontWeight: 700,
                             minWidth: '28px',
                             textAlign: 'right',
@@ -263,10 +263,10 @@ export default function HeartbeatNav() {
                         onClick={scrollToTop}
                         title="Return to Core Gateway"
                         style={{
-                            background: 'rgba(8, 5, 26, 0.6)',
-                            border: '1px solid rgba(74, 90, 138, 0.35)',
+                            background: 'rgba(16, 15, 20, 0.6)',
+                            border: '1px solid var(--border-color)',
                             borderRadius: '2px',
-                            color: 'rgba(232, 240, 255, 0.7)',
+                            color: 'var(--text-main)',
                             fontFamily: 'var(--font-mono)',
                             fontSize: '8px',
                             letterSpacing: '1px',
@@ -279,8 +279,8 @@ export default function HeartbeatNav() {
                             e.currentTarget.style.color = '#00FFA3';
                         }}
                         onMouseLeave={e => {
-                            e.currentTarget.style.borderColor = 'rgba(74, 90, 138, 0.35)';
-                            e.currentTarget.style.color = 'rgba(232, 240, 255, 0.7)';
+                            e.currentTarget.style.borderColor = 'var(--border-color)';
+                            e.currentTarget.style.color = 'var(--text-main)';
                         }}
                     >
                         ▲ TOP
@@ -294,15 +294,15 @@ export default function HeartbeatNav() {
                     left: 0,
                     right: 0,
                     height: '1.5px',
-                    background: 'rgba(74, 90, 138, 0.15)',
+                    background: 'rgba(255, 184, 0, 0.12)',
                     borderRadius: '0 0 4px 4px',
                     overflow: 'hidden',
                 }}>
                     <div style={{
                         height: '100%',
                         width: `${scrollPct}%`,
-                        background: 'linear-gradient(90deg, #7B2FFF 0%, #00F0FF 60%, #00FFA3 100%)',
-                        boxShadow: '0 0 8px rgba(0, 240, 255, 0.7)',
+                        background: 'linear-gradient(90deg, #D97706 0%, #FFB800 60%, #00FFA3 100%)',
+                        boxShadow: '0 0 8px rgba(255, 184, 0, 0.7)',
                         transition: 'width 0.1s linear',
                     }} />
                 </div>

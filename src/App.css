@@ -1,23 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700;800&family=Inter:wght@300;400;600;800&display=swap');
 
 :root {
-  /* Color Palette — Deep Void × Electric Cyan × Neon Magenta */
-  --bg-primary: #03010d;
-  --bg-secondary: #08051a;
-  --accent-blue: #00F0FF;
-  --accent-blue-glow: rgba(0, 240, 255, 0.12);
-  --accent-blue-intense: rgba(0, 240, 255, 0.35);
+  /* ==========================================================
+     THEME 1: OBSIDIAN AMBER // MILITARY DEFENSE & AEROSPACE
+     Deep Volcanic Obsidian × Tactical Amber Gold × Signal Mint
+     ========================================================== */
+  --bg-primary: #08080a;
+  --bg-secondary: #100f14;
+  --accent-blue: #FFB800;
+  --accent-blue-glow: rgba(255, 184, 0, 0.18);
+  --accent-blue-intense: rgba(255, 184, 0, 0.38);
   --accent-green: #00FFA3;
-  --accent-green-glow: rgba(0, 255, 163, 0.13);
-  --text-main: #E8F0FF;
-  --text-muted: #4A5A8A;
-  --border-color: rgba(0, 240, 255, 0.12);
+  --accent-green-glow: rgba(0, 255, 163, 0.15);
+  --text-main: #FFF8EE;
+  --text-muted: #8C7C68;
+  --border-color: rgba(255, 184, 0, 0.18);
 
   /* Extended palette */
-  --accent-magenta: #FF00C8;
-  --accent-magenta-glow: rgba(255, 0, 200, 0.15);
-  --accent-purple: #7B2FFF;
-  --accent-purple-glow: rgba(123, 47, 255, 0.2);
+  --accent-magenta: #FF5E00;
+  --accent-magenta-glow: rgba(255, 94, 0, 0.18);
+  --accent-purple: #D97706;
+  --accent-purple-glow: rgba(217, 119, 6, 0.22);
 
   /* Fonts */
   --font-mono: 'JetBrains Mono', monospace;
@@ -149,9 +152,9 @@ svg {
   height: 80vh;
   transform: translate(-50%, -50%);
   background:
-    radial-gradient(ellipse at 30% 40%, rgba(0, 240, 255, 0.045) 0%, transparent 60%),
-    radial-gradient(ellipse at 70% 60%, rgba(123, 47, 255, 0.04) 0%, transparent 55%),
-    radial-gradient(ellipse at 55% 30%, rgba(255, 0, 200, 0.025) 0%, transparent 50%);
+    radial-gradient(ellipse at 30% 40%, rgba(255, 184, 0, 0.055) 0%, transparent 60%),
+    radial-gradient(ellipse at 70% 60%, rgba(255, 94, 0, 0.04) 0%, transparent 55%),
+    radial-gradient(ellipse at 55% 30%, rgba(0, 255, 163, 0.025) 0%, transparent 50%);
   pointer-events: none;
   z-index: 0;
 }

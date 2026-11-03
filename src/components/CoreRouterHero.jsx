@@ -5,14 +5,14 @@ import useSvgAnimationPause from '../hooks/useSvgAnimationPause';
 // Topology nodes — placed as % of SVG viewBox 1200x400
 const NODES = [
     { id: 'fw',      x: 60,   y: 200, label: 'FIREWALL',   color: '#ff6b6b' },
-    { id: 'cr',      x: 280,  y: 120, label: 'CORE_RTR',   color: '#00F0FF' },
+    { id: 'cr',      x: 280,  y: 120, label: 'CORE_RTR',   color: '#FFB800' },
     { id: 'sw1',     x: 480,  y: 60,  label: 'SW-DIST-1',  color: '#00FFA3' },
     { id: 'sw2',     x: 480,  y: 200, label: 'SW-DIST-2',  color: '#00FFA3' },
-    { id: 'sw3',     x: 480,  y: 340, label: 'SW-ACC-1',   color: '#a78bfa' },
+    { id: 'sw3',     x: 480,  y: 340, label: 'SW-ACC-1',   color: '#FF7A00' },
     { id: 'soc',     x: 720,  y: 60,  label: 'SOC',        color: '#ff6b6b' },
-    { id: 'dc',      x: 720,  y: 200, label: 'DATA_CTR',   color: '#00F0FF' },
+    { id: 'dc',      x: 720,  y: 200, label: 'DATA_CTR',   color: '#FFB800' },
     { id: 'vpn',     x: 720,  y: 340, label: 'VPN_GW',     color: '#fbbf24' },
-    { id: 'inet',    x: 980,  y: 120, label: 'INTERNET',   color: '#00F0FF' },
+    { id: 'inet',    x: 980,  y: 120, label: 'INTERNET',   color: '#FFB800' },
     { id: 'cloud',   x: 980,  y: 280, label: 'CLOUD',      color: '#a78bfa' },
     { id: 'edge',    x: 1140, y: 200, label: 'EDGE_ROUTER',color: '#00FFA3' },
 ];
@@ -220,16 +220,16 @@ export default function CoreRouterHero() {
                         animation: 'hero-pulse-dot 2s ease-in-out infinite',
                     }} />
                     <span style={{ color: '#00FFA3' }}>robera</span>
-                    <span style={{ color: 'rgba(74, 90, 138, 0.7)' }}>@</span>
-                    <span style={{ color: '#00F0FF' }}>core-rtr</span>
-                    <span style={{ color: 'rgba(74, 90, 138, 0.5)' }}>:</span>
-                    <span style={{ color: '#a78bfa' }}>~</span>
-                    <span style={{ color: 'rgba(74, 90, 138, 0.5)' }}>$</span>
-                    <span style={{ color: '#E8F0FF', fontWeight: 600 }}>whoami</span>
+                    <span style={{ color: 'var(--text-muted)' }}>@</span>
+                    <span style={{ color: 'var(--accent-blue)' }}>core-rtr</span>
+                    <span style={{ color: 'var(--text-muted)' }}>:</span>
+                    <span style={{ color: 'var(--accent-magenta)' }}>~</span>
+                    <span style={{ color: 'var(--text-muted)' }}>$</span>
+                    <span style={{ color: 'var(--text-main)', fontWeight: 600 }}>whoami</span>
                     <span style={{
                         fontSize: '9px',
-                        color: 'rgba(0, 240, 255, 0.65)',
-                        borderLeft: '1px solid rgba(74, 90, 138, 0.3)',
+                        color: 'var(--accent-blue)',
+                        borderLeft: '1px solid var(--border-color)',
                         paddingLeft: '8px',
                         letterSpacing: '1px',
                     }}>
@@ -268,7 +268,7 @@ export default function CoreRouterHero() {
                             fontWeight: 800,
                             color: 'var(--text-main)',
                             letterSpacing: '-0.04em',
-                            textShadow: '0 0 50px rgba(59, 157, 255, 0.45), 0 2px 0 rgba(0, 0, 0, 0.8)',
+                            textShadow: '0 0 55px rgba(255, 184, 0, 0.45), 0 2px 0 rgba(0, 0, 0, 0.9)',
                             margin: 0,
                             fontFamily: 'var(--font-mono)',
                             lineHeight: 1.1,
@@ -290,10 +290,10 @@ export default function CoreRouterHero() {
                     flexWrap: 'wrap',
                 }}>
                     <span style={{ color: '#00FFA3' }}>&lt; Enterprise Network Engineer /&gt;</span>
-                    <span style={{ color: 'rgba(0, 240, 255, 0.3)', fontSize: '14px' }}>│</span>
-                    <span style={{ color: '#00F0FF' }}>&lt; Systems &amp; Security Engineer /&gt;</span>
-                    <span style={{ color: 'rgba(0, 240, 255, 0.3)', fontSize: '14px' }}>│</span>
-                    <span style={{ color: '#a78bfa' }}>&lt; Virtualization &amp; Infrastructure /&gt;</span>
+                    <span style={{ color: 'var(--border-color)', fontSize: '14px' }}>│</span>
+                    <span style={{ color: 'var(--accent-blue)' }}>&lt; Systems &amp; Security Engineer /&gt;</span>
+                    <span style={{ color: 'var(--border-color)', fontSize: '14px' }}>│</span>
+                    <span style={{ color: '#FF7A00' }}>&lt; Virtualization &amp; Infrastructure /&gt;</span>
                 </div>
 
                 {/* 4. Elegant Transparent Status Strip + CV Button */}
@@ -301,10 +301,10 @@ export default function CoreRouterHero() {
                     display: 'inline-flex',
                     alignItems: 'center',
                     gap: '20px',
-                    backgroundColor: 'rgba(8, 5, 26, 0.55)',
+                    backgroundColor: 'rgba(16, 15, 20, 0.65)',
                     backdropFilter: 'blur(10px)',
                     WebkitBackdropFilter: 'blur(10px)',
-                    border: '1px solid rgba(0, 240, 255, 0.18)',
+                    border: '1px solid var(--border-color)',
                     borderRadius: '6px',
                     padding: '8px 20px',
                     fontSize: '10px',
@@ -316,15 +316,15 @@ export default function CoreRouterHero() {
                     {[
                         { k: 'LOCATION', v: 'Addis Ababa, ETH', c: 'var(--text-main)' },
                         { k: 'ROLE',     v: 'BESYS Tech (Current)', c: '#00FFA3' },
-                        { k: 'STACK',    v: 'OSPF · BGP · AD · Proxmox', c: '#00F0FF' },
+                        { k: 'STACK',    v: 'OSPF · BGP · AD · Proxmox', c: 'var(--accent-blue)' },
                         { k: 'STATUS',   v: 'AVAILABLE', c: '#00FFA3' },
                     ].map((item, i, arr) => (
                         <React.Fragment key={i}>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', textAlign: 'center' }}>
-                                <span style={{ color: 'rgba(74, 90, 138, 0.85)', fontSize: '8px' }}>{item.k}</span>
+                                <span style={{ color: 'var(--text-muted)', fontSize: '8px' }}>{item.k}</span>
                                 <span style={{ color: item.c, fontWeight: 'bold' }}>{item.v}</span>
                             </div>
-                            <div style={{ width: '1px', height: '22px', backgroundColor: 'rgba(0, 240, 255, 0.15)' }} />
+                            <div style={{ width: '1px', height: '22px', backgroundColor: 'var(--border-color)' }} />
                         </React.Fragment>
                     ))}
 
@@ -339,10 +339,10 @@ export default function CoreRouterHero() {
                             alignItems: 'center',
                             gap: '6px',
                             padding: '5px 12px',
-                            background: 'rgba(0, 240, 255, 0.08)',
-                            border: '1px solid rgba(0, 240, 255, 0.35)',
+                            background: 'var(--accent-blue-glow)',
+                            border: '1px solid var(--accent-blue)',
                             borderRadius: '3px',
-                            color: '#00F0FF',
+                            color: 'var(--accent-blue)',
                             textDecoration: 'none',
                             fontSize: '9px',
                             letterSpacing: '1px',

@@ -256,7 +256,7 @@ export default function ConnectionGateway({ onAuthorize }) {
                             <p key={i} style={{ color: '#00ff50', fontSize: '16px', margin: '1px 0 1px 0', paddingLeft: '2px' }}>{line.value}</p>
                         );
                         if (line.type === 'cyan') return (
-                            <p key={i} style={{ color: '#00f5ff', fontSize: '16px', margin: '1px 0 1px 0', paddingLeft: '2px' }}>{line.value}</p>
+                            <p key={i} style={{ color: 'var(--accent-blue, #FFB800)', fontSize: '16px', margin: '1px 0 1px 0', paddingLeft: '2px' }}>{line.value}</p>
                         );
                         return (
                             <p key={i} style={{ color: '#4a8a50', fontSize: '15px', margin: '1px 0 1px 0', paddingLeft: '2px' }}>{line.value}</p>
@@ -322,7 +322,7 @@ export default function ConnectionGateway({ onAuthorize }) {
                             <p style={{ color: '#00ff50', fontSize: '17px' }}>
                                 {PROMPT}<span style={{ color: '#e0ffe0' }}>ssh -i ~/.ssh/id_ed25519 visitor@robera.net</span>
                             </p>
-                            <p style={{ color: '#00f5ff', fontSize: '16px', margin: '4px 0' }}>Connecting to robera.net... authenticated.</p>
+                            <p style={{ color: 'var(--accent-blue, #FFB800)', fontSize: '16px', margin: '4px 0' }}>Connecting to robera.net... authenticated.</p>
                             <p style={{ color: '#00ff50', fontSize: '16px' }}>Welcome. Loading portfolio...</p>
                         </div>
                     )}
