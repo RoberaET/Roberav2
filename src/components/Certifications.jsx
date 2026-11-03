@@ -11,6 +11,7 @@ const certs = [
         color:   '#00F0FF',
         url:     'https://www.credly.com/badges/7a135b5f-3843-4693-82a7-b12fb4b1231c/public_url',
         tier:    'EXPERT',
+        badge:   '/badges/ccnp-adv-rt.png',
     },
     {
         block:   '0x002',
@@ -22,6 +23,7 @@ const certs = [
         color:   '#00F0FF',
         url:     'https://www.credly.com/badges/4f13e4f8-72b5-4180-a4ba-c56580ed4473/public_url',
         tier:    'EXPERT',
+        badge:   '/badges/ccnp-core.png',
     },
     {
         block:   '0x003',
@@ -33,6 +35,7 @@ const certs = [
         color:   '#00F0FF',
         url:     'https://www.credly.com/badges/cd196d19-08ed-4c7b-91cc-2730c079365e/public_url',
         tier:    'ASSOCIATE',
+        badge:   '/badges/ccna.png',
     },
     {
         block:   '0x004',
@@ -44,6 +47,7 @@ const certs = [
         color:   '#FF00C8',
         url:     'https://www.credly.com/badges/6bd4c790-60d8-432a-997b-74b7adc42251/public_url',
         tier:    'SECURITY',
+        badge:   '/badges/nse-1.png',
     },
     {
         block:   '0x005',
@@ -55,6 +59,7 @@ const certs = [
         color:   '#FF00C8',
         url:     'https://www.credly.com/badges/fd0f6190-a83c-4786-9983-ec76384d3f6e/public_url',
         tier:    'SECURITY',
+        badge:   '/badges/nse-2.png',
     },
     {
         block:   '0x006',
@@ -66,6 +71,7 @@ const certs = [
         color:   '#FF00C8',
         url:     'https://www.credly.com/badges/720e2ad4-4096-460b-8983-dc8a47c8c28f/public_url',
         tier:    'SECURITY',
+        badge:   '/badges/nse-3.png',
     },
     {
         block:   '0x007',
@@ -77,6 +83,7 @@ const certs = [
         color:   '#00FFA3',
         url:     'https://www.credly.com/badges/8c60ac0c-c3a6-4ae1-b0d7-59a7f7920b62/public_url',
         tier:    'SECURITY',
+        badge:   '/badges/eth-hacker.png',
     },
     {
         block:   '0x008',
@@ -88,6 +95,7 @@ const certs = [
         color:   '#00FFA3',
         url:     'https://www.credly.com/badges/933d2fe6-ca2e-43e4-a3b2-ff88418e54bb/public_url',
         tier:    'ASSOCIATE',
+        badge:   '/badges/linux-ess.png',
     },
     {
         block:   '0x009',
@@ -99,6 +107,7 @@ const certs = [
         color:   '#7B2FFF',
         url:     'https://learning.meraki.net/api/rest/v2/my-certificates/e9883147-f4ce-4982-b98d-e6c997493a5e/pdf',
         tier:    'CLOUD',
+        badge:   '/badges/cisco-meraki.png',
     },
     {
         block:   '0x00A',
@@ -110,6 +119,7 @@ const certs = [
         color:   '#00FFA3',
         url:     'https://www.credly.com/badges/40224730-ac81-4a15-be9b-f05634046933/public_url',
         tier:    'SECURITY',
+        badge:   '/badges/jr-cyber.png',
     },
 ];
 
@@ -179,7 +189,7 @@ function SigRing({ color, size = 44 }) {
 }
 
 function CertBlock({ cert, index, visible }) {
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(index === 0);
     const [verifying, setVerifying] = useState(false);
 
     const handleVerify = (e) => {
@@ -220,12 +230,16 @@ function CertBlock({ cert, index, visible }) {
             }} />
 
             {/* ── COLLAPSED ROW ── */}
-            <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '12px',
-                padding: '11px 14px',
-            }}>
+            <div
+                onClick={() => setOpen(prev => !prev)}
+                style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '12px',
+                    padding: '11px 14px',
+                    cursor: 'pointer',
+                }}
+            >
                 {/* Sig ring */}
                 <SigRing color={cert.color} size={40} />
 
@@ -293,7 +307,7 @@ function CertBlock({ cert, index, visible }) {
 
             {/* ── EXPANDED: decoded block ── */}
             <div style={{
-                maxHeight: open ? '220px' : '0',
+                maxHeight: open ? '420px' : '0',
                 overflow: 'hidden',
                 transition: 'max-height 0.4s cubic-bezier(0.4,0,0.2,1)',
             }}>
@@ -302,88 +316,155 @@ function CertBlock({ cert, index, visible }) {
                     margin: '0 14px',
                     padding: '14px 0 16px',
                     display: 'flex',
-                    flexDirection: 'column',
-                    gap: '10px',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    gap: '24px',
+                    flexWrap: 'wrap',
                 }}>
-                    {/* Full cert name */}
-                    <div>
-                        <div style={{ fontSize: '8px', color: 'var(--text-muted)', letterSpacing: '2px', marginBottom: '4px' }}>
-                            CREDENTIAL_NAME
-                        </div>
-                        <div style={{
-                            fontSize: '13px', color: 'var(--text-main)',
-                            fontFamily: 'var(--font-sans)', lineHeight: 1.4,
-                        }}>
-                            {cert.name}
-                        </div>
-                    </div>
-
-                    {/* Hash rows */}
+                    {/* Left: Credential details */}
                     <div style={{
-                        display: 'grid',
-                        gridTemplateColumns: '1fr 1fr',
-                        gap: '8px',
+                        flex: '1 1 260px',
+                        minWidth: 0,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '10px',
                     }}>
-                        {[
-                            { label: 'ISSUER', value: cert.vendor },
-                            { label: 'BLOCK_ID', value: cert.block },
-                            { label: 'DOMAIN', value: cert.domain },
-                            { label: 'SIG_STATUS', value: 'VERIFIED ✓' },
-                        ].map((row, i) => (
-                            <div key={i}>
-                                <div style={{ fontSize: '7px', color: 'var(--text-muted)', letterSpacing: '2px', marginBottom: '2px' }}>
-                                    {row.label}
-                                </div>
-                                <div style={{
-                                    fontSize: '10px',
-                                    color: row.label === 'SIG_STATUS' ? cert.color : 'rgba(232,240,255,0.7)',
-                                    fontFamily: 'var(--font-mono)',
-                                }}>
-                                    {row.value}
-                                </div>
+                        {/* Full cert name */}
+                        <div>
+                            <div style={{ fontSize: '8px', color: 'var(--text-muted)', letterSpacing: '2px', marginBottom: '4px' }}>
+                                CREDENTIAL_NAME
                             </div>
-                        ))}
-                    </div>
-
-                    {/* Full hash */}
-                    <div>
-                        <div style={{ fontSize: '7px', color: 'var(--text-muted)', letterSpacing: '2px', marginBottom: '3px' }}>
-                            HASH_FINGERPRINT
+                            <div style={{
+                                fontSize: '13px', color: 'var(--text-main)',
+                                fontFamily: 'var(--font-sans)', lineHeight: 1.4, fontWeight: 600,
+                            }}>
+                                {cert.name}
+                            </div>
                         </div>
+
+                        {/* Hash rows */}
                         <div style={{
-                            fontSize: '9px', color: `${cert.color}88`,
-                            fontFamily: 'var(--font-mono)', letterSpacing: '1px',
-                            wordBreak: 'break-all',
+                            display: 'grid',
+                            gridTemplateColumns: '1fr 1fr',
+                            gap: '8px',
                         }}>
-                            {cert.hash}···
+                            {[
+                                { label: 'ISSUER', value: cert.vendor },
+                                { label: 'BLOCK_ID', value: cert.block },
+                                { label: 'DOMAIN', value: cert.domain },
+                                { label: 'SIG_STATUS', value: 'VERIFIED ✓' },
+                            ].map((row, i) => (
+                                <div key={i}>
+                                    <div style={{ fontSize: '7px', color: 'var(--text-muted)', letterSpacing: '2px', marginBottom: '2px' }}>
+                                        {row.label}
+                                    </div>
+                                    <div style={{
+                                        fontSize: '10px',
+                                        color: row.label === 'SIG_STATUS' ? cert.color : 'rgba(232,240,255,0.7)',
+                                        fontFamily: 'var(--font-mono)',
+                                    }}>
+                                        {row.value}
+                                    </div>
+                                </div>
+                            ))}
                         </div>
+
+                        {/* Full hash */}
+                        <div>
+                            <div style={{ fontSize: '7px', color: 'var(--text-muted)', letterSpacing: '2px', marginBottom: '3px' }}>
+                                HASH_FINGERPRINT
+                            </div>
+                            <div style={{
+                                fontSize: '9px', color: `${cert.color}88`,
+                                fontFamily: 'var(--font-mono)', letterSpacing: '1px',
+                                wordBreak: 'break-all',
+                            }}>
+                                {cert.hash}···
+                            </div>
+                        </div>
+
+                        {/* Verify button */}
+                        <button
+                            onClick={handleVerify}
+                            style={{
+                                all: 'unset',
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                gap: '8px',
+                                padding: '8px 16px',
+                                border: `1px solid ${cert.color}55`,
+                                borderRadius: '2px',
+                                backgroundColor: `${cert.color}0e`,
+                                color: cert.color,
+                                fontSize: '10px',
+                                letterSpacing: '2px',
+                                cursor: 'pointer',
+                                fontFamily: 'var(--font-mono)',
+                                transition: 'all 0.2s',
+                                boxShadow: verifying ? `0 0 16px ${cert.color}44` : 'none',
+                                alignSelf: 'flex-start',
+                            }}
+                        >
+                            {verifying ? '◈  VERIFYING...' : '> VERIFY SIGNATURE'}
+                        </button>
                     </div>
 
-                    {/* Verify button */}
-                    <button
+                    {/* Right: High-Res Official Badge Showcase */}
+                    <div
                         onClick={handleVerify}
+                        title={`View official ${cert.name} credential`}
                         style={{
-                            all: 'unset',
-                            display: 'inline-flex',
+                            display: 'flex',
+                            flexDirection: 'column',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            gap: '8px',
-                            padding: '8px 16px',
-                            border: `1px solid ${cert.color}55`,
-                            borderRadius: '2px',
-                            backgroundColor: `${cert.color}0e`,
-                            color: cert.color,
-                            fontSize: '10px',
-                            letterSpacing: '2px',
-                            cursor: 'default',
-                            fontFamily: 'var(--font-mono)',
-                            transition: 'all 0.2s',
-                            boxShadow: verifying ? `0 0 16px ${cert.color}44` : 'none',
-                            alignSelf: 'flex-start',
+                            padding: '12px 18px',
+                            borderRadius: '6px',
+                            background: `radial-gradient(ellipse at center, ${cert.color}14 0%, rgba(5,8,18,0.7) 70%)`,
+                            border: `1px solid ${cert.color}25`,
+                            boxShadow: `0 8px 32px rgba(0,0,0,0.6), inset 0 0 20px ${cert.color}0a`,
+                            cursor: 'pointer',
+                            transition: 'transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease',
+                            flexShrink: 0,
+                        }}
+                        onMouseEnter={(e) => {
+                            e.currentTarget.style.transform = 'translateY(-2px) scale(1.02)';
+                            e.currentTarget.style.borderColor = `${cert.color}66`;
+                            e.currentTarget.style.boxShadow = `0 12px 36px ${cert.color}22, inset 0 0 24px ${cert.color}18`;
+                        }}
+                        onMouseLeave={(e) => {
+                            e.currentTarget.style.transform = 'none';
+                            e.currentTarget.style.borderColor = `${cert.color}25`;
+                            e.currentTarget.style.boxShadow = `0 8px 32px rgba(0,0,0,0.6), inset 0 0 20px ${cert.color}0a`;
                         }}
                     >
-                        {verifying ? '◈  VERIFYING...' : '> VERIFY SIGNATURE'}
-                    </button>
+                        <img
+                            src={cert.badge}
+                            alt={`${cert.name} Official Badge`}
+                            style={{
+                                width: '115px',
+                                height: '115px',
+                                objectFit: 'contain',
+                                filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.7))',
+                            }}
+                            loading="lazy"
+                        />
+                        <div style={{
+                            marginTop: '8px',
+                            fontSize: '8px',
+                            fontFamily: 'var(--font-mono)',
+                            letterSpacing: '1.5px',
+                            color: cert.color,
+                            opacity: 0.85,
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '4px',
+                        }}>
+                            <span>⬡</span>
+                            <span>OFFICIAL_BADGE</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
