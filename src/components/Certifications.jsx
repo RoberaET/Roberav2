@@ -307,14 +307,14 @@ function CertBlock({ cert, index, visible }) {
 
             {/* ── EXPANDED: decoded block ── */}
             <div style={{
-                maxHeight: open ? '420px' : '0',
+                maxHeight: open ? '550px' : '0',
                 overflow: 'hidden',
                 transition: 'max-height 0.4s cubic-bezier(0.4,0,0.2,1)',
             }}>
                 <div style={{
                     borderTop: `1px solid ${cert.color}20`,
                     margin: '0 14px',
-                    padding: '14px 0 16px',
+                    padding: '16px 0 18px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
@@ -323,11 +323,11 @@ function CertBlock({ cert, index, visible }) {
                 }}>
                     {/* Left: Credential details */}
                     <div style={{
-                        flex: '1 1 260px',
+                        flex: '1 1 250px',
                         minWidth: 0,
                         display: 'flex',
                         flexDirection: 'column',
-                        gap: '10px',
+                        gap: '12px',
                     }}>
                         {/* Full cert name */}
                         <div>
@@ -419,47 +419,48 @@ function CertBlock({ cert, index, visible }) {
                             flexDirection: 'column',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            padding: '12px 18px',
-                            borderRadius: '6px',
-                            background: `radial-gradient(ellipse at center, ${cert.color}14 0%, rgba(5,8,18,0.7) 70%)`,
-                            border: `1px solid ${cert.color}25`,
-                            boxShadow: `0 8px 32px rgba(0,0,0,0.6), inset 0 0 20px ${cert.color}0a`,
+                            padding: '14px 20px',
+                            borderRadius: '8px',
+                            background: `radial-gradient(ellipse at center, ${cert.color}18 0%, rgba(5,8,18,0.75) 75%)`,
+                            border: `1px solid ${cert.color}30`,
+                            boxShadow: `0 10px 36px rgba(0,0,0,0.7), inset 0 0 24px ${cert.color}0d`,
                             cursor: 'pointer',
                             transition: 'transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease',
                             flexShrink: 0,
                         }}
                         onMouseEnter={(e) => {
-                            e.currentTarget.style.transform = 'translateY(-2px) scale(1.02)';
-                            e.currentTarget.style.borderColor = `${cert.color}66`;
-                            e.currentTarget.style.boxShadow = `0 12px 36px ${cert.color}22, inset 0 0 24px ${cert.color}18`;
+                            e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                            e.currentTarget.style.borderColor = `${cert.color}77`;
+                            e.currentTarget.style.boxShadow = `0 14px 42px ${cert.color}28, inset 0 0 30px ${cert.color}20`;
                         }}
                         onMouseLeave={(e) => {
                             e.currentTarget.style.transform = 'none';
-                            e.currentTarget.style.borderColor = `${cert.color}25`;
-                            e.currentTarget.style.boxShadow = `0 8px 32px rgba(0,0,0,0.6), inset 0 0 20px ${cert.color}0a`;
+                            e.currentTarget.style.borderColor = `${cert.color}30`;
+                            e.currentTarget.style.boxShadow = `0 10px 36px rgba(0,0,0,0.7), inset 0 0 24px ${cert.color}0d`;
                         }}
                     >
                         <img
                             src={cert.badge}
                             alt={`${cert.name} Official Badge`}
                             style={{
-                                width: '115px',
-                                height: '115px',
+                                width: '150px',
+                                height: '150px',
                                 objectFit: 'contain',
-                                filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.7))',
+                                filter: 'drop-shadow(0 6px 16px rgba(0,0,0,0.7))',
+                                transition: 'filter 0.3s ease',
                             }}
                             loading="lazy"
                         />
                         <div style={{
-                            marginTop: '8px',
-                            fontSize: '8px',
+                            marginTop: '10px',
+                            fontSize: '9px',
                             fontFamily: 'var(--font-mono)',
-                            letterSpacing: '1.5px',
+                            letterSpacing: '2px',
                             color: cert.color,
-                            opacity: 0.85,
+                            opacity: 0.9,
                             display: 'flex',
                             alignItems: 'center',
-                            gap: '4px',
+                            gap: '5px',
                         }}>
                             <span>⬡</span>
                             <span>OFFICIAL_BADGE</span>
