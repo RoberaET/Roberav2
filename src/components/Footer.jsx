@@ -1,300 +1,467 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const UPTIME_START = new Date('2025-07-30T00:00:00');
+const BESYS_START_DATE = new Date('2025-07-30T00:00:00');
 
-function getUptime() {
+function getBesysUptime() {
     const now = new Date();
-    const diff = now - UPTIME_START;
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const diff = Math.max(0, now - BESYS_START_DATE);
+    const days  = Math.floor(diff / (1000 * 60 * 60 * 24));
     const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const secs = Math.floor((diff % (1000 * 60)) / 1000);
+    const mins  = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const secs  = Math.floor((diff % (1000 * 60)) / 1000);
     return { days, hours, mins, secs };
 }
 
-const INTERFACES = [
-    { label: 'GitHub', url: 'https://github.com/RoberaET', status: 'up', color: '#2EFF7A', id: 'Gi0/0/0' },
-    { label: 'LinkedIn', url: 'https://www.linkedin.com/in/roberamekonnen/', status: 'up', color: '#3B9DFF', id: 'Gi0/0/1' },
-    { label: 'Email', url: 'mailto:robera4553@gmail.com', status: 'up', color: '#a78bfa', id: 'Gi0/0/2' },
-    { label: 'Phone', url: 'tel:0941552458', status: 'up', color: '#ffb86c', id: 'Gi0/0/3' },
-];
-
 export default function Footer() {
-    const canvasRef = useRef(null);
-    const [uptime, setUptime] = useState(getUptime());
-    const [packetCount, setPacketCount] = useState(Math.floor(Math.random() * 50000) + 80000);
-    const [hovered, setHovered] = useState(null);
+    const [besysUptime, setBesysUptime] = useState(getBesysUptime());
+    const [sessionSeconds, setSessionSeconds] = useState(0);
+    const [viewport, setViewport] = useState({
+        w: typeof window !== 'undefined' ? window.innerWidth : 1920,
+        h: typeof window !== 'undefined' ? window.innerHeight : 1080,
+    });
+    const [connectionType, setConnectionType] = useState('ONLINE');
 
-    // Live uptime ticker
+    // Real-time ticking for BESYS tenure & visitor session
     useEffect(() => {
-        const id = setInterval(() => {
-            setUptime(getUptime());
-            setPacketCount(p => p + Math.floor(Math.random() * 5) + 1);
+        const start = Date.now();
+        const timer = setInterval(() => {
+            setBesysUptime(getBesysUptime());
+            setSessionSeconds(Math.floor((Date.now() - start) / 1000));
         }, 1000);
-        return () => clearInterval(id);
+        return () => clearInterval(timer);
     }, []);
 
-    // Animated canvas — scrolling packet stream
+    // Real live viewport listener
     useEffect(() => {
-        const canvas = canvasRef.current;
-        if (!canvas) return;
-        const ctx = canvas.getContext('2d');
-        canvas.width = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
-
-        const particles = Array.from({ length: 60 }, () => ({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            vx: (Math.random() - 0.5) * 0.4,
-            vy: -Math.random() * 0.5 - 0.2,
-            size: Math.random() * 1.5 + 0.3,
-            color: ['#2EFF7A', '#3B9DFF', '#a78bfa', '#fbbf24'][Math.floor(Math.random() * 4)],
-            alpha: Math.random() * 0.6 + 0.2,
-        }));
-
-        let animId;
-        const draw = () => {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                p.x += p.vx;
-                p.y += p.vy;
-                if (p.y < 0) { p.y = canvas.height; p.x = Math.random() * canvas.width; }
-                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fillStyle = p.color;
-                ctx.globalAlpha = p.alpha;
-                ctx.fill();
-            });
-            ctx.globalAlpha = 1;
-            animId = requestAnimationFrame(draw);
+        const handleResize = () => {
+            setViewport({ w: window.innerWidth, h: window.innerHeight });
         };
-        draw();
-        return () => cancelAnimationFrame(animId);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    const pad = n => String(n).padStart(2, '0');
+    // Real client network connection telemetry
+    useEffect(() => {
+        const updateConn = () => {
+            if (typeof navigator !== 'undefined' && 'connection' in navigator) {
+                const conn = navigator.connection;
+                if (conn && conn.effectiveType) {
+                    setConnectionType(conn.effectiveType.toUpperCase());
+                    return;
+                }
+            }
+            setConnectionType(navigator.onLine ? 'ONLINE' : 'OFFLINE');
+        };
+        updateConn();
+        window.addEventListener('online', updateConn);
+        window.addEventListener('offline', updateConn);
+        return () => {
+            window.removeEventListener('online', updateConn);
+            window.removeEventListener('offline', updateConn);
+        };
+    }, []);
+
+    const scrollTo = (id) => {
+        const el = document.getElementById(id);
+        if (el) {
+            el.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    const formatSession = (sec) => {
+        const m = Math.floor(sec / 60);
+        const s = sec % 60;
+        return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+    };
+
+    const clientPlatform = typeof navigator !== 'undefined'
+        ? (navigator.userAgentData?.platform || navigator.platform || 'UNKNOWN')
+        : 'UNKNOWN';
+
+    const clientProtocol = typeof window !== 'undefined' && window.location.protocol
+        ? window.location.protocol.replace(':', '').toUpperCase()
+        : 'HTTPS';
+
+    const routes = [
+        { num: '01', id: 'core-router', label: 'CORE_ROUTER', desc: 'System Gateway & Hero' },
+        { num: '02', id: 'network-ops', label: 'OPERATIONS_STACK', desc: 'Processes, BGP & Experience' },
+        { num: '03', id: 'data-center', label: 'TOPOLOGY_LABS', desc: 'Packet Tracer Architectures' },
+        { num: '04', id: 'security-ops', label: 'PACKET_FORGE', desc: 'Contact & Interfaces' },
+    ];
 
     return (
         <footer style={{
             position: 'relative',
-            marginTop: '80px',
+            marginTop: '30px',
             fontFamily: 'var(--font-mono)',
-            overflow: 'hidden',
+            backgroundColor: '#03010d',
+            borderTop: '1px solid rgba(0, 240, 255, 0.2)',
         }}>
-            {/* Top border glow line */}
-            <div style={{
-                height: '1px',
-                background: 'linear-gradient(90deg, transparent 0%, #2EFF7A 20%, #3B9DFF 50%, #a78bfa 80%, transparent 100%)',
-                boxShadow: '0 0 20px rgba(46,255,122,0.4)',
-                marginBottom: 0,
-            }} />
+            <style>{`
+                .ft-nav-btn {
+                    transition: all 0.25s ease;
+                }
+                .ft-nav-btn:hover {
+                    background: rgba(0, 240, 255, 0.08) !important;
+                    border-color: #00F0FF !important;
+                    transform: translateX(4px);
+                }
+                .ft-top-btn {
+                    transition: all 0.25s ease;
+                }
+                .ft-top-btn:hover {
+                    background: rgba(0, 255, 163, 0.15) !important;
+                    border-color: #00FFA3 !important;
+                    color: #00FFA3 !important;
+                }
+                @keyframes ft-status-blink {
+                    0%, 100% { opacity: 1; transform: scale(1); }
+                    50% { opacity: 0.35; transform: scale(0.9); }
+                }
+            `}</style>
 
-            {/* Particle canvas background */}
-            <canvas ref={canvasRef} style={{
-                position: 'absolute', inset: 0, width: '100%', height: '100%',
-                pointerEvents: 'none', zIndex: 0,
-            }} />
-
-            {/* Main footer body */}
+            {/* Subtle top indicator bar */}
             <div style={{
-                position: 'relative', zIndex: 1,
-                background: 'linear-gradient(180deg, rgba(5,11,20,0.97) 0%, rgba(2,5,10,1) 100%)',
-                padding: '48px 40px 32px',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                padding: '8px 30px',
+                background: 'rgba(8, 5, 26, 0.6)',
+                borderBottom: '1px solid rgba(74, 90, 138, 0.15)',
+                fontSize: '9px',
+                letterSpacing: '1.5px',
+                color: 'rgba(74, 90, 138, 0.8)',
             }}>
-
-                {/* === TOP ROW === */}
-                <div style={{
-                    display: 'grid',
-                    gridTemplateColumns: '1fr 1fr 1fr',
-                    gap: '40px',
-                    marginBottom: '40px',
-                    alignItems: 'start',
-                }}>
-
-                    {/* COLUMN 1 — Identity */}
-                    <div>
-                        <div style={{ fontSize: '10px', color: 'var(--text-muted)', letterSpacing: '3px', marginBottom: '12px' }}>
-                            // DEVICE_IDENTITY
-                        </div>
-                        <div style={{ fontSize: '22px', fontWeight: 'bold', color: 'var(--text-main)', letterSpacing: '2px', marginBottom: '4px' }}>
-                            ROBERA<span style={{ color: '#2EFF7A' }}>.</span>MEKONNEN
-                        </div>
-                        <div style={{ fontSize: '12px', color: '#3B9DFF', marginBottom: '16px', letterSpacing: '1px' }}>
-                            Network Engineer · Cybersecurity Enthusiast
-                        </div>
-                        <div style={{
-                            display: 'inline-flex', alignItems: 'center', gap: '8px',
-                            border: '1px solid rgba(46,255,122,0.3)',
-                            backgroundColor: 'rgba(46,255,122,0.05)',
-                            padding: '6px 14px', borderRadius: '2px',
-                        }}>
-                            <div style={{
-                                width: '6px', height: '6px', borderRadius: '50%',
-                                backgroundColor: '#2EFF7A',
-                                boxShadow: '0 0 8px #2EFF7A',
-                                animation: 'footerBlink 2s step-end infinite',
-                            }} />
-                            <span style={{ fontSize: '11px', color: '#2EFF7A', letterSpacing: '2px' }}>
-                                STATUS: OPERATIONAL
-                            </span>
-                        </div>
-                    </div>
-
-                    {/* COLUMN 2 — Live System Uptime */}
-                    <div>
-                        <div style={{ fontSize: '10px', color: 'var(--text-muted)', letterSpacing: '3px', marginBottom: '12px' }}>
-                            // SESSION_UPTIME
-                        </div>
-                        <div style={{
-                            border: '1px solid #1a2333',
-                            backgroundColor: '#030710',
-                            borderRadius: '4px',
-                            padding: '20px',
-                        }}>
-                            <div style={{ fontSize: '10px', color: 'var(--text-muted)', marginBottom: '12px' }}>
-                                &gt; show version | include uptime
-                            </div>
-                            <div style={{
-                                display: 'grid',
-                                gridTemplateColumns: 'repeat(4, 1fr)',
-                                gap: '8px',
-                                textAlign: 'center',
-                            }}>
-                                {[
-                                    { val: uptime.days, label: 'DAYS' },
-                                    { val: pad(uptime.hours), label: 'HRS' },
-                                    { val: pad(uptime.mins), label: 'MIN' },
-                                    { val: pad(uptime.secs), label: 'SEC' },
-                                ].map(({ val, label }) => (
-                                    <div key={label}>
-                                        <div style={{
-                                            fontSize: '24px',
-                                            fontWeight: 'bold',
-                                            color: '#2EFF7A',
-                                            textShadow: '0 0 10px rgba(46,255,122,0.5)',
-                                            lineHeight: 1,
-                                        }}>{val}</div>
-                                        <div style={{ fontSize: '9px', color: 'var(--text-muted)', marginTop: '4px', letterSpacing: '1px' }}>
-                                            {label}
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                            <div style={{
-                                marginTop: '16px', paddingTop: '12px',
-                                borderTop: '1px solid #1a2333',
-                                display: 'flex', justifyContent: 'space-between',
-                                fontSize: '10px', color: 'var(--text-muted)',
-                            }}>
-                                <span>PACKETS_TX</span>
-                                <span style={{ color: '#3B9DFF', fontWeight: 'bold' }}>
-                                    {packetCount.toLocaleString()}
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* COLUMN 3 — Interface Table */}
-                    <div>
-                        <div style={{ fontSize: '10px', color: 'var(--text-muted)', letterSpacing: '3px', marginBottom: '12px' }}>
-                            // CONTACT_INTERFACES
-                        </div>
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                            {INTERFACES.map(iface => (
-                                <a
-                                    key={iface.id}
-                                    href={iface.url}
-                                    target={iface.url.startsWith('mailto') ? '_self' : '_blank'}
-                                    rel="noopener noreferrer"
-                                    onMouseEnter={() => setHovered(iface.id)}
-                                    onMouseLeave={() => setHovered(null)}
-                                    style={{
-                                        textDecoration: 'none',
-                                        display: 'grid',
-                                        gridTemplateColumns: '70px 1fr 40px',
-                                        alignItems: 'center',
-                                        gap: '12px',
-                                        padding: '10px 14px',
-                                        border: `1px solid ${hovered === iface.id ? iface.color : '#1a2333'}`,
-                                        borderRadius: '2px',
-                                        backgroundColor: hovered === iface.id ? `${iface.color}0d` : '#030710',
-                                        transition: 'all 0.25s ease',
-                                        cursor: 'pointer',
-                                    }}
-                                >
-                                    <span style={{ fontSize: '10px', color: 'var(--text-muted)' }}>{iface.id}</span>
-                                    <span style={{ fontSize: '13px', color: hovered === iface.id ? iface.color : 'var(--text-main)', fontWeight: 'bold', transition: 'color 0.2s' }}>
-                                        {iface.label}
-                                    </span>
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-                                        <div style={{
-                                            width: '6px', height: '6px', borderRadius: '50%',
-                                            backgroundColor: iface.color,
-                                            boxShadow: `0 0 6px ${iface.color}`,
-                                        }} />
-                                        <span style={{ fontSize: '9px', color: iface.color }}>UP</span>
-                                    </div>
-                                </a>
-                            ))}
-                        </div>
-                    </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <span style={{ color: '#00F0FF' }}>SYS::TERMINUS</span>
+                    <span>│</span>
+                    <span>ROBERA-CORE-ROUTER</span>
                 </div>
-
-                {/* === DIVIDER === */}
-                <div style={{
-                    height: '1px',
-                    background: 'linear-gradient(90deg, transparent, #1a2333 30%, #1a2333 70%, transparent)',
-                    marginBottom: '24px',
-                }} />
-
-                {/* === BOTTOM ROW === */}
-                <div style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    flexWrap: 'wrap',
-                    gap: '12px',
-                }}>
-                    <div style={{ fontSize: '11px', color: 'var(--text-muted)', letterSpacing: '1px' }}>
-                        © {new Date().getFullYear()} ROBERA MEKONNEN · BUILT WITH{' '}
-                        <span style={{ color: '#3B9DFF' }}>REACT</span> +{' '}
-                        <span style={{ color: '#fbbf24' }}>VITE</span> ·{' '}
-                        <span style={{ color: '#2EFF7A' }}>ALL ROUTES OPERATIONAL</span>
-                    </div>
-
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-                        <div style={{ fontSize: '10px', color: 'var(--text-muted)', letterSpacing: '1px' }}>
-                            BUILD: <span style={{ color: '#2EFF7A' }}>v3.0.0</span>
-                        </div>
-                        <div style={{ fontSize: '10px', color: 'var(--text-muted)', letterSpacing: '1px' }}>
-                            NODE: <span style={{ color: '#3B9DFF' }}>ROBERA-CORE-RTR</span>
-                        </div>
-                        <div style={{ fontSize: '10px', color: 'var(--text-muted)', letterSpacing: '1px' }}>
-                            LOCATION: <span style={{ color: '#a78bfa' }}>ADDIS ABABA, ET</span>
-                        </div>
-                    </div>
-                </div>
-
-                {/* === FINAL ASCII LINE === */}
-                <div style={{
-                    marginTop: '28px',
-                    textAlign: 'center',
-                    fontSize: '11px',
-                    color: 'rgba(46,255,122,0.15)',
-                    letterSpacing: '4px',
-                    userSelect: 'none',
-                }}>
-                    ──────────────────────── END OF TRANSMISSION ────────────────────────
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <div style={{
+                        width: 6,
+                        height: 6,
+                        borderRadius: '50%',
+                        backgroundColor: '#00FFA3',
+                        boxShadow: '0 0 6px #00FFA3',
+                        animation: 'ft-status-blink 2s ease-in-out infinite'
+                    }} />
+                    <span style={{ color: '#00FFA3' }}>SYSTEM NOMINAL</span>
                 </div>
             </div>
 
-            <style>{`
-                @keyframes footerBlink {
-                    0%, 100% { opacity: 1; }
-                    50% { opacity: 0.3; }
-                }
-            `}</style>
+            {/* Main Content Grid */}
+            <div style={{
+                padding: '48px 40px 36px',
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+                gap: '40px',
+                alignItems: 'start',
+            }}>
+                {/* ── COL 1: Real Profile & Scope ───────────────── */}
+                <div>
+                    <div style={{
+                        fontSize: '9px',
+                        color: 'rgba(74, 90, 138, 0.8)',
+                        letterSpacing: '3px',
+                        marginBottom: '14px',
+                    }}>
+                        // PROFILE_IDENTITY
+                    </div>
+
+                    <div style={{
+                        fontSize: '22px',
+                        fontWeight: 700,
+                        color: '#E8F0FF',
+                        letterSpacing: '2px',
+                        marginBottom: '4px',
+                    }}>
+                        ROBERA MEKONNEN
+                    </div>
+
+                    <div style={{
+                        fontSize: '12px',
+                        color: '#00F0FF',
+                        letterSpacing: '1px',
+                        marginBottom: '14px',
+                    }}>
+                        Network and Security Engineer
+                    </div>
+
+                    <p style={{
+                        fontSize: '11px',
+                        lineHeight: '1.7',
+                        color: 'rgba(232, 240, 255, 0.65)',
+                        margin: '0 0 18px 0',
+                    }}>
+                        Specialized in resilient enterprise routing &amp; switching, network infrastructure hardening, virtualization systems, and active directory infrastructure.
+                    </p>
+
+                    <div style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '6px',
+                        fontSize: '10px',
+                        color: 'rgba(74, 90, 138, 0.9)',
+                    }}>
+                        <div style={{ display: 'flex', gap: '8px' }}>
+                            <span style={{ color: 'rgba(74, 90, 138, 0.5)', width: '70px' }}>LOCATION:</span>
+                            <span style={{ color: '#E8F0FF' }}>Addis Ababa, Ethiopia (UTC+3)</span>
+                        </div>
+                        <div style={{ display: 'flex', gap: '8px' }}>
+                            <span style={{ color: 'rgba(74, 90, 138, 0.5)', width: '70px' }}>STATUS:</span>
+                            <span style={{ color: '#00FFA3' }}>Open to Opportunities &amp; Engagements</span>
+                        </div>
+                    </div>
+                </div>
+
+                {/* ── COL 2: BESYS Technologies Uptime & Live Telemetry ── */}
+                <div>
+                    <div style={{
+                        fontSize: '9px',
+                        color: 'rgba(74, 90, 138, 0.8)',
+                        letterSpacing: '3px',
+                        marginBottom: '14px',
+                    }}>
+                        // BESYS_TENURE_UPTIME
+                    </div>
+
+                    {/* BESYS Technologies Live Uptime Counter */}
+                    <div style={{
+                        background: 'rgba(8, 5, 26, 0.85)',
+                        border: '1px solid rgba(0, 255, 163, 0.25)',
+                        borderLeft: '3px solid #00FFA3',
+                        borderRadius: '3px',
+                        padding: '16px 18px',
+                        marginBottom: '14px',
+                    }}>
+                        <div style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            marginBottom: '12px',
+                        }}>
+                            <div style={{ fontSize: '9px', color: 'rgba(232, 240, 255, 0.85)', letterSpacing: '1px' }}>
+                                <span style={{ color: '#00FFA3', fontWeight: 600 }}>BESYS TECHNOLOGIES</span> · UPTIME
+                            </div>
+                            <div style={{
+                                fontSize: '8px',
+                                color: '#00FFA3',
+                                background: 'rgba(0, 255, 163, 0.1)',
+                                border: '1px solid rgba(0, 255, 163, 0.3)',
+                                padding: '1px 6px',
+                                borderRadius: '2px',
+                                letterSpacing: '1px',
+                            }}>
+                                ACTIVE
+                            </div>
+                        </div>
+
+                        {/* 4 Counter Cells: DAYS, HRS, MIN, SEC */}
+                        <div style={{
+                            display: 'grid',
+                            gridTemplateColumns: 'repeat(4, 1fr)',
+                            gap: '8px',
+                            textAlign: 'center',
+                        }}>
+                            {[
+                                { val: besysUptime.days, label: 'DAYS' },
+                                { val: String(besysUptime.hours).padStart(2, '0'), label: 'HRS' },
+                                { val: String(besysUptime.mins).padStart(2, '0'), label: 'MIN' },
+                                { val: String(besysUptime.secs).padStart(2, '0'), label: 'SEC' },
+                            ].map(({ val, label }) => (
+                                <div key={label} style={{
+                                    background: 'rgba(0, 255, 163, 0.04)',
+                                    border: '1px solid rgba(0, 255, 163, 0.15)',
+                                    borderRadius: '2px',
+                                    padding: '8px 4px',
+                                }}>
+                                    <div style={{
+                                        fontSize: '20px',
+                                        fontWeight: 700,
+                                        color: '#00FFA3',
+                                        textShadow: '0 0 10px rgba(0, 255, 163, 0.4)',
+                                        lineHeight: 1,
+                                        fontFamily: 'var(--font-mono)',
+                                    }}>
+                                        {val}
+                                    </div>
+                                    <div style={{
+                                        fontSize: '7px',
+                                        color: 'rgba(74, 90, 138, 0.85)',
+                                        marginTop: '4px',
+                                        letterSpacing: '1px',
+                                    }}>
+                                        {label}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div style={{
+                            marginTop: '12px',
+                            paddingTop: '8px',
+                            borderTop: '1px solid rgba(74, 90, 138, 0.15)',
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            fontSize: '8px',
+                            color: 'rgba(74, 90, 138, 0.7)',
+                            letterSpacing: '1px',
+                        }}>
+                            <span>ROLE: NETWORK ENGINEER</span>
+                            <span style={{ color: '#00FFA3' }}>SINCE JUL 30, 2025</span>
+                        </div>
+                    </div>
+
+                    {/* Real Client Session Info */}
+                    <div style={{
+                        background: 'rgba(8, 5, 26, 0.5)',
+                        border: '1px solid rgba(74, 90, 138, 0.2)',
+                        borderRadius: '3px',
+                        padding: '10px 14px',
+                        display: 'grid',
+                        gridTemplateColumns: '1fr 1fr',
+                        gap: '8px',
+                        fontSize: '9px',
+                    }}>
+                        <div>
+                            <span style={{ color: 'rgba(74, 90, 138, 0.6)' }}>VIEWPORT: </span>
+                            <span style={{ color: '#E8F0FF' }}>{viewport.w}×{viewport.h}px</span>
+                        </div>
+                        <div>
+                            <span style={{ color: 'rgba(74, 90, 138, 0.6)' }}>CONN: </span>
+                            <span style={{ color: '#FFB800' }}>{connectionType}</span>
+                        </div>
+                        <div>
+                            <span style={{ color: 'rgba(74, 90, 138, 0.6)' }}>PROTOCOL: </span>
+                            <span style={{ color: '#00F0FF' }}>{clientProtocol}</span>
+                        </div>
+                        <div>
+                            <span style={{ color: 'rgba(74, 90, 138, 0.6)' }}>SESSION: </span>
+                            <span style={{ color: '#a78bfa' }}>{formatSession(sessionSeconds)}</span>
+                        </div>
+                    </div>
+                </div>
+
+                {/* ── COL 3: Real Working Site Navigation ────────── */}
+                <div>
+                    <div style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        marginBottom: '14px',
+                    }}>
+                        <div style={{
+                            fontSize: '9px',
+                            color: 'rgba(74, 90, 138, 0.8)',
+                            letterSpacing: '3px',
+                        }}>
+                            // QUICK_ROUTING
+                        </div>
+
+                        <button
+                            onClick={scrollToTop}
+                            className="ft-top-btn"
+                            style={{
+                                background: 'transparent',
+                                border: '1px solid rgba(74, 90, 138, 0.3)',
+                                borderRadius: '2px',
+                                color: 'rgba(232, 240, 255, 0.7)',
+                                fontSize: '8px',
+                                letterSpacing: '1.5px',
+                                padding: '3px 8px',
+                                cursor: 'pointer',
+                                fontFamily: 'var(--font-mono)',
+                            }}
+                        >
+                            ▲ TOP
+                        </button>
+                    </div>
+
+                    <div style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '8px',
+                    }}>
+                        {routes.map(r => (
+                            <button
+                                key={r.id}
+                                onClick={() => scrollTo(r.id)}
+                                className="ft-nav-btn"
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '12px',
+                                    padding: '8px 12px',
+                                    background: 'rgba(8, 5, 26, 0.5)',
+                                    border: '1px solid rgba(74, 90, 138, 0.2)',
+                                    borderRadius: '3px',
+                                    cursor: 'pointer',
+                                    textAlign: 'left',
+                                    fontFamily: 'var(--font-mono)',
+                                }}
+                            >
+                                <span style={{
+                                    fontSize: '9px',
+                                    color: '#00F0FF',
+                                    letterSpacing: '1px',
+                                    opacity: 0.8,
+                                }}>
+                                    {r.num}
+                                </span>
+                                <div style={{ flex: 1, minWidth: 0 }}>
+                                    <div style={{
+                                        fontSize: '11px',
+                                        color: '#E8F0FF',
+                                        letterSpacing: '1px',
+                                        fontWeight: 600,
+                                    }}>
+                                        {r.label}
+                                    </div>
+                                    <div style={{
+                                        fontSize: '8px',
+                                        color: 'rgba(74, 90, 138, 0.8)',
+                                        letterSpacing: '0.5px',
+                                    }}>
+                                        {r.desc}
+                                    </div>
+                                </div>
+                                <span style={{ color: 'rgba(74, 90, 138, 0.5)', fontSize: '10px' }}>
+                                    →
+                                </span>
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            {/* Bottom Bar */}
+            <div style={{
+                borderTop: '1px solid rgba(74, 90, 138, 0.15)',
+                padding: '16px 40px',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                flexWrap: 'wrap',
+                gap: '12px',
+                fontSize: '9px',
+                color: 'rgba(74, 90, 138, 0.7)',
+                letterSpacing: '1px',
+            }}>
+                <div>
+                    © {new Date().getFullYear()} ROBERA MEKONNEN · ALL RIGHTS RESERVED
+                </div>
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+                    <span>ENGINEERING STACK: <span style={{ color: '#00F0FF' }}>REACT</span> + <span style={{ color: '#FFB800' }}>VITE</span></span>
+                    <span>│</span>
+                    <span>ROUTING: <span style={{ color: '#00FFA3' }}>OPERATIONAL</span></span>
+                </div>
+            </div>
         </footer>
     );
 }

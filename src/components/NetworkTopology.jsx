@@ -262,46 +262,255 @@ export default function NetworkTopology() {
         );
     };
 
+    const labMeta = {
+        'Daisy-Chain':              { color: '#a78bfa', nodes: '13 NODES', sub: '4-FLOOR',    type: 'LINEAR',     ledColor: '#a78bfa' },
+        'Redundant Campus Network': { color: '#fbbf24', nodes: '13 NODES', sub: 'DUAL-CORE',  type: 'HA',         ledColor: '#fbbf24' },
+        'Multi-Branch Enterprise':  { color: '#ef4444', nodes: '16 NODES', sub: 'WAN+LAN',    type: 'ENTERPRISE', ledColor: '#ef4444' },
+    };
+
     return (
         <section style={{ marginBottom: '80px', fontFamily: 'var(--font-mono)' }}>
+        <style>{`
+            @keyframes nt-pulse { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+            @keyframes nt-scan  { 0%{transform:translateX(-100%);} 100%{transform:translateX(400%);} }
+            @keyframes nt-blink { 0%,100%{opacity:1} 49%{opacity:1} 50%{opacity:0} 99%{opacity:0} }
+            @keyframes nt-flicker { 0%,100%{opacity:1} 92%{opacity:1} 93%{opacity:.4} 94%{opacity:1} 97%{opacity:1} 98%{opacity:.6} 99%{opacity:1} }
+            @keyframes nt-slide-in { from{opacity:0;transform:translateY(-6px)} to{opacity:1;transform:translateY(0)} }
+            @keyframes nt-data-scroll { 0%{transform:translateY(0)} 100%{transform:translateY(-50%)} }
+            .nt-module { position:relative; overflow:hidden; transition:all 0.35s cubic-bezier(.4,0,.2,1); }
+            .nt-module:hover .nt-hover-glow { opacity:1 !important; }
+            .nt-module.active-mod .nt-scan-bar { animation: nt-scan 2.4s linear infinite; }
+            .nt-module.active-mod { transform: translateY(-2px); }
+        `}</style>
+
+            {/* ── CONTROL PANEL HEADER ─────────────────────────────── */}
             <div style={{
-                display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '20px'
+                background: 'linear-gradient(135deg, rgba(0,240,255,0.04) 0%, rgba(3,1,13,0) 60%)',
+                border: '1px solid rgba(0,240,255,0.18)',
+                borderRadius: '6px',
+                padding: '16px 20px',
+                marginBottom: '18px',
+                position: 'relative',
+                overflow: 'hidden',
             }}>
-                <div style={{
-                    width: '12px', height: '12px',
-                    backgroundColor: 'var(--accent-blue)',
-                    boxShadow: '0 0 10px var(--accent-blue-glow)'
-                }} />
-                <h2 style={{ fontSize: '20px', letterSpacing: '2px', color: 'var(--text-main)', margin: 0 }}>
-                    [ NETWORK_TOPOLOGY ]
-                </h2>
-                <div style={{ fontSize: '12px', color: 'var(--text-muted)', marginLeft: '10px' }}>
-                    // LAB_PROJECTS
+                {/* top-left corner tick */}
+                <div style={{ position:'absolute', top:0, left:0, width:16, height:16,
+                    borderTop:'2px solid #00F0FF', borderLeft:'2px solid #00F0FF' }} />
+                <div style={{ position:'absolute', bottom:0, right:0, width:16, height:16,
+                    borderBottom:'2px solid rgba(0,240,255,0.4)', borderRight:'2px solid rgba(0,240,255,0.4)' }} />
+
+                <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', flexWrap:'wrap', gap:'12px' }}>
+                    {/* Left: title */}
+                    <div style={{ display:'flex', alignItems:'center', gap:'14px' }}>
+                        {/* animated square */}
+                        <div style={{ position:'relative', width:14, height:14, flexShrink:0 }}>
+                            <div style={{ width:14, height:14, backgroundColor:'#00F0FF',
+                                boxShadow:'0 0 12px #00F0FF, 0 0 30px rgba(0,240,255,0.4)',
+                                animation:'nt-pulse 2s ease-in-out infinite' }} />
+                        </div>
+                        <div>
+                            <div style={{ display:'flex', alignItems:'baseline', gap:'12px' }}>
+                                <h2 style={{ margin:0, fontSize:'18px', letterSpacing:'3px',
+                                    color:'#E8F0FF', animation:'nt-flicker 8s ease-in-out infinite' }}>
+                                    [ NETWORK_TOPOLOGY ]
+                                </h2>
+                                <span style={{ fontSize:'11px', color:'rgba(74,90,138,0.9)',
+                                    letterSpacing:'1px' }}>// LAB_PROJECTS</span>
+                            </div>
+                            <div style={{ marginTop:'5px', display:'flex', alignItems:'center', gap:'10px' }}>
+                                <span style={{ fontSize:'9px', color:'rgba(0,240,255,0.6)',
+                                    letterSpacing:'2px', textTransform:'uppercase' }}>
+                                    SYS::TOPOLOGY_ENGINE v2.1
+                                </span>
+                                <span style={{ color:'rgba(0,240,255,0.3)', fontSize:'9px' }}>│</span>
+                                <span style={{ fontSize:'9px', color:'rgba(74,90,138,0.8)', letterSpacing:'1px' }}>
+                                    3 LABS LOADED
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Right: status indicators */}
+                    <div style={{ display:'flex', alignItems:'center', gap:'16px' }}>
+                        {/* SIMULATION ACTIVE pill */}
+                        <div style={{
+                            display:'flex', alignItems:'center', gap:'7px',
+                            background:'rgba(0,255,163,0.08)',
+                            border:'1px solid rgba(0,255,163,0.25)',
+                            borderRadius:'3px', padding:'5px 10px',
+                        }}>
+                            <div style={{
+                                width:7, height:7, borderRadius:'50%',
+                                backgroundColor:'#00FFA3',
+                                boxShadow:'0 0 8px #00FFA3',
+                                animation:'nt-pulse 1.4s ease-in-out infinite',
+                            }} />
+                            <span style={{ fontSize:'9px', letterSpacing:'2px', color:'#00FFA3' }}>
+                                SIMULATION ACTIVE
+                            </span>
+                        </div>
+                        {/* small data stream */}
+                        <div style={{
+                            width:60, height:32, overflow:'hidden',
+                            border:'1px solid rgba(0,240,255,0.12)',
+                            borderRadius:'2px', position:'relative',
+                            background:'rgba(0,0,0,0.3)',
+                        }}>
+                            <div style={{
+                                position:'absolute', top:0, left:0, width:'100%',
+                                animation:'nt-data-scroll 3s linear infinite',
+                                fontSize:'6px', color:'rgba(0,240,255,0.35)',
+                                lineHeight:'8px', padding:'2px 3px',
+                                whiteSpace:'pre', letterSpacing:'0.5px',
+                            }}>{`PKT 0xA3F\nSEQ 0x1C2\nACK 0xFF1\nRTT 2ms\nPKT 0x7BE\nSEQ 0x2D4\nACK 0xC03\nRTT 3ms`}</div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            {/* Tabs */}
-            <div className="scroll-x" style={{ display: 'flex', gap: '20px', marginBottom: '20px', paddingBottom: '10px' }}>
-                {tabs.map(tab => (
-                    <button
-                        key={tab}
-                        onClick={() => setActiveTab(tab)}
-                        style={{
-                            padding: '10px 20px',
-                            backgroundColor: activeTab === tab ? 'var(--accent-blue-intense)' : 'transparent',
-                            border: '1px solid var(--accent-blue)',
-                            color: activeTab === tab ? 'var(--text-main)' : 'var(--accent-blue)',
-                            cursor: 'pointer',
-                            fontSize: '12px',
-                            textTransform: 'uppercase',
-                            letterSpacing: '1px',
-                            transition: 'all 0.3s ease',
-                            whiteSpace: 'nowrap'
-                        }}
-                    >
-                        {tab}
-                    </button>
-                ))}
+            {/* ── LAB MODULE SELECTOR ───────────────────────────────── */}
+            <div style={{ display:'flex', gap:'12px', marginBottom:'20px', flexWrap:'wrap' }}>
+                {tabs.map((tab, idx) => {
+                    const meta   = labMeta[tab];
+                    const active = activeTab === tab;
+                    return (
+                        <button
+                            key={tab}
+                            onClick={() => setActiveTab(tab)}
+                            className={`nt-module${active ? ' active-mod' : ''}`}
+                            style={{
+                                flex:'1 1 200px', minWidth:'180px',
+                                background: active
+                                    ? `linear-gradient(135deg, rgba(${meta.color==='#a78bfa'?'167,139,250':meta.color==='#fbbf24'?'251,191,36':'239,68,68'},0.12) 0%, rgba(3,1,13,0.95) 100%)`
+                                    : 'rgba(8,5,26,0.8)',
+                                border: active
+                                    ? `1px solid ${meta.color}`
+                                    : '1px solid rgba(74,90,138,0.35)',
+                                borderLeft: active
+                                    ? `3px solid ${meta.color}`
+                                    : '3px solid rgba(74,90,138,0.2)',
+                                borderRadius:'5px',
+                                padding:'14px 16px',
+                                cursor:'pointer',
+                                textAlign:'left',
+                                position:'relative',
+                                overflow:'hidden',
+                                boxShadow: active
+                                    ? `0 0 20px ${meta.color}33, inset 0 0 20px ${meta.color}08`
+                                    : 'none',
+                            }}
+                        >
+                            {/* scan bar (only animates on active via CSS class) */}
+                            <div className="nt-scan-bar" style={{
+                                position:'absolute', top:0, left:0,
+                                width:'25%', height:'100%',
+                                background:`linear-gradient(90deg, transparent, ${meta.color}22, transparent)`,
+                                transform:'translateX(-100%)',
+                            }} />
+
+                            {/* hover glow overlay */}
+                            <div className="nt-hover-glow" style={{
+                                position:'absolute', inset:0,
+                                background:`radial-gradient(circle at 50% 50%, ${meta.color}0D 0%, transparent 70%)`,
+                                opacity: active ? 1 : 0,
+                                transition:'opacity 0.3s ease',
+                                pointerEvents:'none',
+                            }} />
+
+                            {/* ── rack unit number + LED ── */}
+                            <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:'10px' }}>
+                                <div style={{ display:'flex', alignItems:'center', gap:'8px' }}>
+                                    {/* rack slot label */}
+                                    <span style={{
+                                        fontSize:'8px', letterSpacing:'2px',
+                                        color: active ? meta.color : 'rgba(74,90,138,0.6)',
+                                        border:`1px solid ${active ? meta.color+'66' : 'rgba(74,90,138,0.3)'}`,
+                                        padding:'1px 5px', borderRadius:'2px',
+                                    }}>U{String(idx+1).padStart(2,'0')}</span>
+                                    <span style={{
+                                        fontSize:'8px', letterSpacing:'1.5px',
+                                        color:'rgba(74,90,138,0.5)',
+                                    }}>LAB-MODULE</span>
+                                </div>
+                                {/* status LED cluster */}
+                                <div style={{ display:'flex', alignItems:'center', gap:'4px' }}>
+                                    <div style={{
+                                        width:5, height:5, borderRadius:'50%',
+                                        backgroundColor: active ? meta.color : 'rgba(74,90,138,0.3)',
+                                        boxShadow: active ? `0 0 6px ${meta.color}` : 'none',
+                                        animation: active ? 'nt-pulse 1.8s ease-in-out infinite' : 'none',
+                                    }} />
+                                    <div style={{
+                                        width:5, height:5, borderRadius:'50%',
+                                        backgroundColor: active ? '#00FFA3' : 'rgba(74,90,138,0.2)',
+                                        boxShadow: active ? '0 0 5px #00FFA3' : 'none',
+                                        animation: active ? 'nt-blink 2s step-end infinite' : 'none',
+                                    }} />
+                                    <div style={{
+                                        width:5, height:5, borderRadius:'50%',
+                                        backgroundColor:'rgba(239,68,68,0.15)',
+                                    }} />
+                                </div>
+                            </div>
+
+                            {/* ── lab name ── */}
+                            <div style={{
+                                fontSize:'12px', letterSpacing:'1.5px',
+                                color: active ? '#E8F0FF' : 'rgba(232,240,255,0.45)',
+                                textTransform:'uppercase', marginBottom:'8px',
+                                fontWeight: active ? 600 : 400,
+                                transition:'color 0.3s ease',
+                            }}>
+                                {tab}
+                            </div>
+
+                            {/* ── metadata row ── */}
+                            <div style={{ display:'flex', alignItems:'center', gap:'8px', flexWrap:'wrap' }}>
+                                <span style={{
+                                    fontSize:'9px', letterSpacing:'1px',
+                                    color: active ? `${meta.color}CC` : 'rgba(74,90,138,0.5)',
+                                }}>
+                                    {meta.nodes} · {meta.sub}
+                                </span>
+                                <span style={{ color:'rgba(74,90,138,0.3)', fontSize:'9px' }}>│</span>
+                                <span style={{
+                                    fontSize:'8px', letterSpacing:'2px',
+                                    color: active ? meta.color : 'rgba(74,90,138,0.4)',
+                                    background: active ? `${meta.color}1A` : 'transparent',
+                                    border:`1px solid ${active ? meta.color+'44' : 'transparent'}`,
+                                    padding:'1px 5px', borderRadius:'2px',
+                                }}>
+                                    {meta.type}
+                                </span>
+                            </div>
+
+                            {/* ── status footer ── */}
+                            <div style={{
+                                marginTop:'10px', paddingTop:'8px',
+                                borderTop:`1px solid ${active ? meta.color+'33' : 'rgba(74,90,138,0.15)'}`,
+                                display:'flex', alignItems:'center', gap:'6px',
+                            }}>
+                                <div style={{
+                                    width:4, height:4, borderRadius:'50%',
+                                    backgroundColor: active ? '#00FFA3' : 'rgba(74,90,138,0.4)',
+                                }} />
+                                <span style={{
+                                    fontSize:'8px', letterSpacing:'2px',
+                                    color: active ? '#00FFA3' : 'rgba(74,90,138,0.4)',
+                                }}>
+                                    {active ? 'RUNNING' : 'STANDBY'}
+                                </span>
+                                {active && (
+                                    <span style={{
+                                        marginLeft:'auto', fontSize:'8px',
+                                        color:'rgba(0,240,255,0.5)', letterSpacing:'1px',
+                                        animation:'nt-slide-in 0.3s ease',
+                                    }}>SELECTED ▶</span>
+                                )}
+                            </div>
+                        </button>
+                    );
+                })}
             </div>
 
             <div style={{
@@ -503,48 +712,70 @@ export default function NetworkTopology() {
                     </svg>
                         
                         {/* Download Buttons Section */}
-                        <div style={{ 
-                            height: '60px', 
-                            display: 'flex', 
-                            alignItems: 'center', 
-                            justifyContent: 'center', 
-                            gap: '20px', 
-                            borderTop: '1px solid var(--border-color)',
-                            backgroundColor: 'rgba(5, 11, 20, 0.8)'
+                        <div style={{
+                            height: '60px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            gap: '14px',
+                            borderTop: '1px solid rgba(167,139,250,0.2)',
+                            backgroundColor: 'rgba(3,1,13,0.92)',
+                            padding: '0 20px',
+                            position: 'relative',
                         }}>
+                            {/* left rack label */}
+                            <div style={{
+                                position:'absolute', left:'16px', top:'50%', transform:'translateY(-50%)',
+                                fontSize:'8px', letterSpacing:'2px', color:'rgba(167,139,250,0.35)',
+                            }}>SYS::IO</div>
                             <a href="/DaisyChainLab.pkt" download style={{
-                                padding: '8px 16px',
-                                backgroundColor: 'var(--accent-blue-intense)',
-                                border: '1px solid var(--accent-blue)',
-                                color: 'var(--text-main)',
-                                textDecoration: 'none',
-                                fontSize: '12px',
-                                textTransform: 'uppercase',
-                                letterSpacing: '1px',
-                                transition: 'all 0.3s ease',
-                                cursor: 'pointer',
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '8px'
-                            }}>
-                                <span>📥 Download Project File (.pkt)</span>
+                                display:'flex', alignItems:'center', gap:'10px',
+                                padding:'7px 16px',
+                                background:'rgba(167,139,250,0.08)',
+                                border:'1px solid rgba(167,139,250,0.4)',
+                                borderLeft:'3px solid #a78bfa',
+                                borderRadius:'3px',
+                                color:'#a78bfa',
+                                textDecoration:'none',
+                                fontSize:'10px',
+                                letterSpacing:'1.5px',
+                                textTransform:'uppercase',
+                                cursor:'pointer',
+                                transition:'all 0.25s ease',
+                                position:'relative',
+                                overflow:'hidden',
+                            }}
+                            onMouseEnter={e=>{e.currentTarget.style.background='rgba(167,139,250,0.18)';e.currentTarget.style.boxShadow='0 0 14px rgba(167,139,250,0.3)';}}
+                            onMouseLeave={e=>{e.currentTarget.style.background='rgba(167,139,250,0.08)';e.currentTarget.style.boxShadow='none';}}>
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                    <path d="M6 1v7M3 5.5l3 3 3-3M1 11h10" stroke="#a78bfa" strokeWidth="1.5" strokeLinecap="round"/>
+                                </svg>
+                                <span>Download .pkt</span>
+                                <span style={{fontSize:'8px',opacity:0.5,letterSpacing:'1px'}}>PKT</span>
                             </a>
                             <a href="/README-DaisyChain.txt" target="_blank" download style={{
-                                padding: '8px 16px',
-                                backgroundColor: 'transparent',
-                                border: '1px solid var(--accent-blue)',
-                                color: 'var(--accent-blue)',
-                                textDecoration: 'none',
-                                fontSize: '12px',
-                                textTransform: 'uppercase',
-                                letterSpacing: '1px',
-                                transition: 'all 0.3s ease',
-                                cursor: 'pointer',
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '8px'
-                            }}>
-                                <span>📄 Read Documentation</span>
+                                display:'flex', alignItems:'center', gap:'10px',
+                                padding:'7px 16px',
+                                background:'transparent',
+                                border:'1px solid rgba(167,139,250,0.25)',
+                                borderLeft:'3px solid rgba(167,139,250,0.4)',
+                                borderRadius:'3px',
+                                color:'rgba(167,139,250,0.65)',
+                                textDecoration:'none',
+                                fontSize:'10px',
+                                letterSpacing:'1.5px',
+                                textTransform:'uppercase',
+                                cursor:'pointer',
+                                transition:'all 0.25s ease',
+                            }}
+                            onMouseEnter={e=>{e.currentTarget.style.background='rgba(167,139,250,0.08)';e.currentTarget.style.color='#a78bfa';}}
+                            onMouseLeave={e=>{e.currentTarget.style.background='transparent';e.currentTarget.style.color='rgba(167,139,250,0.65)';}}>
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                    <rect x="2" y="1" width="7" height="10" rx="1" stroke="currentColor" strokeWidth="1.2"/>
+                                    <path d="M4 4h4M4 6h4M4 8h2" stroke="currentColor" strokeWidth="1" strokeLinecap="round"/>
+                                </svg>
+                                <span>Read Docs</span>
+                                <span style={{fontSize:'8px',opacity:0.5,letterSpacing:'1px'}}>TXT</span>
                             </a>
                         </div>
                     </div>
@@ -625,48 +856,67 @@ export default function NetworkTopology() {
                         </svg>
 
                         {/* Download Buttons Section */}
-                        <div style={{ 
-                            height: '60px', 
-                            display: 'flex', 
-                            alignItems: 'center', 
-                            justifyContent: 'center', 
-                            gap: '20px', 
-                            borderTop: '1px solid var(--border-color)',
-                            backgroundColor: 'rgba(5, 11, 20, 0.8)'
+                        <div style={{
+                            height: '60px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            gap: '14px',
+                            borderTop: '1px solid rgba(251,191,36,0.2)',
+                            backgroundColor: 'rgba(3,1,13,0.92)',
+                            padding: '0 20px',
+                            position: 'relative',
                         }}>
+                            <div style={{
+                                position:'absolute', left:'16px', top:'50%', transform:'translateY(-50%)',
+                                fontSize:'8px', letterSpacing:'2px', color:'rgba(251,191,36,0.35)',
+                            }}>SYS::IO</div>
                             <a href="/CampusNetworkLab.pkt" download style={{
-                                padding: '8px 16px',
-                                backgroundColor: 'var(--accent-blue-intense)',
-                                border: '1px solid var(--accent-blue)',
-                                color: 'var(--text-main)',
-                                textDecoration: 'none',
-                                fontSize: '12px',
-                                textTransform: 'uppercase',
-                                letterSpacing: '1px',
-                                transition: 'all 0.3s ease',
-                                cursor: 'pointer',
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '8px'
-                            }}>
-                                <span>📥 Download Project File (.pkt)</span>
+                                display:'flex', alignItems:'center', gap:'10px',
+                                padding:'7px 16px',
+                                background:'rgba(251,191,36,0.08)',
+                                border:'1px solid rgba(251,191,36,0.4)',
+                                borderLeft:'3px solid #fbbf24',
+                                borderRadius:'3px',
+                                color:'#fbbf24',
+                                textDecoration:'none',
+                                fontSize:'10px',
+                                letterSpacing:'1.5px',
+                                textTransform:'uppercase',
+                                cursor:'pointer',
+                                transition:'all 0.25s ease',
+                            }}
+                            onMouseEnter={e=>{e.currentTarget.style.background='rgba(251,191,36,0.18)';e.currentTarget.style.boxShadow='0 0 14px rgba(251,191,36,0.3)';}}
+                            onMouseLeave={e=>{e.currentTarget.style.background='rgba(251,191,36,0.08)';e.currentTarget.style.boxShadow='none';}}>
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                    <path d="M6 1v7M3 5.5l3 3 3-3M1 11h10" stroke="#fbbf24" strokeWidth="1.5" strokeLinecap="round"/>
+                                </svg>
+                                <span>Download .pkt</span>
+                                <span style={{fontSize:'8px',opacity:0.5,letterSpacing:'1px'}}>PKT</span>
                             </a>
                             <a href="/README-CampusNetwork.txt" target="_blank" download style={{
-                                padding: '8px 16px',
-                                backgroundColor: 'transparent',
-                                border: '1px solid var(--accent-blue)',
-                                color: 'var(--accent-blue)',
-                                textDecoration: 'none',
-                                fontSize: '12px',
-                                textTransform: 'uppercase',
-                                letterSpacing: '1px',
-                                transition: 'all 0.3s ease',
-                                cursor: 'pointer',
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '8px'
-                            }}>
-                                <span>📄 Read Documentation</span>
+                                display:'flex', alignItems:'center', gap:'10px',
+                                padding:'7px 16px',
+                                background:'transparent',
+                                border:'1px solid rgba(251,191,36,0.25)',
+                                borderLeft:'3px solid rgba(251,191,36,0.4)',
+                                borderRadius:'3px',
+                                color:'rgba(251,191,36,0.65)',
+                                textDecoration:'none',
+                                fontSize:'10px',
+                                letterSpacing:'1.5px',
+                                textTransform:'uppercase',
+                                cursor:'pointer',
+                                transition:'all 0.25s ease',
+                            }}
+                            onMouseEnter={e=>{e.currentTarget.style.background='rgba(251,191,36,0.08)';e.currentTarget.style.color='#fbbf24';}}
+                            onMouseLeave={e=>{e.currentTarget.style.background='transparent';e.currentTarget.style.color='rgba(251,191,36,0.65)';}}>
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                    <rect x="2" y="1" width="7" height="10" rx="1" stroke="currentColor" strokeWidth="1.2"/>
+                                    <path d="M4 4h4M4 6h4M4 8h2" stroke="currentColor" strokeWidth="1" strokeLinecap="round"/>
+                                </svg>
+                                <span>Read Docs</span>
+                                <span style={{fontSize:'8px',opacity:0.5,letterSpacing:'1px'}}>TXT</span>
                             </a>
                         </div>
                     </div>
@@ -874,41 +1124,62 @@ export default function NetworkTopology() {
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            gap: '20px',
-                            borderTop: '1px solid var(--border-color)',
-                            backgroundColor: 'rgba(5, 11, 20, 0.8)'
+                            gap: '14px',
+                            borderTop: '1px solid rgba(239,68,68,0.2)',
+                            backgroundColor: 'rgba(3,1,13,0.92)',
+                            padding: '0 20px',
+                            position: 'relative',
                         }}>
+                            <div style={{
+                                position:'absolute', left:'16px', top:'50%', transform:'translateY(-50%)',
+                                fontSize:'8px', letterSpacing:'2px', color:'rgba(239,68,68,0.35)',
+                            }}>SYS::IO</div>
                             <a href="/MultiBranchLab.pkt" download style={{
-                                padding: '8px 16px',
-                                backgroundColor: 'var(--accent-blue-intense)',
-                                border: '1px solid var(--accent-blue)',
-                                color: 'var(--text-main)',
-                                textDecoration: 'none',
-                                fontSize: '12px',
-                                textTransform: 'uppercase',
-                                letterSpacing: '1px',
-                                cursor: 'pointer',
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '8px'
-                            }}>
-                                <span>📥 Download Project File (.pkt)</span>
+                                display:'flex', alignItems:'center', gap:'10px',
+                                padding:'7px 16px',
+                                background:'rgba(239,68,68,0.08)',
+                                border:'1px solid rgba(239,68,68,0.4)',
+                                borderLeft:'3px solid #ef4444',
+                                borderRadius:'3px',
+                                color:'#ef4444',
+                                textDecoration:'none',
+                                fontSize:'10px',
+                                letterSpacing:'1.5px',
+                                textTransform:'uppercase',
+                                cursor:'pointer',
+                                transition:'all 0.25s ease',
+                            }}
+                            onMouseEnter={e=>{e.currentTarget.style.background='rgba(239,68,68,0.18)';e.currentTarget.style.boxShadow='0 0 14px rgba(239,68,68,0.3)';}}
+                            onMouseLeave={e=>{e.currentTarget.style.background='rgba(239,68,68,0.08)';e.currentTarget.style.boxShadow='none';}}>
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                    <path d="M6 1v7M3 5.5l3 3 3-3M1 11h10" stroke="#ef4444" strokeWidth="1.5" strokeLinecap="round"/>
+                                </svg>
+                                <span>Download .pkt</span>
+                                <span style={{fontSize:'8px',opacity:0.5,letterSpacing:'1px'}}>PKT</span>
                             </a>
                             <a href="/README-MultiBranch.txt" target="_blank" download style={{
-                                padding: '8px 16px',
-                                backgroundColor: 'transparent',
-                                border: '1px solid var(--accent-blue)',
-                                color: 'var(--accent-blue)',
-                                textDecoration: 'none',
-                                fontSize: '12px',
-                                textTransform: 'uppercase',
-                                letterSpacing: '1px',
-                                cursor: 'pointer',
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '8px'
-                            }}>
-                                <span>📄 Read Documentation</span>
+                                display:'flex', alignItems:'center', gap:'10px',
+                                padding:'7px 16px',
+                                background:'transparent',
+                                border:'1px solid rgba(239,68,68,0.25)',
+                                borderLeft:'3px solid rgba(239,68,68,0.4)',
+                                borderRadius:'3px',
+                                color:'rgba(239,68,68,0.65)',
+                                textDecoration:'none',
+                                fontSize:'10px',
+                                letterSpacing:'1.5px',
+                                textTransform:'uppercase',
+                                cursor:'pointer',
+                                transition:'all 0.25s ease',
+                            }}
+                            onMouseEnter={e=>{e.currentTarget.style.background='rgba(239,68,68,0.08)';e.currentTarget.style.color='#ef4444';}}
+                            onMouseLeave={e=>{e.currentTarget.style.background='transparent';e.currentTarget.style.color='rgba(239,68,68,0.65)';}}>
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                    <rect x="2" y="1" width="7" height="10" rx="1" stroke="currentColor" strokeWidth="1.2"/>
+                                    <path d="M4 4h4M4 6h4M4 8h2" stroke="currentColor" strokeWidth="1" strokeLinecap="round"/>
+                                </svg>
+                                <span>Read Docs</span>
+                                <span style={{fontSize:'8px',opacity:0.5,letterSpacing:'1px'}}>TXT</span>
                             </a>
                         </div>
                     </div>

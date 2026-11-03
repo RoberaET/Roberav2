@@ -5,12 +5,12 @@ import FloatingMuteButton from './components/FloatingMuteButton'
 import HeartbeatNav from './components/HeartbeatNav'
 
 import RunningConfig from './components/RunningConfig'
+import BGPRouteTable from './components/BGPRouteTable'
 import RackInventory from './components/RackInventory'
 import Certifications from './components/Certifications'
 import EducationBGP from './components/EducationBGP'
 import NetworkTopology from './components/NetworkTopology'
 import EstablishConnection from './components/EstablishConnection'
-import CommandTerminal from './components/CommandTerminal'
 import Footer from './components/Footer'
 
 import './App.css'
@@ -48,7 +48,6 @@ class ErrorBoundary extends Component {
 function App() {
     const audioRef = useRef(null)
     const [isConnected, setIsConnected] = useState(false)
-    const [cyberRangeMode, setCyberRangeMode] = useState(false)
 
     // Setup audio on mount but don't play until authorized
     React.useEffect(() => {
@@ -80,7 +79,7 @@ function App() {
 
     return (
         <ErrorBoundary>
-            <div className={`app-container ${cyberRangeMode ? 'cyber-range' : ''}`}>
+            <div className={`app-container`}>
                 {/* Ambient Background Glow */}
                 <div className="ambient-glow" />
 
@@ -88,7 +87,7 @@ function App() {
                     <ConnectionGateway onAuthorize={handleAuthorize} />
                 ) : (
                     <>
-                    <div className="main-content fade-in" style={{ padding: '40px' }}>
+                    <div className="main-content fade-in" style={{ padding: '40px 40px 0 40px' }}>
                         
                         {/* Floating Mute Button — always visible while scrolling */}
                         <FloatingMuteButton audioRef={audioRef} />
@@ -102,13 +101,16 @@ function App() {
                         
                             {/* Phase 3 Components */}
                             <div id="network-ops" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px', marginBottom: '40px' }}>
-                                <RunningConfig />
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '40px', minWidth: 0 }}>
+                                    <RunningConfig />
+                                    <BGPRouteTable />
+                                    <EducationBGP />
+                                </div>
                                 <div style={{ display: 'flex', flexDirection: 'column', gap: '40px', minWidth: 0 }}>
                                     <RackInventory />
                                     <Certifications />
                                 </div>
                             </div>
-                            <EducationBGP />
 
                             {/* Phase 4 Components */}
                             <div id="data-center">
@@ -120,10 +122,6 @@ function App() {
                                 <EstablishConnection />
                             </div>
 
-                            {/* Phase 6 Components */}
-                            <div id="command-terminal">
-                                <CommandTerminal onCyberRange={() => setCyberRangeMode(true)} />
-                            </div>
                     </div>
                     <Footer />
                     </>
