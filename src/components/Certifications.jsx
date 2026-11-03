@@ -419,23 +419,23 @@ function CertBlock({ cert, index, visible }) {
                             flexDirection: 'column',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            padding: '14px 20px',
+                            padding: '12px',
                             borderRadius: '8px',
                             background: `radial-gradient(ellipse at center, ${cert.color}18 0%, rgba(5,8,18,0.75) 75%)`,
-                            border: `1px solid ${cert.color}30`,
+                            border: `1px solid ${cert.color}35`,
                             boxShadow: `0 10px 36px rgba(0,0,0,0.7), inset 0 0 24px ${cert.color}0d`,
                             cursor: 'pointer',
                             transition: 'transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease',
                             flexShrink: 0,
                         }}
                         onMouseEnter={(e) => {
-                            e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
+                            e.currentTarget.style.transform = 'translateY(-2px) scale(1.02)';
                             e.currentTarget.style.borderColor = `${cert.color}77`;
                             e.currentTarget.style.boxShadow = `0 14px 42px ${cert.color}28, inset 0 0 30px ${cert.color}20`;
                         }}
                         onMouseLeave={(e) => {
                             e.currentTarget.style.transform = 'none';
-                            e.currentTarget.style.borderColor = `${cert.color}30`;
+                            e.currentTarget.style.borderColor = `${cert.color}35`;
                             e.currentTarget.style.boxShadow = `0 10px 36px rgba(0,0,0,0.7), inset 0 0 24px ${cert.color}0d`;
                         }}
                     >
@@ -443,8 +443,8 @@ function CertBlock({ cert, index, visible }) {
                             src={cert.badge}
                             alt={`${cert.name} Official Badge`}
                             style={{
-                                width: '150px',
-                                height: '150px',
+                                width: '180px',
+                                height: '180px',
                                 objectFit: 'contain',
                                 filter: 'drop-shadow(0 6px 16px rgba(0,0,0,0.7))',
                                 transition: 'filter 0.3s ease',
@@ -452,8 +452,8 @@ function CertBlock({ cert, index, visible }) {
                             loading="lazy"
                         />
                         <div style={{
-                            marginTop: '10px',
-                            fontSize: '9px',
+                            marginTop: '8px',
+                            fontSize: '8px',
                             fontFamily: 'var(--font-mono)',
                             letterSpacing: '2px',
                             color: cert.color,
